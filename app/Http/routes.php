@@ -35,11 +35,19 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home', 'HomeController@index');
 
-    Route::get('/trip-offers', 'HomeController@trip_offers');
+    Route::get('/trip-offers/active', 'HomeController@trip_offers');
+
+    Route::get('/trip-offers/inactive', 'HomeController@trip_offers_past');
 
     Route::get('/bookings', 'HomeController@bookings');
 
+    Route::get('/bookings/history', 'HomeController@bookings_history');
+
     Route::get('/ratings', 'HomeController@ratings');
+
+    Route::get('/ratings/received', 'HomeController@ratings_received');
+
+    Route::get('/ratings/given', 'HomeController@ratings_given');
 
     Route::get('/profile', 'HomeController@profile');
 

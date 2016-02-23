@@ -20,9 +20,9 @@
 <body id="app-layout">
 
 
-    <nav>
+    <nav class="transparent">
         <div class="nav-wrapper">
-            <a href="{{ url('/') }}" class="brand-logo">Logo</a>
+            <a href="{{ url('/') }}" class="brand-logo"><img src="{{ asset('/img/logo_giddyup.png') }}" alt="" class="logo"></a>
 
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
@@ -39,7 +39,7 @@
 
                     <ul id='menu' class='dropdown-content'>
                         <li><a href="{{ url('/home') }}">Tableau de bord</a></li>
-                        <li><a href="{{ url('/trip-offers') }}">Mes annonces</a></li>
+                        <li><a href="{{ url('/trip-offers/active') }}">Mes annonces</a></li>
                         <li><a href="{{ url('/bookings') }}">Mes réservations</a></li>
                         <li><a href="{{ url('/ratings') }}">Avis</a></li>
                         <li><a href="{{ url('/profile') }}">Profil</a></li>

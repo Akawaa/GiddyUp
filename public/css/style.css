@@ -57,3 +57,20 @@
 .onglet a.active{
     border-bottom: 3px solid #b71c1c;
 }
+
+nav{
+    height: 110px;
+    box-shadow: none;
+    color: black;
+}
+
+nav ul a{
+    color: black;
+}
+
+.logo{
+    width: 300px;
+    height: 90px;
+    margin: 10px;
+    left: 10px;
+}
