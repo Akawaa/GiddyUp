@@ -1,0 +1,59 @@
+[type="radio"].with-gap:checked+label:before {
+    border: 2px solid #b71c1c;
+}
+
+[type="radio"].with-gap:checked+label:after{
+    border: 2px solid #b71c1c;
+    background-color: #b71c1c ;
+}
+
+.dropdown-content li>span{
+    color: #b71c1c;
+}
+
+.subonglet{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 48px;
+    background-color: #fff;
+    margin: 0 auto;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.onglet{
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 48px;
+    height: 48px;
+    padding: 0;
+    margin: 0;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    letter-spacing: 0.8px;
+    width: 15%;
+    min-width: 80px;
+}
+
+.onglet a{
+    color: #b71c1c;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: color .28s ease;
+}
+
+.onglet a.active{
+    border-bottom: 3px solid #b71c1c;
+}
