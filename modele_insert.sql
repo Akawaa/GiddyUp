@@ -1636,7 +1636,7 @@ INSERT INTO `modele` (`modele_id`, `modele_libelle`, `marque_id`) VALUES
 (1635, '280', 190),
 (1636, '300', 190),
 (1637, '319', 190);
-INSERT INTO `models` (`id_model`, `name_model`, `id_brand`, `valid_model`) VALUES
+INSERT INTO `modele` (`modele_id`, `modele_libelle`, `marque_id`) VALUES
 (1638, '320', 190),
 (1639, '350', 190),
 (1640, '380', 190),
