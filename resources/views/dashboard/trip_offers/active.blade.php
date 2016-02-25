@@ -23,6 +23,14 @@
 
             <h4>Mes annonces</h4>
 
+            <div>
+                @forelse($trajets as $trajet)
+                    <li>{{ $trajet->trajet_id }}}</li>
+                @empty
+                    <p>Vous n'avez aucune annonce.</p>
+                @endforelse
+            </div>
+
             
 
         </div>

@@ -54,13 +54,6 @@ class SiteTableSeeder extends Seeder
         ]);
 
         DB::table('site')->insert([
-            'site_nom' => 'Site de l\'Arbois',
-            'site_adresse' => 'Domaine du Petit Arbois, Avenue Louis Philibert',
-            'universite_id' => '1',
-            'ville_insee' => '13001',
-        ]);
-
-        DB::table('site')->insert([
             'site_nom' => 'Site Arles',
             'site_adresse' => 'Espace Van Gogh - place Félix Rey',
             'universite_id' => '1',
@@ -133,6 +126,13 @@ class SiteTableSeeder extends Seeder
         DB::table('site')->insert([
             'site_nom' => 'Site Luminy',
             'site_adresse' => '163 Avenue de Luminy',
+            'universite_id' => '1',
+            'ville_insee' => '13055',
+        ]);
+
+        DB::table('site')->insert([
+            'site_nom' => 'Site Nord',
+            'site_adresse' => '51 Boulevard Pierre Dramard',
             'universite_id' => '1',
             'ville_insee' => '13055',
         ]);

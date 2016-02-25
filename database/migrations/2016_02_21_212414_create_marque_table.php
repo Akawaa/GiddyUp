@@ -16,6 +16,8 @@ class CreateMarqueTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('marque_id');
             $table->string('marque_libelle',20);
+            $table->string('marque_logo',100);
+            $table->integer('type_id')->unsigned();
         });
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Trajet;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -27,14 +29,21 @@ class HomeController extends Controller
         return view('dashboard/home');
     }
 
+
+    //Annonce
     public function trip_offers(){
-        return view('dashboard/trip_offers/active');
+
+        $trajets = DB::table('trajet')->get();
+
+        return view('dashboard/trip_offers/active',['trajets'=>$trajets]);
     }
 
     public function trip_offers_past(){
         return view('dashboard/trip_offers/inactive');
     }
 
+
+    //Réservation
     public function bookings(){
         return view('dashboard/bookings/bookings');
     }
@@ -43,6 +52,7 @@ class HomeController extends Controller
         return view('dashboard/bookings/history');
     }
 
+    //Avis
     public function ratings(){
         return view('dashboard/ratings/hints');
     }
@@ -55,7 +65,9 @@ class HomeController extends Controller
         return view('dashboard/ratings/given');
     }
 
+    //Profil
     public function profile(){
         return view('dashboard/profile/profile');
     }
+
 }

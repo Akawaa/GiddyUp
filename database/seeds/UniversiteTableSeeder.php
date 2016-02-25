@@ -15,7 +15,6 @@ class UniversiteTableSeeder extends Seeder
             'universite_nom' => 'Aix-Marseille université',
             'universite_adresse' => '58, bd Charles Livon',
             'universite_tel' => '+33 491 396 500',
-            'universite_photo' => 'aix-marseille.png',
             'universite_logo' => 'aix-marseille-logo.png',
             'ville_insee' => '13055',
         ]);

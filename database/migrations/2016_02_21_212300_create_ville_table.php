@@ -14,6 +14,7 @@ class CreateVilleTable extends Migration
     {
         Schema::create('ville', function (Blueprint $table) {
             $table->engine = 'InnoDB';
+            $table->string('departementVille');
             $table->string('ville_nom',50);
             $table->string('ville_nom_reel',50);
             $table->string('ville_code_postal',255);
