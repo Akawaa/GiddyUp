@@ -57,8 +57,6 @@
 
                         <div class="form-group{{ $errors->has('year') ? ' has-error' : '' }}">
 
-
-
                                 <div class="input-field col s12">
                                     <select name="year">
                                         <option value="" disabled selected>Année de naissance</option>

@@ -51,5 +51,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/profile', 'HomeController@profile');
 
+    Route::get('/profile/universite', 'HomeController@profile_universite');
+
     Route::get('/search','TrajetController@recherche');
 });

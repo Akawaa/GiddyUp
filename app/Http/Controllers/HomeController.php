@@ -70,4 +70,17 @@ class HomeController extends Controller
         return view('dashboard/profile/profile');
     }
 
+    public function profile_universite(){
+
+        $universites = DB::table('universite')->get();
+
+        $sites = DB::table('site')
+            ->join('universite', 'universite.universite_id', '=', 'site.universite_id')
+            ->select('site.*')
+            ->get();
+
+
+        return view('dashboard/profile/universite',['universites'=>$universites,'sites'=>$sites]);
+    }
+
 }

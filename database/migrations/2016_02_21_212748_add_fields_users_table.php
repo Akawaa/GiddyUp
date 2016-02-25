@@ -17,7 +17,7 @@ class AddFieldsUsersTable extends Migration
             $table->string('membre_telephone',10);
             $table->string('membre_sexe',1);
             $table->integer('membre_annee_naissance');
-            $table->boolean('membre_present')->nullable();
+            $table->string('membre_present',255)->nullable();
             $table->boolean('membre_casque')->nullable();
             $table->string('membre_photo',50)->nullable();
             $table->boolean('membre_photo_valide')->nullable();
