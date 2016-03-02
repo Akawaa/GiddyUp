@@ -23,7 +23,7 @@ class CreateInscritTable extends Migration
             $table->tinyInteger('inscription_avis_voyageur');
             $table->string('inscription_commentaire_voyageur');
             $table->date('inscription_date_commentaire_voyageur');
-            $table->boolean('inscription_valide');
+            $table->tinyInteger('inscription_valide');
             $table->string('ville_insee_depart',15);
             $table->string('ville_insee_arrivee',15);
             $table->timestamps();

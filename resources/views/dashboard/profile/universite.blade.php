@@ -11,13 +11,15 @@
                 <li class="onglet col s3"><a class="active" href="{{ url('/profile') }}">Profil</a></li>
             </ul>
         </div>
+    </div>
 
+    <div class="row">
         <div class="col s3">
             <div class="collection">
                 <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Informations personnelles</a>
-                <a href="{{ url('/profile/universite') }}" class="collection-item active red darken-3">Université</a>
-                <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Photo</a>
-                <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Préférence</a>
+                <a href="{{ url('/profile/university') }}" class="collection-item active red darken-3">Université</a>
+                <a href="{{ url('/profile/picture') }}" class="collection-item red-text text-darken-3">Photo</a>
+                <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Préférences</a>
                 <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Véhicule</a>
                 <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Changer de mot de passe</a>
             </div>
@@ -66,7 +68,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>

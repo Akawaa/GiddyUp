@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -35,7 +35,7 @@
                     <li><a href="{{ url('/register') }}">S'inscrire</a></li>
                     <li><a href="{{ url('/login') }}">Se connecter</a></li>
                 @else
-                    <li><a class="dropdown-button" href="#!" data-activates="menu">{{ Auth::user()->name }} {{ Auth::user()->membre_prenom }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="menu">{{ Auth::user()->membre_prenom }} {{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
 
                     <ul id='menu' class='dropdown-content'>
                         <li><a href="{{ url('/home') }}">Tableau de bord</a></li>
@@ -63,7 +63,7 @@
     @yield('content')
 
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
 
 

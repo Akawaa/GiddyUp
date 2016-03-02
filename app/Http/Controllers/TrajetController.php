@@ -17,8 +17,4 @@ class TrajetController extends Controller
     public function recherche(){
         return view('search');
     }
-
-    public function ajouterTrajet(){
-
-    }
 }

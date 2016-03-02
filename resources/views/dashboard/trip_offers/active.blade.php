@@ -30,9 +30,6 @@
                     <p>Vous n'avez aucune annonce.</p>
                 @endforelse
             </div>
-
-            
-
         </div>
 
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">

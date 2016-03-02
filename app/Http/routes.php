@@ -26,12 +26,13 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+
+    Route::resource('profile/car','VehiculeController',['except' => [
+        'show'
+    ]]);
 
     Route::get('/home', 'HomeController@index');
 
@@ -49,9 +50,20 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/ratings/given', 'HomeController@ratings_given');
 
-    Route::get('/profile', 'HomeController@profile');
+    Route::get('/profile', 'ProfileController@informations');
 
-    Route::get('/profile/universite', 'HomeController@profile_universite');
+    Route::post('/profile', 'ProfileController@update_informations');
+
+    Route::get('/profile/university', 'ProfileController@universite');
+
+    Route::get('/profile/picture', 'ProfileController@photo');
+
+    Route::get('/profile/picture', 'ProfileController@preferences');
+
+
+    Route::get('/profile/password', 'ProfileController@password');
+
+    Route::post('/profile/password', 'HomeController@update_password');
 
     Route::get('/search','TrajetController@recherche');
 });

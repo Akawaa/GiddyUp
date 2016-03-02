@@ -18,11 +18,10 @@ class CreateVehiculeTable extends Migration
             $table->string('vehicule_photo',50)->nullable();
             $table->tinyInteger('vehicule_confort')->nullable();
             $table->tinyInteger('vehicule_place')->nullable();
-            $table->string('vehicule_couleur',20)->nullable();
             $table->boolean('vehicule_defaut')->nullable();
             $table->integer('id')->unsigned();
             $table->integer('modele_id')->unsigned();
-            $table->integer('type_id')->unsigned();
+            $table->integer('couleur_id')->unsigned();
         });
     }
 

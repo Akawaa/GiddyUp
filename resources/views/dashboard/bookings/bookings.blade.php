@@ -24,6 +24,14 @@
 
             <h4>Mes réservations</h4>
 
+            <div>
+                @forelse($reservations as $reservation)
+                    <li>{{ $reservation->trajet_id }}</li>
+                @empty
+                    <p>Vous n'avez aucune réservation.</p>
+                @endforelse
+            </div>
+
         </div>
     </div>
 

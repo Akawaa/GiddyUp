@@ -45,7 +45,9 @@ class HomeController extends Controller
 
     //Réservation
     public function bookings(){
-        return view('dashboard/bookings/bookings');
+        $reservations = DB::table('inscrit')->get();
+
+        return view('dashboard/bookings/bookings',['reservations'=>$reservations]);
     }
 
     public function bookings_history(){
@@ -65,10 +67,7 @@ class HomeController extends Controller
         return view('dashboard/ratings/given');
     }
 
-    //Profil
-    public function profile(){
-        return view('dashboard/profile/profile');
-    }
+    //Profils
 
     public function profile_universite(){
 
@@ -81,6 +80,22 @@ class HomeController extends Controller
 
 
         return view('dashboard/profile/universite',['universites'=>$universites,'sites'=>$sites]);
+    }
+
+    public function profile_photo(){
+        return view('dashboard/profile/photo');
+    }
+
+    public function profile_voiture(){
+        return view('dashboard/profile/car');
+    }
+
+    public function profile_password(){
+        return view('dashboard/profile/password');
+    }
+
+    public function update_password(){
+
     }
 
 }

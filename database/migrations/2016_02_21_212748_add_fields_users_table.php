@@ -20,7 +20,7 @@ class AddFieldsUsersTable extends Migration
             $table->string('membre_present',255)->nullable();
             $table->boolean('membre_casque')->nullable();
             $table->string('membre_photo',50)->nullable();
-            $table->boolean('membre_photo_valide')->nullable();
+            $table->tinyInteger('membre_photo_valide')->nullable();
             $table->integer('site_id')->unsigned()->nullable();
             $table->tinyInteger('membre_pref_cig')->nullable();
             $table->tinyInteger('membre_pref_mus')->nullable();

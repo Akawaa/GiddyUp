@@ -19,9 +19,6 @@ class AddForeignVehiculeTable extends Migration
             $table->foreign('modele_id')
                 ->references('modele_id')
                 ->on('modele');
-            $table->foreign('type_id')
-                ->references('type_id')
-                ->on('type');
         });
     }
 
