@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="_token" content="{!! csrf_token() !!}"/>
+
     <title>Laravel</title>
 
     <!-- Fonts -->
@@ -83,6 +85,10 @@
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 5,// Creates a dropdown of 15 years to control year
             min: true,
+        });
+
+        $.ajaxSetup({
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
         });
 
 

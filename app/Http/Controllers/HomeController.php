@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
@@ -35,7 +36,12 @@ class HomeController extends Controller
 
         $trajets = DB::table('trajet')->get();
 
-        return view('dashboard/trip_offers/active',['trajets'=>$trajets]);
+        $vehiculeNB = DB::table('users')
+            ->join('vehicule','users.id','=','vehicule.id')
+            ->where('users.id',Auth::user()->id)
+            ->count();
+
+        return view('dashboard/trip_offers/active',['trajets'=>$trajets,'nbVehicule'=>$vehiculeNB]);
     }
 
     public function trip_offers_past(){
@@ -65,37 +71,6 @@ class HomeController extends Controller
 
     public function ratings_given(){
         return view('dashboard/ratings/given');
-    }
-
-    //Profils
-
-    public function profile_universite(){
-
-        $universites = DB::table('universite')->get();
-
-        $sites = DB::table('site')
-            ->join('universite', 'universite.universite_id', '=', 'site.universite_id')
-            ->select('site.*')
-            ->get();
-
-
-        return view('dashboard/profile/universite',['universites'=>$universites,'sites'=>$sites]);
-    }
-
-    public function profile_photo(){
-        return view('dashboard/profile/photo');
-    }
-
-    public function profile_voiture(){
-        return view('dashboard/profile/car');
-    }
-
-    public function profile_password(){
-        return view('dashboard/profile/password');
-    }
-
-    public function update_password(){
-
     }
 
 }

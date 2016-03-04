@@ -30,9 +30,36 @@ Route::get('/', function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
+    Route::resource('profile','InformationController',['only' => ['edit','update']]);
+
+    Route::resource('profile/university','UniversiteController',['only' => ['edit','update','destroy']]);
+
+    Route::post('profile/university/{id}/getSite','UniversiteController@get_site');
+
+    Route::resource('profile/preferences','PreferenceController',['only' => ['edit','update']]);
+
+    Route::resource('profile/picture','PhotoController',['only' => ['edit','update','destroy']]);
+
     Route::resource('profile/car','VehiculeController',['except' => [
         'show'
     ]]);
+
+    Route::resource('profile/car/picture','PhotoVehiculeController',['only' => ['edit','update','destroy']]);
+
+
+    Route::resource('profile/email','ChangeEmailController',['only' => ['edit','update']]);
+
+    Route::resource('profile/password','ChangePasswordController',['only' => ['edit','update']]);
+
+    Route::post('profile/car/getMarque','VehiculeController@get_marque');
+
+    Route::post('profile/car/getModele','VehiculeController@get_modele');
+
+    Route::post('profile/car/{id}/getMarque','VehiculeController@get_marque');
+
+    Route::post('profile/car/{id}/getModele','VehiculeController@get_modele');
+
+
 
     Route::get('/home', 'HomeController@index');
 
@@ -49,21 +76,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/ratings/received', 'HomeController@ratings_received');
 
     Route::get('/ratings/given', 'HomeController@ratings_given');
-
-    Route::get('/profile', 'ProfileController@informations');
-
-    Route::post('/profile', 'ProfileController@update_informations');
-
-    Route::get('/profile/university', 'ProfileController@universite');
-
-    Route::get('/profile/picture', 'ProfileController@photo');
-
-    Route::get('/profile/picture', 'ProfileController@preferences');
-
-
-    Route::get('/profile/password', 'ProfileController@password');
-
-    Route::post('/profile/password', 'HomeController@update_password');
 
     Route::get('/search','TrajetController@recherche');
 });

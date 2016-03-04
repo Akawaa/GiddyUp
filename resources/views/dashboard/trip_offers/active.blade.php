@@ -8,7 +8,7 @@
                 <li class="onglet col s3"><a class="active" href="{{ url('/trip-offers/active') }}">Mes annonces</a></li>
                 <li class="onglet col s3"><a href="{{ url('/bookings') }}">Mes réservations</a></li>
                 <li class="onglet col s3"><a href="{{ url('/ratings') }}">Avis</a></li>
-                <li class="onglet col s3"><a href="{{ url('/profile') }}">Profil</a></li>
+                <li class="onglet col s3"><a href="{{ url('/profile/'.Auth::user()->id.'/edit') }}">Profil</a></li>
             </ul>
         </div>
 
@@ -22,6 +22,14 @@
         <div class="col s9">
 
             <h4>Mes annonces</h4>
+
+            @if(Auth::user()->site_id == null)
+                <div>Vous devez ajouter un site de formation avant de pouvoir créer une annonce !</div>
+            @endif
+
+            @if($nbVehicule == 0)
+                <div>Vous devez ajouter un véhicule avant de pouvoir créer une annonce !</div>
+            @endif
 
             <div>
                 @forelse($trajets as $trajet)

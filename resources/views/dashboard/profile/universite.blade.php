@@ -8,7 +8,7 @@
                 <li class="onglet col s3"><a href="{{ url('/trip-offers/active') }}">Mes annonces</a></li>
                 <li class="onglet col s3"><a href="{{ url('/bookings') }}">Mes réservations</a></li>
                 <li class="onglet col s3"><a href="{{ url('/ratings') }}">Avis</a></li>
-                <li class="onglet col s3"><a class="active" href="{{ url('/profile') }}">Profil</a></li>
+                <li class="onglet col s3"><a class="active" href="{{ url('/profile/'.Auth::user()->id.'/edit') }}">Profil</a></li>
             </ul>
         </div>
     </div>
@@ -16,12 +16,13 @@
     <div class="row">
         <div class="col s3">
             <div class="collection">
-                <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Informations personnelles</a>
-                <a href="{{ url('/profile/university') }}" class="collection-item active red darken-3">Université</a>
-                <a href="{{ url('/profile/picture') }}" class="collection-item red-text text-darken-3">Photo</a>
-                <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Préférences</a>
-                <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Véhicule</a>
-                <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Changer de mot de passe</a>
+                <a href="{{ url('/profile/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Informations personnelles</a>
+                <a href="{{ url('/profile/university/'.Auth::user()->id.'/edit') }}" class="collection-item active red darken-3">Université</a>
+                <a href="{{ url('/profile/picture/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Photo</a>
+                <a href="{{ url('/profile/preferences/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Préférences</a>
+                <a href="{{ url('/profile/car') }}" class="collection-item red-text text-darken-3">Véhicule</a>
+                <a href="{{ url('/profile/email/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Changer d'adresse email</a>
+                <a href="{{ url('/profile/password/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Changer de mot de passe</a>
             </div>
         </div>
 
@@ -31,28 +32,47 @@
                     <div class="card">
                         <div class="card-content">
                             <h5>Université</h5>
+                            @if (session('status'))
+                                <div>
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
-                            <form>
+                            {{ Form::model($user, array('route' => array('profile.university.update',$user->id),'method'=>'PUT')) }}
 
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <select name="universite" class="icons">
-                                            <option value="" disabled selected>Universite</option>
+                                        <select name="universite" id="universite" class="icons">
+                                            <option value="0" disabled selected>Universite</option>
                                             @foreach($universites as $universite)
-                                                <option class="red-text text-darken-4" data-icon="{{asset('img/universite_logo/'.$universite->universite_logo)}}" value="{{$universite->universite_id}}">{{$universite->universite_nom}}</option>
+                                                <option class="red-text text-darken-4" data-icon="{{asset('img/universite_logo/'.$universite->universite_logo)}}" @if($universite->universite_id == $universiteCourante) selected @endif value="{{$universite->universite_id}}">{{$universite->universite_nom}}</option>
                                             @endforeach
                                         </select>
+
+                                        @if ($errors->first('universite'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('universite') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="input-field col s6">
-                                        <select name="site">
-                                            <option value="" disabled selected>Site</option>
-                                            @foreach($sites as $site)
-                                                <option class="red-text text-darken-4" value="{{$site->site_id}}">{{$site->site_nom}}</option>
-                                            @endforeach
+                                    <div class="input-field col s6" id="site_div">
+                                        <select name="site" id="site">
+                                            <option value="0" disabled selected>Site</option>
+                                            @if(isset($sites))
+                                                @foreach($sites as $site)
+                                                    <option class="red-text text-darken-4" @if($site->site_id == $siteCourant) selected @endif value="{{$site->site_id}}">{{$site->site_nom}}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
+
+                                        @if ($errors->first('site'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('site') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -63,7 +83,14 @@
                                         </button>
                                     </div>
                                 </div>
-                            </form>
+
+                            {{ Form::close() }}
+
+
+                                {{ Form::open(array('url'=> 'profile/university/'.Auth::user()->id)) }}
+                                    {{ Form::hidden('_method', 'DELETE') }}
+                                    {{ Form::button('Je ne fais plus parti d\'une université', ['class' => 'waves-effect waves-light btn red darken-4','type'=>'submit']) }}
+                                {{ Form::close() }}
                         </div>
                     </div>
                 </div>
@@ -76,5 +103,26 @@
 @section('script')
 
     $('select').material_select();
+
+    $('#universite').change(function(){
+        $.ajax({
+            url: 'getSite',
+            type: "post",
+            data: {'universite':$('#universite').val()},
+            dataType: 'json',
+            success: function(data){
+
+                for(var i=0;i<data.length;i++){
+                    $('#site').append('<option value="'+data[i].site_id+'">'+data[i].site_nom+'</option>')
+                }
+
+                $('select').material_select();
+
+             },
+            error: function(){
+            alert("Oups ! Une erreur s'est produite.");
+            }
+        });
+    });
 
 @endsection

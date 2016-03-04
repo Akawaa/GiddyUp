@@ -8,7 +8,7 @@
                 <li class="onglet col s3"><a href="{{ url('/trip-offers/active') }}">Mes annonces</a></li>
                 <li class="onglet col s3"><a href="{{ url('/bookings') }}">Mes réservations</a></li>
                 <li class="onglet col s3"><a href="{{ url('/ratings') }}">Avis</a></li>
-                <li class="onglet col s3"><a class="active" href="{{ url('/profile') }}">Profil</a></li>
+                <li class="onglet col s3"><a class="active" href="{{ url('/profile/'.Auth::user()->id.'/edit') }}">Profil</a></li>
             </ul>
         </div>
     </div>
@@ -16,13 +16,13 @@
     <div class="row">
         <div class="col s3">
             <div class="collection">
-                <a href="{{ url('/profile') }}" class="collection-item red-text text-darken-3">Informations personnelles</a>
-                <a href="{{ url('/profile/university') }}" class="collection-item red-text text-darken-3">Université</a>
-                <a href="{{ url('/profile/picture') }}" class="collection-item red-text text-darken-3">Photo</a>
-                <a href="{{ url('/profile/preferences') }}" class="collection-item red-text text-darken-3">Préférence</a>
+                <a href="{{ url('/profile/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Informations personnelles</a>
+                <a href="{{ url('/profile/university/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Université</a>
+                <a href="{{ url('/profile/picture/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Photo</a>
+                <a href="{{ url('/profile/preferences/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Préférence</a>
                 <a href="{{ url('/profile/car') }}" class="collection-item red darken-3 active">Véhicule</a>
-                <a href="{{ url('/profile/password') }}" class="collection-item red-text text-darken-3">Changer de mot de passe</a>
-            </div>
+                <a href="{{ url('/profile/email/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Changer d'adresse email</a>
+                <a href="{{ url('/profile/password/'.Auth::user()->id.'/edit') }}" class="collection-item red-text text-darken-3">Changer de mot de passe</a>            </div>
         </div>
 
         <div class="col s9">
@@ -32,6 +32,12 @@
                         <div class="card-content">
                             <h5>Véhicule</h5>
                             <a href="{{ url('profile/car/create') }}" class="waves-effect waves-light btn red darken-4"><i class="material-icons left">directions_car</i>Ajouter</a>
+
+                            @if (session('status'))
+                                <div>
+                                    {{ session('status') }}
+                                </div>
+                            @endif
 
                             @forelse($vehicules as $vehicule)
 
@@ -66,7 +72,7 @@
 
                                                                         {{ Form::open(array('url'=> 'profile/car/'.$vehicule->vehicule_id)) }}
                                                                             {{ Form::hidden('_method', 'DELETE') }}
-                                                                            {{ Form::submit('Supprimer', ['class' => 'waves-effect waves-light btn amber']) }}
+                                                                            {{ Form::button('Supprimer', ['class' => 'waves-effect waves-light btn amber','type'=>'submit']) }}
                                                                         {{ Form::close() }}
                                                                     </p>
                                                                 </div>

@@ -55,11 +55,10 @@ class VehiculeController extends Controller
     public function create()
     {
         $types = Type::all();
-        $marques = Marque::all();
         $modeles = Modele::all();
         $couleurs = Couleur::all();
 
-        return view('dashboard.profile.vehicule.create_car',['types'=>$types,'marques'=>$marques,'modeles'=>$modeles,'couleurs'=>$couleurs]);
+        return view('dashboard.profile.vehicule.create_car',['types'=>$types,'modeles'=>$modeles,'couleurs'=>$couleurs]);
     }
 
     /**
@@ -71,6 +70,8 @@ class VehiculeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
+            'type' => 'required|numeric',
+            'marque' => 'required|numeric',
             'modele' => 'required|numeric',
             'couleur' => 'required|numeric',
             'place' => 'required|numeric',
@@ -78,7 +79,7 @@ class VehiculeController extends Controller
         ]);
 
         if($validator->fails()){
-            return redirect('/profile/car/create')
+            return Redirect::back()
                 ->withInput()
                 ->withErrors($validator);
         }
@@ -113,8 +114,20 @@ class VehiculeController extends Controller
 
         $vehicule = Vehicule::find($id);
 
+        $idMarque = DB::table('modele')
+            ->join('marque','marque.marque_id','=','modele.marque_id')
+            ->select('marque.marque_id')
+            ->where('modele.modele_id',$vehicule->modele_id)
+            ->get()[0]->marque_id;
 
-        return view('dashboard.profile.vehicule.edit_car',['types'=>$types,'marques'=>$marques,'modeles'=>$modeles,'couleurs'=>$couleurs,'vehicule'=>$vehicule]);
+        $idType = DB::table('marque')
+            ->join('type','type.type_id','=','marque.type_id')
+            ->select('type.type_id')
+            ->where('marque.marque_id',$idMarque)
+            ->get()[0]->type_id;
+
+
+        return view('dashboard.profile.vehicule.edit_car',['types'=>$types,'marques'=>$marques,'marqueCourante'=>$idMarque,'modeles'=>$modeles,'typeCourant'=>$idType,'couleurs'=>$couleurs,'vehicule'=>$vehicule]);
     }
 
     /**
@@ -127,6 +140,8 @@ class VehiculeController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(),[
+            'type' => 'required|numeric',
+            'marque' => 'required|numeric',
             'modele' => 'required|numeric',
             'couleur' => 'required|numeric',
             'place' => 'required|numeric',
@@ -160,7 +175,34 @@ class VehiculeController extends Controller
     {
         Vehicule::find($id)->delete();
 
-        return redirect('/profile/car');
+        return redirect('/profile/car')->with('status', 'Le véhicule à bien été supprimé');
+    }
+
+    public function get_marque(){
+
+        $sites = DB::table('type')
+            ->join('marque','type.type_id','=','marque.type_id')
+            ->select('marque.*')
+            ->where('type.type_id',$_POST['type'])
+            ->get();
+
+        $json=json_encode($sites);
+        echo $json;
+
+    }
+
+    public function get_modele(){
+
+        $sites = DB::table('marque')
+            ->join('modele','marque.marque_id','=','modele.marque_id')
+            ->select('modele.*')
+            ->where('marque.marque_id',$_POST['marque'])
+            ->get();
+
+
+        $json=json_encode($sites);
+        echo $json;
+
     }
 
 }
