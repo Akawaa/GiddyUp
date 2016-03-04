@@ -68,13 +68,6 @@ nav ul a{
     color: black;
 }
 
-.logo{
-    width: 300px;
-    height: 90px;
-    margin: 10px;
-    left: 10px;
-}
-
 .select-dropdown li img{
     width: 70px;
 }
@@ -82,4 +75,268 @@ nav ul a{
 .photo_profil{
     width: 150px;
     height: 150px;
+}
+
+/* START SYL */
+h1,h2,h3,h4,h5,h6 {margin: 0;}
+
+body {
+    font-family: 'Roboto', 'Source Sans Pro', sans-serif;
+}
+
+h2 {
+    font-family: 'Roboto Slab';
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h3 {
+    font-family: 'Roboto Slab';
+    font-size: 2em;
+    font-weight: bold;
+}
+
+nav {
+    background: #fff;
+    padding: 5px;
+    position: absolute;
+}
+
+nav {
+    height: 75px;
+}
+
+@media screen and (max-width: 625px) {
+    nav {
+        height: 140px;
+    }
+}
+
+.btn {
+    font-family: 'Source Sans Pro';
+    font-weight: 900;
+    font-size: 1rem;
+    padding: 0 20px;
+    margin: 0 5px!important;
+}
+
+.logo {
+    float: left;
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.btn-primary {
+    background: #dd4b39;
+    box-shadow: none;
+}
+
+.btn-primary:hover {
+    background: #C34232;
+    box-shadow: none;
+}
+
+button:focus {
+    background: #C34232;
+}
+
+.btn-secondary {
+    background: #febd12;
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background: #E4AA10;
+    box-shadow: none;
+}
+
+.login-menu a {
+    color: #000;
+    font-family: 'Source Sans Pro';
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+/************/
+/* LANDING */
+/**********/
+
+.landing {
+    min-height: 100vh;
+    width: 100%;
+    padding-top: 180px;
+    background-image: url('../img/landing-home.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.annonce {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 130px;
+    height: 130px;
+    background: #febd12;
+    border-radius: 100%;
+    line-height: 20px;
+    text-align: center;
+    font-family: 'Source Sans Pro';
+    font-weight: lighter;
+    font-size: 1.5em;
+    padding-top: 30px;
+}
+
+.recherche-home {
+    position: relative;
+    height: 500px;
+    width: 500px;
+    border-radius: 100%;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 1080px) {
+    .landing {
+        padding-left: 50vw;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .recherche-home {
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .recherche-home {
+        max-width: 100%;
+        border-radius: 200px;
+    }
+}
+
+.landing form {
+    padding-top: 50px;
+}
+
+.landing form label {
+    font-size: 1.2em;   
+}
+
+.landing form .btn {
+    display: block;
+    margin: 0 auto!important;
+}
+
+/* label color */
+.input-field label {
+    color: #000;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: #febd12;
+    font-size: 1em;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #febd12;
+    box-shadow: 0 1px 0 0 #febd12;
+}
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: #000;
+}
+
+/*************/
+/* SECTIONS */
+/***********/
+
+.homesection {
+    position: relative;
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.bg-primary {
+    background-color: #dd4b39;
+}
+.bg-secondary {
+    background-color: #febd12;
+}
+.bg-third {
+    background-color: #d9d9d9;
+}
+.bg-green {
+    background-color: #95d344;
+}
+
+.homesection p {
+    font-weight: 300;
+    font-size: 1.5em;
+}
+
+.homesection img {
+    position: absolute;
+    bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .section-content {
+        margin-bottom: 200px;
+    }
+
+    .homesection img {
+        left:0px;
+        right:0px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .homesection .img-left {
+        left: 40px;
+    }
+    .homesection .img-right {
+        right: 40px;
+    }
+}
+
+.row {
+    margin: 0;
+}
+
+/****************/
+/*** FOOTER ****/
+/**************/
+
+.bandeau_footer {
+    width: 100%;
+    height: 190px;
+    background-image: url('../img/bandeau_footer.png');
+}
+
+.widget_footer {
+    padding: 15px!important;
+}
+
+footer a {
+    color: #000;
+    text-decoration: underline;
 }

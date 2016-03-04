@@ -7,12 +7,15 @@
 
     <meta name="_token" content="{!! csrf_token() !!}"/>
 
-    <title>Laravel</title>
+    <title>GiddyUp</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
-
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/materialize.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -22,48 +25,61 @@
 <body id="app-layout">
 
 
-    <nav class="transparent">
+    <nav>
         <div class="nav-wrapper">
-            <a href="{{ url('/') }}" class="brand-logo"><img src="{{ asset('/img/logo_giddyup.png') }}" alt="" class="logo"></a>
+            <a href="{{ url('/') }}" class="logo"><img src="{{ asset('/img/logo_giddyup.png') }}" width="200px" alt="GiddyUP - Le covoiturage entre universités"></a>
 
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-
-                <li><a class="waves-effect waves-light btn red darken-3" href="{{ url('/search') }}">Rechercher un trajet</a></li>
-                <li><a class="waves-effect waves-light btn amber" href="{{ url('/search') }}">Proposer un trajet</a></li>
-
-
-                @if (Auth::guest())
-                    <li><a href="{{ url('/register') }}">S'inscrire</a></li>
-                    <li><a href="{{ url('/login') }}">Se connecter</a></li>
-                @else
-                    <li><a class="dropdown-button" href="#!" data-activates="menu">{{ Auth::user()->membre_prenom }} {{ Auth::user()->name }}<i class="material-icons right">arrow_drop_down</i></a></li>
-
-                    <ul id='menu' class='dropdown-content'>
-                        <li><a href="{{ url('/home') }}">Tableau de bord</a></li>
-                        <li><a href="{{ url('/trip-offers/active') }}">Mes annonces</a></li>
-                        <li><a href="{{ url('/bookings') }}">Mes réservations</a></li>
-                        <li><a href="{{ url('/ratings') }}">Avis</a></li>
-                        <li><a href="{{ url('/profile') }}">Profil</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{{ url('/logout') }}">Se déconnecter</a></li>
-                    </ul>
-                @endif
-
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons black">menu</i></a>
+            <ul class="hide-on-med-and-down">
+                <li class="s6"><a class="waves-effect waves-light btn btn-primary" href="{{ url('/search') }}">Rechercher</a></li>
+                <li class="s6"><a class="waves-effect waves-light btn btn-secondary" href="{{ url('/search') }}">Proposer</a></li>
             </ul>
+            <ul class="login-menu right hide-on-med-and-down">
+                @if (Auth::guest())
+                <li><a href="{{ url('/register') }}">S'inscrire</a></li>
+                <li><a href="{{ url('/login') }}">Se connecter</a></li>
+                @else
+                <li><a class="dropdown-button" href="#!" data-activates="menu">{{ Auth::user()->membre_prenom }} {{ Auth::user()->name }}<i class="material-icons right"></i></a></li>
+            </ul>
+            <ul id='menu' class='dropdown-content'>
+                <li><a href="{{ url('/home') }}">Tableau de bord</a></li>
+                <li><a href="{{ url('/trip-offers/active') }}">Mes annonces</a></li>
+                <li><a href="{{ url('/bookings') }}">Mes réservations</a></li>
+                <li><a href="{{ url('/ratings') }}">Avis</a></li>
+                <li><a href="{{ url('/profile') }}">Profil</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ url('/logout') }}">Se déconnecter</a></li>
+            </ul>
+            @endif
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="{{ url('/register') }}">S'inscrire</a></li>
                 <li><a href="{{ url('/login') }}">Se connecter</a></li>
 
-                <li><a class="waves-effect waves-light btn" href="{{ url('/search') }}">Rechercher un trajet</a></li>
-                <li><a class="waves-effect waves-light btn" href="{{ url('/search') }}">Proposer un trajet</a></li>
+                <li><a class="waves-effect waves-light btn" href="{{ url('/search') }}">Rechercher</a></li>
+                <li><a class="waves-effect waves-light btn" href="{{ url('/search') }}">Proposer</a></li>
             </ul>
         </div>
     </nav>
 
+    <main>
+        @yield('content')
+    </main>
 
-    @yield('content')
-
+    <footer>
+        <div class="bandeau_footer"></div>
+        <div class="row">
+            <div class="widget_footer bg-green col m4">
+                <h3>Infos Pratiques</h3>
+                <ul>
+                    <li><a href="#">Comment ça marche ?</a></li>
+                    <li><a href="#">Prix des covoiturages</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">F.A.Q</a></li>
+                    <li><a href="#">Conditions Générales</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
     <!-- JavaScripts -->
     <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
@@ -71,25 +87,25 @@
 
     <script type="text/javascript">
 
-        $( document ).ready(function(){
+    $( document ).ready(function(){
 
-            $(".button-collapse").sideNav();
+        $(".button-collapse").sideNav();
 
-            $(".dropdown-button").dropdown();
+        $(".dropdown-button").dropdown();
 
-            @yield('script')
+        @yield('script')
 
-         });
+    });
 
-        $('.datepicker').pickadate({
+    $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 5,// Creates a dropdown of 15 years to control year
             min: true,
         });
 
-        $.ajaxSetup({
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
-        });
+    $.ajaxSetup({
+        headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+    });
 
 
     </script>
