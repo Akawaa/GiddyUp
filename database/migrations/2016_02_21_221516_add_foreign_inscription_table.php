@@ -15,10 +15,10 @@ class AddForeignInscriptionTable extends Migration
         Schema::table('inscrit', function (Blueprint $table) {
             $table->foreign('id')
                 ->references('id')
-                ->on('users');
+                ->on('users')->onDelete('cascade');
             $table->foreign('trajet_id')
                 ->references('trajet_id')
-                ->on('trajet');
+                ->on('trajet')->onDelete('cascade');
             $table->foreign('ville_insee_depart')
                 ->references('ville_insee')
                 ->on('ville');

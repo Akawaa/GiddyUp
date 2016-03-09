@@ -15,7 +15,8 @@ class AddForeignSiteTable extends Migration
         Schema::table('site', function (Blueprint $table) {
             $table->foreign('universite_id')
                 ->references('universite_id')
-                ->on('universite');
+                ->on('universite')
+                ->onDelete('cascade');
             $table->foreign('ville_insee')
                 ->references('ville_insee')
                 ->on('ville');

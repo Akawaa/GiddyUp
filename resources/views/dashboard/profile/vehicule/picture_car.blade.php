@@ -33,7 +33,25 @@
                             <h5>Véhicule</h5>
                             <a href="{{ url('profile/car') }}" class="waves-effect waves-light btn red darken-4">Annuler</a>
 
-                            {{ Form::model($vehicule, array('route' => array('profile.car.picture.update ',$vehicule->id),'method'=>'PUT','files' => true)) }}
+                            <div class="row">
+                                <div class="col s8 center-align">
+
+                                    @if($vehicule->vehicule_photo == null)
+                                        @if($vehicule->type_id == 1)
+                                            <i class="material-icons large">directions_car</i>
+                                        @else
+                                            <i class="material-icons large">motorcycle</i>
+                                        @endif
+
+                                        <h6>Ajoutez une photo</h6>
+                                    @else
+                                        <img class="responsive-img circle photo_profil" src="{{ asset('uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
+                                    @endif
+                                </div>
+                            </div>
+
+
+                            {{ Form::model($vehicule, array('route' => array('profile.car.picture.update',$vehicule->vehicule_id),'method'=>'PUT','files' => true)) }}
 
                             <div class="row">
                                 <div class="file-field input-field col s8">
@@ -57,10 +75,17 @@
                             <div class="row">
                                 <div>
                                     {{ Form::button('Mettre à jour',['class'=>'waves-effect waves-light btn red darken-4','type'=>'submit']) }}
-
-                                    {{ Form::close() }}
-
                                 </div>
+                            </div>
+
+                            {{ Form::close() }}
+
+                            @if($vehicule->vehicule_photo != null)
+                                {{ Form::open(array('url'=> 'profile/car/picture/'.$vehicule->vehicule_id)) }}
+                                    {{ Form::hidden('_method', 'DELETE') }}
+                                    {{ Form::button('Supprimer', ['class' => 'waves-effect waves-light btn red darken-4','type'=>'submit']) }}
+                                {{ Form::close() }}
+                            @endif
                         </div>
                     </div>
                 </div>

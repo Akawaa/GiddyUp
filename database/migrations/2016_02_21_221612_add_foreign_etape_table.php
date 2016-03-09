@@ -15,7 +15,8 @@ class AddForeignEtapeTable extends Migration
         Schema::table('etape', function (Blueprint $table) {
             $table->foreign('trajet_id')
                 ->references('trajet_id')
-                ->on('trajet');
+                ->on('trajet')
+                ->onDelete('cascade');
             $table->foreign('ville_insee')
                 ->references('ville_insee')
                 ->on('ville');

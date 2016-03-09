@@ -30,7 +30,7 @@
                                 @if(Auth::user()->membre_photo == null)
                                     <i class="material-icons large">add_a_photo</i>
                                 @else
-                                    <img class="responsive-img circle photo_profil" src="{{ asset('profile_picture/'.Auth::user()->id.'/'.Auth::user()->membre_photo) }}" alt="">
+                                    <img class="responsive-img circle photo_profil" src="{{ asset('uploads/'.Auth::user()->id.'/'.Auth::user()->membre_photo) }}" alt="">
                                 @endif
                             </div>
 

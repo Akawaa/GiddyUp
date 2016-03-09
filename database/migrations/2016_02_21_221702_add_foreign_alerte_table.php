@@ -15,7 +15,8 @@ class AddForeignAlerteTable extends Migration
         Schema::table('alerte', function (Blueprint $table) {
             $table->foreign('id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
             $table->foreign('ville_insee_depart')
                 ->references('ville_insee')
                 ->on('ville');

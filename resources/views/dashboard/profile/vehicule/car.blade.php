@@ -49,15 +49,19 @@
                                                                 <div class="col s3">
                                                                     <div class="row">
                                                                         <div class="col s12">
-                                                                            @if($vehicule->type_id == 1)
-                                                                                <i class="material-icons large">directions_car</i>
+                                                                            @if($vehicule->vehicule_photo)
+                                                                                <img class="responsive-img circle photo_profil" src="{{ asset('uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
                                                                             @else
-                                                                                <i class="material-icons large">motorcycle</i>
+                                                                                @if($vehicule->type_id == 1)
+                                                                                    <i class="material-icons large">directions_car</i>
+                                                                                @else
+                                                                                    <i class="material-icons large">motorcycle</i>
+                                                                                @endif
                                                                             @endif
                                                                         </div>
 
                                                                         <div class="col s12">
-                                                                            <a href="#">Ajouter une photo</a>
+                                                                            <a href="{{ url('profile/car/picture/'.$vehicule->vehicule_id.'/edit') }}">Ajouter une photo</a>
                                                                         </div>
 
                                                                     </div>
