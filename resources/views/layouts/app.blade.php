@@ -23,8 +23,6 @@
 
 </head>
 <body id="app-layout">
-
-
     <nav>
         <div class="nav-wrapper">
             <a href="{{ url('/') }}" class="logo"><img src="{{ asset('/img/logo_giddyup.png') }}" width="200px" alt="GiddyUP - Le covoiturage entre universités"></a>
@@ -39,7 +37,7 @@
                 <li><a href="{{ url('/register') }}">S'inscrire</a></li>
                 <li><a href="{{ url('/login') }}">Se connecter</a></li>
                 @else
-                <li><a class="dropdown-button" href="#!" data-activates="menu">{{ Auth::user()->membre_prenom }} {{ Auth::user()->name }}<i class="material-icons right"></i></a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="menu">{{ Auth::user()->membre_prenom }} {{ Auth::user()->name }} <i class="fa fa-caret-down"></i></a></li>
             </ul>
             <ul id='menu' class='dropdown-content'>
                 <li><a href="{{ url('/home') }}">Tableau de bord</a></li>
