@@ -29,7 +29,7 @@
                 @endif
 
                 @if($nbVehicule == 0)
-                <div>Vous devez ajouter un véhicule avant de pouvoir créer une annonce !</div>
+                <div>Vous devez <a href="{{ url('/profile/car/create') }}" class="link">ajouter un véhicule</a> avant de pouvoir créer une annonce !</div>
                 @endif
 
                 <div>
