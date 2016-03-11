@@ -2,65 +2,52 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Connectez-vous</div>
-                <div class="panel-heading">Pas encore inscrit ? <a href="{{ url('/register') }}">Inscrivez-vous ici</a></div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+    <h3>Connectez-vous</h3>
+    <p>Pas encore inscrit ? <a href="{{ url('/register') }}" class="link">Inscrivez-vous ici</a></p>
+    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+        {!! csrf_field() !!}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Email</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Mot de passe</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                        <input type="checkbox" id="remember" />
-                                        <label for="remember"> Se souvenir de moi</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn red darken-3 waves-effect waves-light">
-                                    <i class="fa fa-btn fa-sign-in"></i>Se connecter
-                                </button>
-
-                                <a class="btn btn-link red darken-3 waves-effect waves-light " href="{{ url('/password/reset') }}">Mot de passe oublié ?</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        <div class="row {{ $errors->has('email') ? ' has-error' : '' }}">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input type="email" class="validate" name="email" value="{{ old('email') }}">
+                <label>Email</label>
+                @if ($errors->has('email'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                @endif
             </div>
         </div>
-    </div>
+
+        <div class="row {{ $errors->has('password') ? ' has-error' : '' }}">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">lock</i>
+                <input type="password" class="validate" name="password">
+                <label>Mot de passe</label>
+                @if ($errors->has('password'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                @endif
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input type="checkbox" id="remember" class="filled-in"/>
+                <label for="remember">Se souvenir de moi</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                    <i class="fa fa-btn fa-sign-in"></i> Se connecter
+                </button>
+                <a class="btn btn-third waves-effect waves-light" href="{{ url('/password/reset') }}">Mot de passe oublié ?</a>
+            </div>
+        </div>
+    </form>
 </div>
 @endsection
