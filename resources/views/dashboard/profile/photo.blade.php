@@ -42,7 +42,7 @@
                             <div>Votre photo est en cours de validation. Les membres ne peuvent pas encore la voir.</div>
                             @endif
 
-                            <img class="responsive-img circle photo_profil" src="{{ asset('profile_picture/'.Auth::user()->id.'/'.Auth::user()->membre_photo) }}" alt="">
+                            <img class="responsive-img circle photo_profil" src="{{ asset('img/uploads/'.Auth::user()->id.'/'.Auth::user()->membre_photo) }}" alt="">
                             @endif
                         </div>
                     </div>

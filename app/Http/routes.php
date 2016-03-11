@@ -46,10 +46,11 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('profile/car/picture','PhotoVehiculeController',['only' => ['edit','update','destroy']]);
 
-
     Route::resource('profile/email','ChangeEmailController',['only' => ['edit','update']]);
 
     Route::resource('profile/password','ChangePasswordController',['only' => ['edit','update']]);
+
+    Route::resource('trajets','TrajetController');
 
     Route::post('profile/car/getMarque','VehiculeController@get_marque');
 
@@ -58,8 +59,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('profile/car/{id}/getMarque','VehiculeController@get_marque');
 
     Route::post('profile/car/{id}/getModele','VehiculeController@get_modele');
-
-
 
     Route::get('/home', 'HomeController@index');
 

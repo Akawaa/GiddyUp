@@ -45,7 +45,7 @@
 
                                         <h6>Ajoutez une photo</h6>
                                     @else
-                                        <img class="responsive-img circle photo_profil" src="{{ asset('uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
+                                        <img class="responsive-img circle photo_profil" src="{{ asset('img/uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
                                     @endif
                                 </div>
                             </div>

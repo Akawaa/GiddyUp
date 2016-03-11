@@ -55,7 +55,7 @@
                 <li><a href="{{ url('/login') }}">Se connecter</a></li>
 
                 <li><a class="waves-effect waves-light btn" href="{{ url('/search') }}">Rechercher</a></li>
-                <li><a class="waves-effect waves-light btn" href="{{ url('/search') }}">Proposer</a></li>
+                <li><a class="waves-effect waves-light btn" href="{{ url('/trajets/create') }}">Proposer</a></li>
             </ul>
         </div>
     </nav>

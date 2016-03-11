@@ -39,7 +39,7 @@
                                 <div class="row">
                                     <div class="col m3 s12 center-align">
                                         @if($vehicule->vehicule_photo)
-                                        <img class="car-photo circle photo_profil" src="{{ asset('uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
+                                        <img class="car-photo circle photo_profil" src="{{ asset('img/uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
                                         @else
                                         @if($vehicule->type_id == 1)
                                         <i class="material-icons large">directions_car</i>
