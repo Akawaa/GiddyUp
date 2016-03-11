@@ -37,7 +37,7 @@
                                 <div class="col s8 center-align">
 
                                     @if($vehicule->vehicule_photo == null)
-                                        @if($vehicule->type_id == 1)
+                                        @if($vehicule->modele->marque->type->type_id == 1)
                                             <i class="material-icons large">directions_car</i>
                                         @else
                                             <i class="material-icons large">motorcycle</i>
@@ -45,7 +45,7 @@
 
                                         <h6>Ajoutez une photo</h6>
                                     @else
-                                        <img class="responsive-img circle photo_profil" src="{{ asset('uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
+                                        <img class="responsive-img circle photo_profil" src="{{ asset('img/uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
                                     @endif
                                 </div>
                             </div>

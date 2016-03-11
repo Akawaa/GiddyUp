@@ -84,6 +84,7 @@
     <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
 
+    @yield('map')
 
     <script type="text/javascript">
 
