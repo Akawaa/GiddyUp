@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field">
+                        <div class="input-field col s12">
                             <i class="fa fa-calendar-check-o prefix"></i>
                             <input id="date" type="text" class="datepicker">
                             <label for="date">Date</label>

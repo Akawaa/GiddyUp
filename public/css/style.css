@@ -18,7 +18,6 @@
     position: relative;
     overflow-x: auto;
     overflow-y: hidden;
-    height: 48px;
     background-color: #fff;
     margin: 0 auto;
     width: 100%;
@@ -33,7 +32,6 @@
     float: left;
     text-align: center;
     line-height: 48px;
-    height: 48px;
     padding: 0;
     margin: 0;
     text-transform: uppercase;
@@ -84,6 +82,10 @@ body {
     font-family: 'Roboto', 'Source Sans Pro', sans-serif;
 }
 
+main {
+    padding-top: 75px;
+}
+
 h2 {
     font-family: 'Roboto Slab';
     font-size: 2em;
@@ -96,15 +98,54 @@ h3 {
     font-weight: bold;
 }
 
+h4 {
+    font-family: 'Roboto Slab';
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+a.link {
+    color: #dd4b39;
+    font-family: 'Roboto Slab';
+    font-weight: lighter;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.bg-primary {
+    background-color: #dd4b39!important;
+}
+.bg-secondary {
+    background-color: #febd12;
+}
+.bg-third {
+    background-color: #d9d9d9;
+}
+.bg-green {
+    background-color: #95d344;
+}
+.text-primary {
+    color: #dd4b39!important;
+}
+.text-important {
+    font-family: 'Roboto Slab';
+    font-size: 1.2rem;
+}
+
 nav {
     background: #fff;
     padding: 5px;
     position: absolute;
-}
-
-nav {
     height: 75px;
 }
+
+nav a, .collection a, .subonglet a {
+    text-decoration: none;
+}
+
 
 @media screen and (max-width: 625px) {
     nav {
@@ -118,6 +159,7 @@ nav {
     font-size: 1rem;
     padding: 0 20px;
     margin: 0 5px!important;
+    box-shadow: none;
 }
 
 .logo {
@@ -126,13 +168,7 @@ nav {
     margin: 5px 10px;
 }
 
-.btn-primary {
-    background: #dd4b39;
-    box-shadow: none;
-}
-
-.btn-primary:hover {
-    background: #C34232;
+.btn:hover {
     box-shadow: none;
 }
 
@@ -140,14 +176,34 @@ button:focus {
     background: #C34232;
 }
 
+.btn-primary {
+    background: #dd4b39;
+}
+
+.btn-primary:hover {
+    background: #C34232;
+}
+
 .btn-secondary {
     background: #febd12;
-    box-shadow: none;
 }
 
 .btn-secondary:hover {
-    background: #E4AA10;
-    box-shadow: none;
+    background: #EDB011;
+}
+
+.btn-third {
+    background: #C8C8C8;
+    color: #000;
+}
+
+.btn-third:hover {
+    background: #B7B7B7;
+}
+
+.icon-valign {
+    display: inline-flex;
+    vertical-align: middle;
 }
 
 .login-menu a {
@@ -157,6 +213,11 @@ button:focus {
     font-size: 16px;
 }
 
+.row {
+    margin: 0;
+}
+
+
 /************/
 /* LANDING */
 /**********/
@@ -164,7 +225,7 @@ button:focus {
 .landing {
     min-height: 100vh;
     width: 100%;
-    padding-top: 180px;
+    padding-top: 100px;
     background-image: url('../img/landing-home.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -231,33 +292,167 @@ button:focus {
     margin: 0 auto!important;
 }
 
-/* label color */
-.input-field label {
+/*CUSTOM MATERIALIZE*/
+label, .input-field label {
     color: #000;
 }
-/* label focus color */
-.input-field input[type=text]:focus + label {
+
+.input-field input[type]:focus + label {
     color: #febd12;
     font-size: 1em;
 }
-/* label underline focus color */
-.input-field input[type=text]:focus {
+
+.input-field input[type]:focus, .input-field textarea:focus {
     border-bottom: 1px solid #febd12;
     box-shadow: 0 1px 0 0 #febd12;
 }
-/* valid color */
-.input-field input[type=text].valid {
+
+.input-field input[type].valid {
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 #000;
 }
-/* invalid color */
-.input-field input[type=text].invalid {
+
+.input-field input[type].invalid {
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 #000;
 }
-/* icon prefix focus color */
+
 .input-field .prefix.active {
+    color: #febd12;
+}
+
+.input-field input[type="checkbox"]:checked + label::after {
+    background-color: #DD4B39;
+    border-color: #DD4B39;
+}
+
+textarea.materialize-textarea:focus {
+    border-color: #febd12!important;
+    box-shadow: none!important;
+}
+
+textarea.materialize-textarea:focus + label {
+    color: #febd12!important;
+}
+
+.help-block {
+    color: #DD4B39;
+}
+
+.select-wrapper {
+    padding-left: 50px;
+}
+
+.onglet a:not(.active) {
+    background: #d9d9d9;
     color: #000;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.onglet a.active {
+    background: #DD4B39;
+    color: #FFF;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: none;
+}
+
+.onglet a {
+    font-size: 1.1em;
+    padding: 5px 0;
+}
+
+.onglet {
+    padding: 0 1px!important;
+}
+
+.dropdown-content li > a {
+    color: #dd4b39;
+}
+
+.card {
+    box-shadow: none!important;
+    border: 1px solid #d9d9d9;
+}
+
+.card .prefix {
+    color: #000!important;
+}
+
+.card-secondary {
+    background-color: #febd12;
+    border-color: #febd12;
+}
+
+.card-green {
+    background-color: #95d344;
+    border-color: #95d344;
+}
+
+@media screen and (max-width: 600px) {
+    .card-giddy {
+        border-bottom: 10px solid #febd12;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .card-btn {
+        display: flex;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+    .card-giddy {
+        border-left: 10px solid #febd12;
+    }
+}
+
+/***********/
+/* ALERTS */
+/*********/
+.alert {
+    margin: 7px 0!important;
+    border-radius: 5px;
+}
+
+.alert:before {
+    font-family: 'Material Icons';
+    font-size: 2rem;
+    display: inline-flex;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.alert-warning {
+    background: rgba(254,189,18,0.3);
+    border: 2px solid #febd12;
+}
+
+.alert-warning:before {
+    content: '\e002';
+    color: #febd12!important;
+}
+
+.alert-info {
+    background: rgba(254,189,18,0.3);
+    border: 2px solid #febd12;
+}
+
+.alert-info:before {
+    content: '\e88e';
+    color: #febd12!important;
+}
+
+.alert-success {
+    background: rgba(149,211,68,0.3);
+    border: 2px solid #95D344;
+}
+
+.alert-success:before {
+    content: '\e86c';
+    color: #95D344!important;
 }
 
 /*************/
@@ -271,19 +466,6 @@ button:focus {
     display: flex;
     align-items: center;
     padding: 10px;
-}
-
-.bg-primary {
-    background-color: #dd4b39;
-}
-.bg-secondary {
-    background-color: #febd12;
-}
-.bg-third {
-    background-color: #d9d9d9;
-}
-.bg-green {
-    background-color: #95d344;
 }
 
 .homesection p {
@@ -318,8 +500,28 @@ button:focus {
     }
 }
 
-.row {
-    margin: 0;
+.banderole {
+    padding-top: 30px;
+    background-image: url('../img/banderole.png');
+    background-repeat: repeat-x;
+}
+
+/************/
+/*DASHBOARD*/
+/**********/
+
+.xp-heading {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    background: #4eb234;
+    color: #fff;
+    padding: 10px;
+}
+
+.car-photo {
+    height: 100px;
+    width: 100px;
 }
 
 /****************/
@@ -330,6 +532,7 @@ button:focus {
     width: 100%;
     height: 190px;
     background-image: url('../img/bandeau_footer.png');
+    margin-top: 50px;
 }
 
 .widget_footer {
