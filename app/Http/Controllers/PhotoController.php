@@ -62,7 +62,7 @@ class PhotoController extends Controller
             if($user->membre_photo != null){
                 $photo = $user->membre_photo;
 
-                unlink(public_path('uploads/'.$user->id.'/'.$photo));
+                unlink(public_path('img/uploads/'.$user->id.'/'.$photo));
 
                 $user->membre_photo = null;
                 $user->membre_photo_valide = null;
@@ -71,7 +71,7 @@ class PhotoController extends Controller
             }
 
 
-            $destinationPath = 'uploads/'.Auth::user()->id; // upload path
+            $destinationPath = 'img/uploads/'.Auth::user()->id; // upload path
             $extension = $request->photo_profil->getClientOriginalExtension(); // getting image extension
             $fileName = 'photo_profil'.Auth::user()->id.'.'.$extension; // renameing image
             $request->photo_profil->move($destinationPath, $fileName); // uploading file to given path
@@ -104,7 +104,7 @@ class PhotoController extends Controller
 
         $photo = $user->membre_photo;
 
-        unlink(public_path('uploads/'.$user->id.'/'.$photo));
+        unlink(public_path('img/uploads/'.$user->id.'/'.$photo));
 
         $user->membre_photo = null;
         $user->membre_photo_valide = null;

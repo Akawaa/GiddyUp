@@ -59,14 +59,14 @@ class PhotoVehiculeController extends Controller
             if($vehicule->vehicule_photo != null){
                 $photo = $vehicule->vehicule_photo;
 
-                unlink(public_path('uploads/'.Auth::user()->id.'/'.$photo));
+                unlink(public_path('img/uploads/'.Auth::user()->id.'/'.$photo));
 
                 $vehicule->vehicule_photo = null;
 
                 $vehicule->save();
             }
 
-            $destinationPath = 'uploads/'.Auth::user()->id; // upload path
+            $destinationPath = 'img/uploads/'.Auth::user()->id; // upload path
             $extension = $request->photo_car->getClientOriginalExtension(); // getting image extension
             $fileName = 'vehicule_'.$vehicule->vehicule_id.'.'.$extension; // renameing image
             $request->photo_car->move($destinationPath, $fileName); // uploading file to given path
@@ -96,7 +96,7 @@ class PhotoVehiculeController extends Controller
 
         $photo = $vehicule->vehicule_photo;
 
-        unlink(public_path('uploads/'.Auth::user()->id.'/'.$photo));
+        unlink(public_path('img/uploads/'.Auth::user()->id.'/'.$photo));
 
         $vehicule->vehicule_photo = null;
 
