@@ -105,7 +105,7 @@ h4 {
 }
 
 a.link {
-    color: #000;
+    color: #dd4b39;
     font-family: 'Roboto Slab';
     font-weight: lighter;
     text-decoration: underline;
@@ -129,6 +129,10 @@ a:hover {
 }
 .text-primary {
     color: #dd4b39!important;
+}
+.text-important {
+    font-family: 'Roboto Slab';
+    font-size: 1.2rem;
 }
 
 nav {
@@ -185,7 +189,7 @@ button:focus {
 }
 
 .btn-secondary:hover {
-    background: #E4AA10;
+    background: #EDB011;
 }
 
 .btn-third {
@@ -195,6 +199,11 @@ button:focus {
 
 .btn-third:hover {
     background: #B7B7B7;
+}
+
+.icon-valign {
+    display: inline-flex;
+    vertical-align: middle;
 }
 
 .login-menu a {
@@ -207,6 +216,7 @@ button:focus {
 .row {
     margin: 0;
 }
+
 
 /************/
 /* LANDING */
@@ -282,31 +292,31 @@ button:focus {
     margin: 0 auto!important;
 }
 
-/* label color */
+/*CUSTOM MATERIALIZE*/
 label, .input-field label {
     color: #000;
 }
-/* label focus color */
+
 .input-field input[type]:focus + label {
     color: #febd12;
     font-size: 1em;
 }
-/* label underline focus color */
+
 .input-field input[type]:focus, .input-field textarea:focus {
     border-bottom: 1px solid #febd12;
     box-shadow: 0 1px 0 0 #febd12;
 }
-/* valid color */
+
 .input-field input[type].valid {
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 #000;
 }
-/* invalid color */
+
 .input-field input[type].invalid {
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 #000;
 }
-/* icon prefix focus color */
+
 .input-field .prefix.active {
     color: #febd12;
 }
@@ -381,8 +391,68 @@ textarea.materialize-textarea:focus + label {
     border-color: #95d344;
 }
 
-.card-giddy {
-    border-left: 10px solid #febd12;
+@media screen and (max-width: 600px) {
+    .card-giddy {
+        border-bottom: 10px solid #febd12;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .card-btn {
+        display: flex;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+    .card-giddy {
+        border-left: 10px solid #febd12;
+    }
+}
+
+/***********/
+/* ALERTS */
+/*********/
+.alert {
+    margin: 7px 0!important;
+    border-radius: 5px;
+}
+
+.alert:before {
+    font-family: 'Material Icons';
+    font-size: 2rem;
+    display: inline-flex;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.alert-warning {
+    background: rgba(254,189,18,0.3);
+    border: 2px solid #febd12;
+}
+
+.alert-warning:before {
+    content: '\e002';
+    color: #febd12!important;
+}
+
+.alert-info {
+    background: rgba(254,189,18,0.3);
+    border: 2px solid #febd12;
+}
+
+.alert-info:before {
+    content: '\e88e';
+    color: #febd12!important;
+}
+
+.alert-success {
+    background: rgba(149,211,68,0.3);
+    border: 2px solid #95D344;
+}
+
+.alert-success:before {
+    content: '\e86c';
+    color: #95D344!important;
 }
 
 /*************/
@@ -447,6 +517,11 @@ textarea.materialize-textarea:focus + label {
     background: #4eb234;
     color: #fff;
     padding: 10px;
+}
+
+.car-photo {
+    height: 100px;
+    width: 100px;
 }
 
 /****************/

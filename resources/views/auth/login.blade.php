@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h3>Connectez-vous</h3>
-    <p>Pas encore inscrit ? <a href="{{ url('/register') }}">Inscrivez-vous ici</a></p>
+    <p>Pas encore inscrit ? <a href="{{ url('/register') }}" class="link">Inscrivez-vous ici</a></p>
     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
         {!! csrf_field() !!}
 

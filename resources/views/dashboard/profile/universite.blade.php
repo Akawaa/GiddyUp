@@ -40,7 +40,7 @@
 
                     <div class="row">
                         <div class="input-field col s12">
-                            <i class="fa fa-university prefix"></i>
+                            <i class="material-icons prefix">account_balance</i>
                             <select name="universite" id="universite" class="icons">
                                 <option value="0" disabled selected>Universite</option>
                                 @foreach($universites as $universite)
@@ -58,7 +58,7 @@
 
                     <div class="row">
                         <div class="input-field col s12" id="site_div">
-                            <i class="fa fa-map-marker prefix"></i>
+                            <i class="material-icons prefix">place</i>
                             <select name="site" id="site">
                                 <option value="0" disabled selected>Site</option>
                                 @if(isset($sites))
@@ -75,20 +75,16 @@
                             @endif
                         </div>
                     </div>
-
                     <div class="row">
-                        <button type="submit" class="waves-effect waves-light btn btn-primary">
+                        <button type="submit" class="waves-effect waves-light btn btn-primary col">
                             Mettre à jour
                         </button>
-
                         {{ Form::close() }}
-
                         {{ Form::open(array('url'=> 'profile/university/'.Auth::user()->id)) }}
                         {{ Form::hidden('_method', 'DELETE') }}
-                        {{ Form::button('Je ne fais plus parti d\'une université', ['class' => 'waves-effect waves-light btn btn-third','type'=>'submit']) }}
+                        {{ Form::button('Je ne fais plus parti d\'une université', ['class' => 'waves-effect waves-light btn btn-third col','type'=>'submit']) }}
                         {{ Form::close() }}
                     </div>
-
                 </div>
             </div>
         </div>

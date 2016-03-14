@@ -36,7 +36,7 @@
                 </div>
                 @endif
 
-                <p>Attention, votre adresse email vous permet de vous connecter.</p>
+                <p class="alert alert-warning">Attention, votre adresse email vous permet de vous connecter.</p>
                 {{Form::model($user,array('route' => array('profile.email.update',$user->id),'method'=>'PUT')) }}
                 <div class="row">
                     <div class="input-field col s12 l6">

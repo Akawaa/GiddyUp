@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h2>Inscrivez-vous gratuitement !</h2>
-    <p>Déjà inscrit ? <a href="{{ url('/login') }}">Connectez-vous ici</a></p>
+    <p>Déjà inscrit ? <a href="{{ url('/login') }}" class="link">Connectez-vous ici</a></p>
     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
         {!! csrf_field() !!}
 
@@ -25,7 +25,7 @@
 
         <div class="row">
             <div class="input-field col m6 s12">
-                <i class="fa fa-user prefix"></i>
+                <i class="material-icons prefix">account_circle</i>
                 <input type="text" name="surname" value="{{ old('surname') }}" class="validate">
                 <label>Prénom</label>
                 @if ($errors->has('surname'))
@@ -35,6 +35,7 @@
                 @endif
             </div>
             <div class="input-field col m6 s12">
+                <i class="material-icons prefix">account_circle</i>
                 <input type="text" name="name" value="{{ old('name') }}" class="validate">
                 <label>Nom</label>
                 @if ($errors->has('name'))
@@ -47,7 +48,7 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <i class="fa fa-calendar prefix"></i>
+                <i class="material-icons prefix">today</i>
                 <select name="year" class="validate">
                     <option disabled selected>Année de naissance</option>
                     @for($i=intval(date('Y')-18);$i>intval(date('Y')-101);$i--)
@@ -65,7 +66,7 @@
 
         <div class="row">
             <div class="input-field col m6 s12">
-                <i class="fa fa-phone prefix"></i>
+                <i class="material-icons prefix">phone</i>
                 <input type="text" name="phone" value="{{ old('phone') }}" class="validate">
                 <label>Téléphone</label>
 
@@ -76,7 +77,7 @@
                 @endif
             </div>
             <div class="input-field col m6 s12">
-                <i class="fa fa-envelope prefix"></i>
+                <i class="material-icons prefix">email</i>
                 <input type="email" name="email" value="{{ old('email') }}" class="validate">
                 <label>Email</label>
 
@@ -90,7 +91,7 @@
 
         <div class="row">
             <div class="input-field col m6 s12">
-                <i class="fa fa-lock prefix"></i>
+                <i class="material-icons prefix">lock</i>
                 <input type="password" name="password" class="validate">
                 <label>Mot de passe</label>
                 @if ($errors->has('password'))
@@ -101,6 +102,7 @@
             </div>
 
             <div class="input-field col m6 s12">
+                <i class="material-icons prefix">lock</i>
                 <input type="password" name="password_confirmation" class="validate">
                 <label>Confirmation du mot de passe</label>
                 @if ($errors->has('password_confirmation'))

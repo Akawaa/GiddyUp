@@ -42,10 +42,6 @@
             </div>
         </div>
     </div>
-
-    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large waves-effect waves-light bg-primary"><i class="material-icons">add</i></a>
-    </div>
 </div>
 
 @endsection
