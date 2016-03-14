@@ -14,8 +14,8 @@
 
     <div class="col m3 s12">
         <div class="collection">
-            <a href="{{ url('/trip-offers/active') }}" class="collection-item text-primary">Trajets à venir</a>
-            <a href="{{ url('/trip-offers/inactive') }}" class="collection-item active bg-primary">Trajets passés</a>
+            <a href="{{ url('/trip-offers') }}" class="collection-item text-primary">Trajets à venir</a>
+            <a href="{{ url('/trip-offers-inactive') }}" class="collection-item active bg-primary">Trajets passés</a>
         </div>
     </div>
 

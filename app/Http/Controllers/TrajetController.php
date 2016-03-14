@@ -30,7 +30,6 @@ class TrajetController extends Controller
             ->count();
 
         $trajets = Trajet::whereRaw('trajet_date >= curdate()')
-                           ->whereRaw('trajet_heure <= curtime()')
                            ->get();
 
         return view('dashboard.trip_offers.active',['trajets'=>$trajets,'nbVehicule'=>$vehiculeNB]);

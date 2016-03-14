@@ -17,7 +17,6 @@ class TrajetPastController extends Controller
     public function index()
     {
         $trajets = Trajet::whereRaw('trajet_date < curdate()')
-            ->whereRaw('trajet_heure > curtime()')
             ->get();
 
         return view('dashboard.trip_offers.inactive',['trajets'=>$trajets]);

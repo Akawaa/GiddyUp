@@ -39,22 +39,61 @@
     </style>
 
     <div id="map"></div>
-    <div id="right-panel">
-        <div>
-            <b>Ville de départ :</b>
-            <input type="text" id="start" placeholder="ex. : Toronto">
-            <br>
-            <b>Étapes:</b> <br>
-            <div id="waypoints"></div>
-            <button onclick="addWaypoint();">Ajouter une étape</button>
-            <br>
-            <b>Ville d'arrivée :</b>
-            <input type="text" id="end" placeholder="ex. : Toronto">
-            <br>
-            <input type="submit" id="submit">
+
+        <div class="row">
+
+            {{ Form::open(array('url' => '/trajets/store')) }}
+            <div class="col s6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Itinéraire</span>
+                            <div>
+                                <b>Ville de départ :</b>
+                                <input type="text" name="ville_depart" id="start" placeholder="ex. : Paris">
+                                <br>
+                                <b>Ville d'arrivée :</b>
+                                <input type="text" name="ville_arrivee" id="end" placeholder="ex. : Gap">
+                                <br>
+                                <br>
+                                <b>Étapes:</b> <br>
+                                <div id="waypoints"></div>
+                                <button type="button" onclick="addWaypoint();">Ajouter une étape</button>
+                            </div>
+                        <div id="directions-panel"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <span class="card-title">Date & Horaire</span>
+
+                        <div class="row">
+                            <input type="checkbox" id="ar" value="ar" name="aller_retour"/>
+                            <label for="ar">Aller-retour</label>
+                        </div>
+
+                        <div class="row">
+                            {{ Form::label('date_depart','Date aller') }}
+                            {{ Form::date('date_depart',null,array('class'=>'datepicker')) }}
+                         </div>
+
+                        <div class="row">
+                            <div class="col s6">
+                                {{ Form::label('heure','Heure') }}
+                                {{ Form::selectRange('heure',00,23) }}
+                            </div>
+                            <div class="col s6">
+                                {{ Form::label('minute','Minute') }}
+                                {{ Form::selectRange('minute',00,59) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{ Form::close() }}
         </div>
-        <div id="directions-panel"></div>
-    </div>
 
 @endsection
 
@@ -63,22 +102,20 @@
 
     <script>
 
+        $('select').material_select();
+
         function initMap() {
-
-            //var villeDepart = new google.maps.places.Autocomplete(document.getElementById(""));
-
-
-            var directionsService = new google.maps.DirectionsService;
-            var directionsDisplay = new google.maps.DirectionsRenderer({
+            directionsService = new google.maps.DirectionsService;
+            directionsDisplay = new google.maps.DirectionsRenderer({
                 draggable: false
                     });
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
+                zoom: 5,
                 center: {lat: 48.86, lng: 2.34} //Paris
             });
             directionsDisplay.setMap(map);
 
-            document.getElementById('submit').addEventListener('click', function() {
+            document.getElementById('end').addEventListener('change', function() {
                 calculateAndDisplayRoute(directionsService, directionsDisplay);
             });
         }
@@ -123,11 +160,15 @@
             });
         }
 
+
         function addWaypoint(){
             var divEtape = document.createElement('div');
             var etape = document.createElement('input');
-            etape.setAttribute('type','texte');
+            etape.setAttribute('type','text');
             etape.setAttribute('class','etapes');
+            etape.setAttribute('name','etape');
+            etape.setAttribute('id','etape');
+
 
             var btn_supp = document.createElement('button');
             var lb_supp = document.createTextNode('-');
@@ -139,11 +180,48 @@
             divEtape.appendChild(btn_supp);
 
             document.getElementById('waypoints').appendChild(divEtape);
+
+            document.getElementById('etape').addEventListener('change', function() {
+                calculateAndDisplayRoute(directionsService, directionsDisplay);
+            });
         }
 
         function removeWaypoint(n){
             n.parentNode.remove();
         }
+
+        $('#ar').change(function(){
+            if($('#ar').is(':checked')){
+                var divRetour = document.createElement('div');
+                divRetour.setAttribute('id','retour');
+
+                var row = document.createElement('div');
+                row.setAttribute('class','row');
+                divRetour.appendChild(row);
+
+                var lb_date = document.createElement('label');
+                var text_lb_data = document.createTextNode('Date retour');
+                lb_date.appendChild(text_lb_data);
+                row.appendChild(lb_date);
+
+                var date = document.createElement('input');
+                date.setAttribute('type','date');
+                date.setAttribute('class','retour');
+                row.appendChild(date);
+
+
+
+                document.getElementsByClassName('card-content')[1].appendChild(divRetour);
+
+                $('.retour').pickadate({
+                    selectMonths: true, // Creates a dropdown to control month
+                    selectYears: 5,// Creates a dropdown of 15 years to control year
+                    min: true,
+                });
+            }else{
+               $('#retour').remove();
+            }
+        })
 
     </script>
 @endsection
