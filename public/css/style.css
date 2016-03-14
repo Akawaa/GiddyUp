@@ -130,7 +130,6 @@ a:hover {
 .text-primary {
     color: #dd4b39!important;
 }
-
 .text-important {
     font-family: 'Roboto Slab';
     font-size: 1.2rem;
@@ -519,7 +518,6 @@ textarea.materialize-textarea:focus + label {
     color: #fff;
     padding: 10px;
 }
-
 .card-xp p {
     font-size: 1.2em;
     color: #fff!important;
@@ -539,7 +537,6 @@ textarea.materialize-textarea:focus + label {
 .circle.white .material-icons {
     color: #4EB234;
 }
-
 .car-photo {
     height: 100px;
     width: 100px;

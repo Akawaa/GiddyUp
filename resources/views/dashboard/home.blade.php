@@ -42,13 +42,13 @@
             <div class="col l9 m7 s12">
                 <div class="card card-secondary">
                     <div class="card-content">
-                     <h4>Avis en attente !</h4>
-                 </div>
-             </div>
-         </div>
-     </div>
+                       <h4>Avis en attente !</h4>
+                   </div>
+               </div>
+           </div>
+       </div>
 
-     <div class="row">
+       <div class="row">
         <div class="col m5 s12">
             <div class="card card-secondary">
                 <div class="card-content">
