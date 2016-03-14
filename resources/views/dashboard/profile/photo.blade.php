@@ -69,18 +69,16 @@
                     </div>
 
                     <div class="row">
-                        <div class="col s12">
-                            {{ Form::button('Mettre à jour',['class'=>'waves-effect waves-light btn btn-primary','type'=>'submit']) }}
+                        {{ Form::button('Mettre à jour',['class'=>'waves-effect waves-light btn btn-primary col','type'=>'submit']) }}
 
-                            {{ Form::close() }}
+                        {{ Form::close() }}
 
-                            @if(Auth::user()->membre_photo != null)
-                            {{ Form::open(array('url'=> 'profile/picture/'.Auth::user()->id)) }}
-                            {{ Form::hidden('_method', 'DELETE') }}
-                            {{ Form::button('Supprimer', ['class' => 'waves-effect waves-light btn red darken-4','type'=>'submit']) }}
-                            {{ Form::close() }}
-                            @endif
-                        </div>
+                        @if(Auth::user()->membre_photo != null)
+                        {{ Form::open(array('url'=> 'profile/picture/'.Auth::user()->id)) }}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::button('<i class="material-icons right">clear</i>Supprimer', ['class' => 'waves-effect waves-light btn btn-third col','type'=>'submit']) }}
+                        {{ Form::close() }}
+                        @endif
                     </div>
                 </div>
             </div>

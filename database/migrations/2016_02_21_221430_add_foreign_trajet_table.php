@@ -15,7 +15,8 @@ class AddForeignTrajetTable extends Migration
         Schema::table('trajet', function (Blueprint $table) {
             $table->foreign('id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
             $table->foreign('vehicule_id')
                 ->references('vehicule_id')
                 ->on('vehicule');

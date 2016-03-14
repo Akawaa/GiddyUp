@@ -15,10 +15,12 @@ class AddForeignFormationParSiteTable extends Migration
         Schema::table('formation_par_site', function (Blueprint $table) {
             $table->foreign('site_id')
                 ->references('site_id')
-                ->on('site');
+                ->on('site')
+                ->onDelete('cascade');
             $table->foreign('formation_id')
                 ->references('formation_id')
-                ->on('formation');
+                ->on('formation')
+                ->onDelete('cascade');
             $table->primary(['site_id','formation_id']);
         });
     }

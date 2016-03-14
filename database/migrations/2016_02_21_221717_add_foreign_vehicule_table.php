@@ -15,10 +15,12 @@ class AddForeignVehiculeTable extends Migration
         Schema::table('vehicule', function (Blueprint $table) {
             $table->foreign('id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onDelete('cascade');
             $table->foreign('modele_id')
                 ->references('modele_id')
-                ->on('modele');
+                ->on('modele')
+                ->onDelete('cascade');
         });
     }
 

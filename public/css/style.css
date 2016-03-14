@@ -381,6 +381,10 @@ textarea.materialize-textarea:focus + label {
     border-color: #95d344;
 }
 
+.card-giddy {
+    border-left: 10px solid #febd12;
+}
+
 /*************/
 /* SECTIONS */
 /***********/

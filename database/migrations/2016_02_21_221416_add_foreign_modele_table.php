@@ -15,7 +15,8 @@ class AddForeignModeleTable extends Migration
         Schema::table('modele', function (Blueprint $table) {
             $table->foreign('marque_id')
                 ->references('marque_id')
-                ->on('marque');
+                ->on('marque')
+                ->onDelete('cascade');
         });
     }
 

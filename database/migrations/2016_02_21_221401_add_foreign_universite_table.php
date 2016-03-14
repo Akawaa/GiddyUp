@@ -15,7 +15,8 @@ class AddForeignUniversiteTable extends Migration
         Schema::table('universite', function (Blueprint $table) {
             $table->foreign('ville_insee')
                 ->references('ville_insee')
-                ->on('ville');
+                ->on('ville')
+                ->onDelete('cascade');
         });
     }
 

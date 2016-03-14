@@ -15,7 +15,8 @@ class AddForeignQuestionTable extends Migration
         Schema::table('question', function (Blueprint $table) {
             $table->foreign('trajet_id')
                 ->references('trajet_id')
-                ->on('trajet');
+                ->on('trajet')
+                ->onDelete('cascade');
         });
     }
 

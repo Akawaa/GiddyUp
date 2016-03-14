@@ -12,67 +12,70 @@
         </ul>
     </div>
 </div>
+<div class="card">
+    <div class="card-content">
+        <h2>Tableau de bord</h2>
+        <div class="row">
+            <div class="col l3 m6 s12">
+                <div class="card bg-third banderole">
+                    <div class="card-content">
+                        <div class="row valign-wrapper">
+                            <div class="col m6 s12">
+                                @if(Auth::user()->membre_photo == null)
+                                <i class="material-icons large">acount_circle</i>
+                                @else
+                                <img class="responsive-img circle photo_profil" src="{{ asset('uploads/'.Auth::user()->id.'/'.Auth::user()->membre_photo) }}" alt="">
+                                @endif
+                            </div>
 
-<div class="row">
-    <div class="col l3 m5 s12">
-        <div class="card bg-third banderole">
-            <div class="card-content">
-                <div class="row">
-                    <div class="col s5">
-                        @if(Auth::user()->membre_photo == null)
-                        <i class="material-icons large">account_circle</i>
-                        @else
-                        <img class="responsive-img circle photo_profil" src="{{ asset('profile_picture/'.Auth::user()->id.'/'.Auth::user()->membre_photo) }}" alt="">
-                        @endif
-                    </div>
-
-                    <div class="col s7">
-                        <h4>Bonjour {{ Auth::user()->membre_prenom }}!</h4>
-                        <a href="{{ url('/profile/'.Auth::user()->id.'/edit') }}" class="link">Modifier votre profil</a>
-                        <br>
-                        <a href="{{ url('/profil/membre/'.Auth::user()->id) }}" class="link">Voir votre profil</a>
+                            <div class="col m6 s12">
+                                <h4>Bonjour {{ Auth::user()->membre_prenom }} !</h4>
+                                <a href="{{ url('/profile/'.Auth::user()->id.'/edit') }}" class="link">Modifier votre profil</a>
+                                <br>
+                                <a href="{{ url('/profil/membre/'.Auth::user()->id) }}" class="link">Voir votre profil</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col l9 m7 s12">
-        <div class="card card-secondary">
-            <div class="card-content">
-             <h4>Avis en attente !</h4>
+            <div class="col l9 m7 s12">
+                <div class="card card-secondary">
+                    <div class="card-content">
+                     <h4>Avis en attente !</h4>
+                 </div>
+             </div>
          </div>
      </div>
- </div>
-</div>
 
-<div class="row">
-    <div class="col m5 s12">
-        <div class="card card-secondary">
-            <div class="card-content">
-                <div class="row">
-                    <h4>Nouvelle demande !</h4>
+     <div class="row">
+        <div class="col m5 s12">
+            <div class="card card-secondary">
+                <div class="card-content">
+                    <div class="row">
+                        <h4>Nouvelle demande !</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col m7 s12">
+            <div class="card card-secondary">
+                <div class="card-content">
+                    <h4>Nouvelle(s) Question(s)</h4>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col s12">
+            <div class="card card-green">
+                <div class="card-content">
+                    <h4 class="xp-heading">Niveau d'experience</h4>
+                    <div class="row">
+                        <div class="col s3">
 
-    <div class="col m7 s12">
-        <div class="card card-secondary">
-            <div class="card-content">
-                <h4>Nouvelle(s) Question(s)</h4>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col s12">
-        <div class="card card-green">
-            <div class="card-content">
-                <h4 class="xp-heading">Niveau d'experience</h4>
-                <div class="row">
-                    <div class="col s3">
-
+                        </div>
                     </div>
                 </div>
             </div>

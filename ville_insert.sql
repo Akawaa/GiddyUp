@@ -36753,17 +36753,3 @@ INSERT INTO `ville` (`departementVille`, `ville_nom`, `ville_nom_reel`, `ville_c
 ('976', 'PAMANDZI', 'Pamandzi', '97610', '97615', 45.28, -12.80),
 ('976', 'SADA', 'Sada', '97640', '97616', 45.10, -12.85),
 ('976', 'TSINGONI', 'Tsingoni', '97680', '97617', 45.11, -12.79);
-
---
--- Index pour les tables exportées
---
-
---
--- Index pour la table `ville`
---
-ALTER TABLE `ville`
-  ADD PRIMARY KEY (`ville_insee`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
