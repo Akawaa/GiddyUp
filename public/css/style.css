@@ -512,13 +512,31 @@ textarea.materialize-textarea:focus + label {
 
 .xp-heading {
     position: absolute;
-    top: -10px;
+    top: -20px;
     left: 0;
     background: #4eb234;
     color: #fff;
     padding: 10px;
 }
+.card-xp p {
+    font-size: 1.2em;
+    color: #fff!important;
+}
 
+.circle.white {
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+}
+
+.card-xp .material-icons {
+    font-size: 50px;
+    color: #fff;
+}
+
+.circle.white .material-icons {
+    color: #4EB234;
+}
 .car-photo {
     height: 100px;
     width: 100px;

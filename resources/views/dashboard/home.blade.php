@@ -42,13 +42,13 @@
             <div class="col l9 m7 s12">
                 <div class="card card-secondary">
                     <div class="card-content">
-                     <h4>Avis en attente !</h4>
-                 </div>
-             </div>
-         </div>
-     </div>
+                       <h4>Avis en attente !</h4>
+                   </div>
+               </div>
+           </div>
+       </div>
 
-     <div class="row">
+       <div class="row">
         <div class="col m5 s12">
             <div class="card card-secondary">
                 <div class="card-content">
@@ -69,12 +69,44 @@
     </div>
     <div class="row">
         <div class="col s12">
-            <div class="card card-green">
+            <div class="card card-green card-xp">
                 <div class="card-content">
                     <h4 class="xp-heading">Niveau d'experience</h4>
-                    <div class="row">
-                        <div class="col s3">
-
+                    <div class="row">   
+                        <div class="col s1 offset-s2">
+                            <p class="center-align">Débutant</p>
+                        </div>
+                        <div class="col s1 offset-s1">
+                            <p class="center-align">Habitué</p>
+                        </div>
+                        <div class="col s1 offset-s1">
+                            <p class="center-align"><strong>Familier</strong></p>
+                        </div>
+                        <div class="col s1 offset-s1">
+                            <p class="center-align">Expert</p>
+                        </div>
+                    </div>
+                    <div class="row">   
+                        <div class="col s1 offset-s2">
+                            <div class="circle white"><i class="material-icons">check_circle</i></div>
+                        </div>
+                        <div class="col s1">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </div>
+                        <div class="col s1">
+                            <div class="circle white"><i class="material-icons">check_circle</i></div>
+                        </div>
+                        <div class="col s1">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </div>
+                        <div class="col s1">
+                            <div class="circle white"><i class="material-icons">check_circle</i></div>
+                        </div>
+                        <div class="col s1">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </div>
+                        <div class="col s1">
+                            <div class="circle white"></div>
                         </div>
                     </div>
                 </div>
