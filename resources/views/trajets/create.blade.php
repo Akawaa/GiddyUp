@@ -70,10 +70,11 @@
 
             var directionsService = new google.maps.DirectionsService;
             var directionsDisplay = new google.maps.DirectionsRenderer({
-                draggable: false});
+                draggable: false
+                    });
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 16,
-                center: {lat: 44.559638, lng: 6.07975799999997} //GAP
+                zoom: 12,
+                center: {lat: 48.86, lng: 2.34} //Paris
             });
             directionsDisplay.setMap(map);
 
@@ -94,11 +95,12 @@
             }
 
             directionsService.route({
-                origin: document.getElementById('start').value,
-                destination: document.getElementById('end').value,
-                waypoints: waypts,
-                optimizeWaypoints: true,
-                travelMode: google.maps.TravelMode.DRIVING
+                origin: document.getElementById('start').value, //départ
+                destination: document.getElementById('end').value, //arrivée
+                waypoints: waypts, //étapes
+                optimizeWaypoints: true, //optimisation des étapes
+                travelMode: google.maps.TravelMode.DRIVING, //en voiture
+                avoidHighways : true, //autoroute
             }, function(response, status) {
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);

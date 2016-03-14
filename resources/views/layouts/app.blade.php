@@ -30,7 +30,7 @@
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons black">menu</i></a>
             <ul class="hide-on-med-and-down">
                 <li class="s6"><a class="waves-effect waves-light btn btn-primary" href="{{ url('/search') }}">Rechercher</a></li>
-                <li class="s6"><a class="waves-effect waves-light btn btn-secondary" href="{{ url('/search') }}">Proposer</a></li>
+                <li class="s6"><a class="waves-effect waves-light btn btn-secondary" href="{{ url('/trip-offers/create') }}">Proposer</a></li>
             </ul>
             <ul class="login-menu right hide-on-med-and-down">
                 @if (Auth::guest())
@@ -55,7 +55,7 @@
                 <li><a href="{{ url('/login') }}">Se connecter</a></li>
 
                 <li><a class="waves-effect waves-light btn" href="{{ url('/search') }}">Rechercher</a></li>
-                <li><a class="waves-effect waves-light btn" href="{{ url('/trajets/create') }}">Proposer</a></li>
+                <li><a class="waves-effect waves-light btn" href="{{ url('/trip-offers/create') }}">Proposer</a></li>
             </ul>
         </div>
     </nav>

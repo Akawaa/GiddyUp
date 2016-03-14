@@ -23,4 +23,12 @@ class Vehicule extends Model
         return $this->belongsTo('App\Modele','modele_id');
     }
 
+    public function trajet(){
+        return $this->hasMany('App\Trajet','vehicule_id');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User','id');
+    }
+
 }

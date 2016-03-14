@@ -3,11 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Trajet;
+use Illuminate\Support\Facades\Auth;
+use DB;
+
 
 use App\Http\Requests;
 
 class TrajetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +24,18 @@ class TrajetController extends Controller
      */
     public function index()
     {
-        //
+        $vehiculeNB = DB::table('users')
+            ->join('vehicule','users.id','=','vehicule.id')
+            ->where('users.id',Auth::user()->id)
+            ->count();
+
+        $trajets = Trajet::whereRaw('trajet_date >= curdate()')
+                           ->whereRaw('trajet_heure <= curtime()')
+                           ->get();
+
+        return view('dashboard.trip_offers.active',['trajets'=>$trajets,'nbVehicule'=>$vehiculeNB]);
     }
+
 
     /**
      * Show the form for creating a new resource.

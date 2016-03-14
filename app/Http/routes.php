@@ -44,14 +44,6 @@ Route::group(['middleware' => 'web'], function () {
         'show'
     ]]);
 
-    Route::resource('profile/car/picture','PhotoVehiculeController',['only' => ['edit','update','destroy']]);
-
-    Route::resource('profile/email','ChangeEmailController',['only' => ['edit','update']]);
-
-    Route::resource('profile/password','ChangePasswordController',['only' => ['edit','update']]);
-
-    Route::resource('trajets','TrajetController');
-
     Route::post('profile/car/getMarque','VehiculeController@get_marque');
 
     Route::post('profile/car/getModele','VehiculeController@get_modele');
@@ -60,11 +52,20 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('profile/car/{id}/getModele','VehiculeController@get_modele');
 
+
+    Route::resource('profile/car/picture','PhotoVehiculeController',['only' => ['edit','update','destroy']]);
+
+    Route::resource('profile/email','ChangeEmailController',['only' => ['edit','update']]);
+
+    Route::resource('profile/password','ChangePasswordController',['only' => ['edit','update']]);
+
+    Route::resource('trip-offers','TrajetController');
+
+    Route::resource('trip-offers-inactive', 'TrajetPastController@index');
+
+
+
     Route::get('/home', 'HomeController@index');
-
-    Route::get('/trip-offers/active', 'HomeController@trip_offers');
-
-    Route::get('/trip-offers/inactive', 'HomeController@trip_offers_past');
 
     Route::get('/bookings', 'HomeController@bookings');
 

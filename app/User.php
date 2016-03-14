@@ -27,4 +27,12 @@ class User extends Authenticatable
     public function site(){
         return $this->belongsTo('App\Site');
     }
+
+    public function trajets(){
+        return $this->hasMany('App\Trajet','id');
+    }
+
+    public function vehicules(){
+        return $this->hasMany('App\Trajet','id');
+    }
 }
