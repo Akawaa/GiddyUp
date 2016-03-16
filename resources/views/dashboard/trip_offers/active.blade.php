@@ -42,9 +42,21 @@
 
                                         </div>
                                         <div class="col m9 s12 center-align">
-                                            <p class="card-title ">{{ $trajet->trajet_date }} à {{ $trajet->trajet_heure }}</p>
-                                            <p class="text-important"> </p>
+                                            <p class="card-title ">{{ $depart }} <i class="material-icons">arrow_forward</i> {{ $arrive }}</p>
+                                            <p>{{ $trajet->trajet_date }} à {{ $trajet->trajet_heure }}</p>
+                                            <p class="text-important"> {{ $prix }}€ par passager</p>
 
+                                            <a class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
+
+                                            <a class="waves-effect waves-light btn"><i class="material-icons left">airline_seat_recline_normal</i>Voir vos passagers</a>
+
+                                            <a class="waves-effect waves-light btn"><i class="material-icons left">settings</i>Modifier</a>
+
+                                            <a class="waves-effect waves-light btn"><i class="material-icons left">clear</i>Supprimer</a>
+
+                                            @if($nbEtapes > 2)
+                                                <a class="waves-effect waves-light btn"><i class="material-icons left">place</i>Voir vos étapes</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

@@ -32,7 +32,27 @@ class TrajetController extends Controller
         $trajets = Trajet::whereRaw('trajet_date >= curdate()')
                            ->get();
 
-        return view('dashboard.trip_offers.active',['trajets'=>$trajets,'nbVehicule'=>$vehiculeNB]);
+        $depart = DB::table('trajet')
+            ->join('etape','etape.trajet_id','=','trajet.trajet_id')
+            ->join('ville','etape.ville_insee','=','ville.ville_insee')
+            ->where('etape.etape_ordre',1)
+            ->get()[0]->ville_nom_reel;
+
+        $nbEtapes = DB::table('trajet')
+            ->join('etape','etape.trajet_id','=','trajet.trajet_id')
+            ->max('etape.etape_id');
+
+        $arrive = DB::table('trajet')
+            ->join('etape','etape.trajet_id','=','trajet.trajet_id')
+            ->join('ville','etape.ville_insee','=','ville.ville_insee')
+            ->where('etape.etape_ordre',$nbEtapes)
+            ->get()[0]->ville_nom_reel;
+
+        $prix = DB::table('trajet')
+            ->join('etape','etape.trajet_id','=','trajet.trajet_id')
+            ->sum('etape_prix');
+
+        return view('dashboard.trip_offers.active',['trajets'=>$trajets,'nbVehicule'=>$vehiculeNB,'depart'=>$depart,'arrive'=>$arrive,'prix'=>$prix,'nbEtapes'=>$nbEtapes]);
     }
 
 

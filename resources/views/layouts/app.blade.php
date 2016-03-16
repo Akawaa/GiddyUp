@@ -37,18 +37,20 @@
                 <li><a href="{{ url('/register') }}">S'inscrire</a></li>
                 <li><a href="{{ url('/login') }}">Se connecter</a></li>
                 @else
-                <li><a class="dropdown-button" href="#!" data-activates="menu">{{ Auth::user()->membre_prenom }} {{ Auth::user()->name }} <i class="fa fa-caret-down"></i></a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="menu">{{ Auth::user()->membre_prenom}} {{ Auth::user()->name }} <i class="fa fa-caret-down"></i></a></li>
+
+                    <ul id='menu' class='dropdown-content'>
+                        <li><a href="{{ url('/home') }}">Tableau de bord</a></li>
+                        <li><a href="{{ url('/trip-offers') }}">Mes annonces</a></li>
+                        <li><a href="{{ url('/bookings') }}">Mes réservations</a></li>
+                        <li><a href="{{ url('/ratings') }}">Avis</a></li>
+                        <li><a href="{{ url('/profile/'.Auth::user()->id.'/edit') }}">Profil</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ url('/logout') }}">Se déconnecter</a></li>
+                    </ul>
                 @endif
             </ul>
-            <ul id='menu' class='dropdown-content'>
-                <li><a href="{{ url('/home') }}">Tableau de bord</a></li>
-                <li><a href="{{ url('/trip-offers/active') }}">Mes annonces</a></li>
-                <li><a href="{{ url('/bookings') }}">Mes réservations</a></li>
-                <li><a href="{{ url('/ratings') }}">Avis</a></li>
-                <li><a href="{{ url('/profile') }}">Profil</a></li>
-                <li class="divider"></li>
-                <li><a href="{{ url('/logout') }}">Se déconnecter</a></li>
-            </ul>
+
             
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="{{ url('/register') }}">S'inscrire</a></li>
