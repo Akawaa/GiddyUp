@@ -25,7 +25,7 @@
                 <h3>Mes annonces</h3>
 
                 @if(Auth::user()->site_id == null)
-                <div>Vous devez ajouter un site de formation avant de pouvoir créer une annonce !</div>
+                <p class="alert alert-warning">Vous devez ajouter un site de formation avant de pouvoir créer une annonce !</p>
                 @endif
 
                 @if($nbVehicule == 0)

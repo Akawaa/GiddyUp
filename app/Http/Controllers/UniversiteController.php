@@ -87,7 +87,7 @@ class UniversiteController extends Controller
 
         $user->save();
 
-        return redirect('profile/university/'.$id.'/edit')->with('status', 'Votre site universitaire à été mise à jour');
+        return redirect('profile/university/'.$id.'/edit')->with('status', 'Votre site universitaire à été mis à jour');
     }
 
     /**
