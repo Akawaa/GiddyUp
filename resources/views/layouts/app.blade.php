@@ -65,20 +65,36 @@
     <main>
         @yield('content')
     </main>
-
+    <div class="bandeau_footer"></div>
     <footer>
-        <div class="bandeau_footer"></div>
-        <div class="row">
-            <div class="widget_footer bg-green col m4">
-                <h3>Infos Pratiques</h3>
-                <ul>
-                    <li><a href="#">Comment ça marche ?</a></li>
-                    <li><a href="#">Prix des covoiturages</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">F.A.Q</a></li>
-                    <li><a href="#">Conditions Générales</a></li>
-                </ul>
+        <div class="widget_footer bg-green col m3 s12 center-align">
+            <h3>Infos Pratiques</h3>
+            <ul class="left-align">
+                <li><a href="#">Comment ça marche ?</a></li>
+                <li><a href="#">Prix des covoiturages</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">F.A.Q</a></li>
+                <li><a href="#">Conditions Générales</a></li>
+            </ul>
+        </div>
+        <div class="widget_footer bg-secondary col m3 s12 center-align">
+            <h3>Téléchargez l'appli !</h3>
+            <div class="row">
+                <img src="{{ asset('/img/appstore-logo.png') }}">
             </div>
+            <div class="row">
+                <img src="{{ asset('/img/playstore-logo.png') }}">
+            </div>
+        </div>
+        <div class="widget_footer bg-primary col m3 s12 center-align">
+            <h3>Infos Pratiques</h3>
+            <ul class="left-align">
+                <li><a href="#">Comment ça marche ?</a></li>
+                <li><a href="#">Prix des covoiturages</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">F.A.Q</a></li>
+                <li><a href="#">Conditions Générales</a></li>
+            </ul>
         </div>
     </footer>
     <!-- JavaScripts -->

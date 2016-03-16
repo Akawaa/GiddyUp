@@ -1,1 +1,3 @@
-TEST :D
+<?php
+
+echo 'TEST :D';
