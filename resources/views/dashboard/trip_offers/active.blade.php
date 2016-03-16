@@ -38,15 +38,12 @@
                             <div class="card card-giddy col l6 s12">
                                 <div class="card-content">
                                     <div class="row">
-                                        <div class="col m3 s12 center-align">
-
-                                        </div>
-                                        <div class="col m9 s12 center-align">
-                                            <p class="card-title ">{{ $depart }} <i class="material-icons">arrow_forward</i> {{ $arrive }}</p>
-                                            <p>{{ $trajet->trajet_date }} à {{ $trajet->trajet_heure }}</p>
-                                            <p>{{ $trajet->vehicule->modele->marque->marque_libelle }} - {{ $trajet->vehicule->modele->modele_libelle }}</p>
-                                            <p>{{ $trajet->trajet_place }} place(s)</p>
-                                            <p class="text-important"> {{ $prix }}€ par passager</p>
+                                        <div class="col s12 center-align">
+                                            <p class="card-title ">{{ $trajet->depart }} <i class="material-icons">arrow_forward</i> {{ $trajet->arrivee }}</p>
+                                            <p>{{ date('d F Y',strtotime($trajet->trajet_date)) }} à {{ date('H:i',strtotime($trajet->trajet_heure)) }}</p>
+                                            <p>{{ $trajet->marque }} {{ $trajet->modele }}</p>
+                                            <p>{{ $trajet->trajet_place }} places</p>
+                                            <p>{{ $trajet->trajet_tarif }}€ par passager</p>
 
                                             <a class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
 
@@ -56,9 +53,7 @@
 
                                             <a class="waves-effect waves-light btn"><i class="material-icons left">clear</i>Supprimer</a>
 
-                                            @if($nbEtapes > 2)
-                                                <a class="waves-effect waves-light btn"><i class="material-icons left">place</i>Voir vos étapes</a>
-                                            @endif
+
                                         </div>
                                     </div>
                                 </div>

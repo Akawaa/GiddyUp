@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Trajet;
+use DB;
 
 use App\Http\Requests;
 
@@ -16,8 +17,18 @@ class TrajetPastController extends Controller
      */
     public function index()
     {
-        $trajets = Trajet::whereRaw('trajet_date < curdate()')
-            ->get();
+        $trajets = DB::select('SELECT `v1`.`ville_nom_reel` as depart, `v2`.`ville_nom_reel` as arrivee, t1.*, mod.modele_libelle as modele, mar.marque_libelle as marque
+            FROM `etape` `e1`
+            INNER JOIN `trajet` `t1` ON `t1`.`trajet_id` = `e1`.`trajet_id`
+            INNER JOIN `vehicule` `ve` ON `t1`.`vehicule_id` = `ve`.`vehicule_id`
+            INNER JOIN `modele` `mod` ON `mod`.`modele_id` = `ve`.`modele_id`
+            INNER JOIN `marque` `mar` ON `mar`.`marque_id` = `mod`.`marque_id`
+            INNER JOIN `etape` `e2` ON `t1`.`trajet_id` = `e2`.`trajet_id`
+            INNER JOIN `ville` `v2` ON `e2`.`ville_insee` = `v2`.`ville_insee`
+            INNER JOIN `ville` `v1` ON `e1`.`ville_insee` = `v1`.`ville_insee`
+            WHERE e1.etape_ordre = 1
+            AND t1.trajet_date < curdate()
+            AND e2.etape_ordre = (SELECT MAX(etape_ordre) FROM `etape` WHERE `t1`.trajet_id = etape.trajet_id)');
 
         return view('dashboard.trip_offers.inactive',['trajets'=>$trajets]);
     }

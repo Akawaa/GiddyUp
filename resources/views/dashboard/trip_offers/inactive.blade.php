@@ -29,12 +29,16 @@
                             <div class="card card-giddy col l6 s12">
                                 <div class="card-content">
                                     <div class="row">
-                                        <div class="col m3 s12 center-align">
+                                        <div class="col s12 center-align">
+                                            <p class="card-title ">{{ $trajet->depart }} <i class="material-icons">arrow_forward</i> {{ $trajet->arrivee }}</p>
+                                            <p>{{ date('d F Y',strtotime($trajet->trajet_date)) }} à {{ date('H:i',strtotime($trajet->trajet_heure)) }}</p>
+                                            <p>{{ $trajet->marque }} {{ $trajet->modele }}</p>
+                                            <p>{{ $trajet->trajet_place }} places</p>
+                                            <p>{{ $trajet->trajet_tarif }}€ par passager</p>
 
-                                        </div>
-                                        <div class="col m9 s12 center-align">
-                                            <p class="card-title ">{{ $trajet->trajet_date }} à {{ $trajet->trajet_heure }}</p>
-                                            <p class="text-important"> </p>
+                                            <a class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
+
+                                            <a class="waves-effect waves-light btn"><i class="material-icons left">redo</i>Republier</a>
 
                                         </div>
                                     </div>

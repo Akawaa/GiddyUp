@@ -115,9 +115,9 @@
                     <div class="col m6 s12">
                         <p>Ne pas indiquer :</p>
                         <ul>
-                            <li><i class="material-icons">close</i> Numéro de téléphone</li>
-                            <li><i class="material-icons">close</i> Détails sur votre compte Facebook</li>
-                            <li><i class="material-icons">close</i> Détails sur des trajats en particulier</li>
+                            <li><i class="material-icons">do_not_disturb</i> Numéro de téléphone</li>
+                            <li><i class="material-icons">do_not_disturb</i> Détails sur votre compte Facebook</li>
+                            <li><i class="material-icons">do_not_disturb</i> Détails sur des trajats en particulier</li>
                         </ul>
                     </div>
                 </div>
