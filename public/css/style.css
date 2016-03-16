@@ -71,8 +71,9 @@ nav ul a{
 }
 
 .photo_profil{
-    width: 150px;
-    height: 150px;
+    max-width: none!important;
+    width: 150px!important;
+    height: 150px!important;
 }
 
 /* START SYL */
@@ -416,6 +417,7 @@ textarea.materialize-textarea:focus + label {
 .alert {
     margin: 7px 0!important;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .alert:before {
@@ -423,12 +425,11 @@ textarea.materialize-textarea:focus + label {
     font-size: 2rem;
     display: inline-flex;
     vertical-align: middle;
-    padding: 5px;
+    padding: 7px;
 }
 
 .alert-warning {
     background: rgba(254,189,18,0.3);
-    border: 2px solid #febd12;
 }
 
 .alert-warning:before {
@@ -437,18 +438,16 @@ textarea.materialize-textarea:focus + label {
 }
 
 .alert-info {
-    background: rgba(254,189,18,0.3);
-    border: 2px solid #febd12;
+    background: rgba(30,136,229,0.3);
 }
 
 .alert-info:before {
     content: '\e88e';
-    color: #febd12!important;
+    color: #1E88E5!important;
 }
 
 .alert-success {
     background: rgba(149,211,68,0.3);
-    border: 2px solid #95D344;
 }
 
 .alert-success:before {
@@ -485,8 +484,8 @@ textarea.materialize-textarea:focus + label {
     }
 
     .homesection img {
-        left:0px;
-        right:0px;
+        left: 0px;
+        right: 0px;
         margin-left:auto;
         margin-right:auto;
     }
@@ -544,11 +543,29 @@ textarea.materialize-textarea:focus + label {
     height: 100px;
     width: 100px;
 }
+@media screen and (max-width: 600px) {
+    .preference input[type="radio"] + label {
+        padding-left: 0!important;
+    }
+}
+
+.preference input[type="radio"] + label img {
+    padding: 3px;
+    border: 2px solid transparent;
+}
+
+.preference input[type="radio"]:checked + label img {
+    border: 2px solid #FEBD12;
+    border-radius: 10px;
+}
+
+.preference input[type="radio"] + label:before, .preference input[type="radio"] + label:after {
+    display: none;
+}
 
 /****************/
 /*** FOOTER ****/
 /**************/
-
 .bandeau_footer {
     width: 100%;
     height: 190px;
@@ -556,8 +573,22 @@ textarea.materialize-textarea:focus + label {
     margin-top: 50px;
 }
 
+@media screen and (min-width: 600px) {
+    footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
 .widget_footer {
     padding: 15px!important;
+    margin: 10px 20px;
+    min-height: 205px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 footer a {

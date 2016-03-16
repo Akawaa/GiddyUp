@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         @empty
-                        <p>Vous n'avez aucun véhicule.</p>
+                        <p class="alert alert-info">Vous n'avez aucun véhicule.</p>
                         @endforelse
                     </div>
                     <a href="{{ url('profile/car/create') }}" class="waves-effect waves-light btn btn-primary"><i class="material-icons right">add_circle</i>Ajouter</a>
