@@ -83,6 +83,7 @@
                             <div class="col s6">
                                 {{ Form::label('heure','Heure') }}
                                 {{ Form::selectRange('heure',00,23) }}
+
                             </div>
                             <div class="col s6">
                                 {{ Form::label('minute','Minute') }}
@@ -208,6 +209,13 @@
                 date.setAttribute('type','date');
                 date.setAttribute('class','retour');
                 row.appendChild(date);
+
+                var rowHeure = document.createElement('div');
+                rowHeure.setAttribute('class','row');
+                divRetour.appendChild(rowHeure);
+
+                var col6 = document.createElement('div');
+                col6.setAttribute('class','col s6');
 
 
 
