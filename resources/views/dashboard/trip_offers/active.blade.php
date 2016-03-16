@@ -44,6 +44,8 @@
                                         <div class="col m9 s12 center-align">
                                             <p class="card-title ">{{ $depart }} <i class="material-icons">arrow_forward</i> {{ $arrive }}</p>
                                             <p>{{ $trajet->trajet_date }} à {{ $trajet->trajet_heure }}</p>
+                                            <p>{{ $trajet->vehicule->modele->marque->marque_libelle }} - {{ $trajet->vehicule->modele->modele_libelle }}</p>
+                                            <p>{{ $trajet->trajet_place }} place(s)</p>
                                             <p class="text-important"> {{ $prix }}€ par passager</p>
 
                                             <a class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
