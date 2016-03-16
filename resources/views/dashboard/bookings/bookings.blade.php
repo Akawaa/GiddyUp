@@ -28,7 +28,7 @@
                     @forelse($reservations as $reservation)
                     <li>{{ $reservation->trajet_id }}</li>
                     @empty
-                    <p>Vous n'avez aucune réservation.</p>
+                    <p class="alert alert-info">Vous n'avez aucune réservation.</p>
                     @endforelse
                 </div>
             </div>

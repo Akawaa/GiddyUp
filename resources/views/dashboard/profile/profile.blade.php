@@ -31,9 +31,9 @@
             <div class="card-content">
                 <h3>Informations Personnelles</h3>
                 @if (session('status'))
-                <div>
+                <p class="alert alert-success">
                     {{ session('status') }}
-                </div>
+                </p>
                 @endif
 
                 {{Form::model($user,array('route' => array('profile.update',$user->id),'method'=>'PUT')) }}

@@ -71,8 +71,9 @@ nav ul a{
 }
 
 .photo_profil{
-    width: 150px;
-    height: 150px;
+    max-width: none!important;
+    width: 150px!important;
+    height: 150px!important;
 }
 
 /* START SYL */
@@ -416,6 +417,7 @@ textarea.materialize-textarea:focus + label {
 .alert {
     margin: 7px 0!important;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .alert:before {
@@ -423,12 +425,11 @@ textarea.materialize-textarea:focus + label {
     font-size: 2rem;
     display: inline-flex;
     vertical-align: middle;
-    padding: 5px;
+    padding: 7px;
 }
 
 .alert-warning {
     background: rgba(254,189,18,0.3);
-    border: 2px solid #febd12;
 }
 
 .alert-warning:before {
@@ -437,18 +438,16 @@ textarea.materialize-textarea:focus + label {
 }
 
 .alert-info {
-    background: rgba(254,189,18,0.3);
-    border: 2px solid #febd12;
+    background: rgba(30,136,229,0.3);
 }
 
 .alert-info:before {
     content: '\e88e';
-    color: #febd12!important;
+    color: #1E88E5!important;
 }
 
 .alert-success {
     background: rgba(149,211,68,0.3);
-    border: 2px solid #95D344;
 }
 
 .alert-success:before {
