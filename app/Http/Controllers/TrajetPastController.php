@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Trajet;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 use App\Http\Requests;
@@ -17,6 +18,8 @@ class TrajetPastController extends Controller
      */
     public function index()
     {
+        $user = Auth::user()->id;
+
         $trajets = DB::select('SELECT `v1`.`ville_nom_reel` as depart, `v2`.`ville_nom_reel` as arrivee, t1.*, mod.modele_libelle as modele, mar.marque_libelle as marque
             FROM `etape` `e1`
             INNER JOIN `trajet` `t1` ON `t1`.`trajet_id` = `e1`.`trajet_id`
@@ -27,6 +30,7 @@ class TrajetPastController extends Controller
             INNER JOIN `ville` `v2` ON `e2`.`ville_insee` = `v2`.`ville_insee`
             INNER JOIN `ville` `v1` ON `e1`.`ville_insee` = `v1`.`ville_insee`
             WHERE e1.etape_ordre = 1
+            AND t1.id = '.$user.'
             AND t1.trajet_date < curdate()
             AND e2.etape_ordre = (SELECT MAX(etape_ordre) FROM `etape` WHERE `t1`.trajet_id = etape.trajet_id)');
 
