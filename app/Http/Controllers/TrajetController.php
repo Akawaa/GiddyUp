@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Trajet;
+use App\Etape;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
@@ -80,7 +81,38 @@ class TrajetController extends Controller
      */
     public function show($id)
     {
-        //
+        $trajet = Trajet::find($id);
+
+        $etapes = Etape::where('trajet_id',$id)
+                ->orderBy('etape_ordre','asc')
+                ->get();
+
+        $nbTrajets = Trajet::where('id',$trajet->id)
+                ->count();
+
+        $depart = DB::table('etape')
+            ->join('ville','ville.ville_insee','=','etape.ville_insee')
+            ->where('etape.trajet_id',$id)
+            ->where('etape.etape_ordre',1)
+            ->get()[0];
+
+
+        $nbEtapes = Etape::where('trajet_id',$id)
+                ->max('etape_ordre');
+
+        $arrivee = DB::table('etape')
+            ->join('ville','ville.ville_insee','=','etape.ville_insee')
+            ->where('etape.trajet_id',$id)
+            ->where('etape.etape_ordre',$nbEtapes)
+            ->get()[0];
+
+        $avis = DB::table('trajet')
+            ->join('inscrit','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('trajet.trajet_id',$id)
+            ->get();
+
+
+        return view('trajets.show',['trajet'=>$trajet,'depart'=>$depart,'arrivee'=>$arrivee,'avis'=>$avis,'nbTrajets'=>$nbTrajets,'etapes'=>$etapes, 'nbEtapes'=>$nbEtapes]);
     }
 
     /**

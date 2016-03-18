@@ -11,6 +11,10 @@ class Etape extends Model
     protected $primaryKey = 'etape_id';
 
     public function trajet(){
-        $this->belongsTo('App\Trajet','trajet_id');
+        return $this->belongsTo('App\Trajet','trajet_id');
+    }
+
+    public function ville(){
+        return $this->belongsTo('App\Ville','ville_insee');
     }
 }

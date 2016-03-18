@@ -37,7 +37,7 @@
                                 <div class="col s8 center-align">
 
                                     @if($vehicule->vehicule_photo == null)
-                                        @if($vehicule->type_id == 1)
+                                        @if($vehicule->modele->marque->type->type_id == 1)
                                             <i class="material-icons large">directions_car</i>
                                         @else
                                             <i class="material-icons large">motorcycle</i>

@@ -31,4 +31,8 @@ class Vehicule extends Model
         return $this->belongsTo('App\User','id');
     }
 
+    public function couleur(){
+        return $this->belongsTo('App\Couleur','couleur_id');
+    }
+
 }
