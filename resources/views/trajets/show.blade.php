@@ -129,6 +129,8 @@
                                                        <span class="card-title activator grey-text text-darken-4">{{ $etape->ville->ville_nom_reel }}</span>
                                                        @if($etape->etape_ordre == 1)
                                                            <p>{{ date('H:i',strtotime($trajet->trajet_heure)) }}</p>
+                                                       @elseif
+
                                                        @else
                                                             <?php
                                                             $depart = date("H:i",strtotime($trajet->trajet_heure));
