@@ -45,7 +45,7 @@
                                             <p>{{ $trajet->trajet_place }} places</p>
                                             <p>{{ $trajet->trajet_tarif }}€ par passager</p>
 
-                                            <a class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
+                                            <a href="{{ url('trip-offers/'.$trajet->trajet_id) }}" class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
 
                                             <a class="waves-effect waves-light btn"><i class="material-icons left">airline_seat_recline_normal</i>Voir vos passagers</a>
 
