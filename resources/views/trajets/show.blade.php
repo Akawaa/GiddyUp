@@ -129,7 +129,15 @@
                                                        <span class="card-title activator grey-text text-darken-4">{{ $etape->ville->ville_nom_reel }}</span>
                                                        @if($etape->etape_ordre == 1)
                                                            <p>{{ date('H:i',strtotime($trajet->trajet_heure)) }}</p>
-                                                       @elseif
+                                                       @elseif($etape->etape_ordre == $nbEtapes)
+                                                           <?php
+                                                           $depart = date("H:i",strtotime($trajet->trajet_heure));
+                                                           $h2 = date("H",strtotime($etape->etape_duree)) ;
+                                                           $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($depart)));
+                                                           $min2 = date("i",strtotime($etape->etape_duree));
+                                                           $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
+
+                                                           echo "<p>Heure d\'arrivée estimée : ".date('H:i',strtotime($addMin)).'</p>'; ?>
 
                                                        @else
                                                             <?php
@@ -139,7 +147,7 @@
                                                             $min2 = date("i",strtotime($etape->etape_duree));
                                                             $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
 
-                                                            echo "<p>Heure estimée : ".date('H:i',strtotime($addMin)).'</p>'; ?>
+                                                           echo "<p>Heure de passage estimée : ".date('H:i',strtotime($addMin)).'</p>'; ?>
                                                        @endif
                                                    </div>
                                                </div>
