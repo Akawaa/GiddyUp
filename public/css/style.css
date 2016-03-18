@@ -101,8 +101,14 @@ h3 {
 
 h4 {
     font-family: 'Roboto Slab';
-    font-size: 1.2em;
+    font-size: 1.4em;
     font-weight: bold;
+}
+
+h5 {
+    font-family: 'Roboto Slab';
+    font-weight: lighter;
+    font-size: 1.3em;
 }
 
 a.link {
@@ -160,7 +166,7 @@ nav a, .collection a, .subonglet a {
     font-weight: 900;
     font-size: 1rem;
     padding: 0 20px;
-    margin: 0 5px!important;
+    margin: 2px 5px!important;
     box-shadow: none;
 }
 
@@ -379,6 +385,16 @@ textarea.materialize-textarea:focus + label {
     border: 1px solid #d9d9d9;
 }
 
+.card-info {
+    font-family: 'Roboto Slab';
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.card-info > .card-content {
+    padding: 10px;
+}
+
 .card .prefix {
     color: #000!important;
 }
@@ -561,6 +577,22 @@ textarea.materialize-textarea:focus + label {
 
 .preference input[type="radio"] + label:before, .preference input[type="radio"] + label:after {
     display: none;
+}
+
+.text-card {
+    font-size: 1.2em;
+}
+
+.card-info .material-icons {
+    font-size: 2.5rem;
+}
+
+/*
+* PROPOSER TRAJET
+*/
+
+#map {
+    height: 500px;
 }
 
 /****************/

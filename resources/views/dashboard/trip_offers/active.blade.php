@@ -32,9 +32,6 @@
                 <div>Vous devez <a href="{{ url('/profile/car/create') }}" class="link">ajouter un véhicule</a> avant de pouvoir créer une annonce !</div>
                 @endif
 
-                <a href="{{ url('trip-offers/create') }}" class="waves-effect waves-light btn red darken-3"><i class="material-icons left">add_location</i>Publier une annonce</a>
-
-
                 <div>
                     @forelse($trajets as $trajet)
                         <div class="row">
@@ -48,7 +45,7 @@
                                             <p>{{ $trajet->trajet_place }} places</p>
                                             <p>{{ $trajet->trajet_tarif }}€ par passager</p>
 
-                                            <a href="{{ url('trip-offers/'.$trajet->trajet_id) }}" class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
+                                            <a class="waves-effect waves-light btn"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
 
                                             <a class="waves-effect waves-light btn"><i class="material-icons left">airline_seat_recline_normal</i>Voir vos passagers</a>
 
