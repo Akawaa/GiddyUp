@@ -147,7 +147,7 @@ function addWaypoint(){
 
     var btn_supp = document.createElement('button');
     var text_btn = document.createElement('i');
-    text_btn.setAttribute('class','material_icons right');
+    text_btn.setAttribute('class','material-icons right');
     text_btn.appendChild(document.createTextNode('clear'));
     btn_supp.appendChild(text_btn);
     btn_supp.setAttribute('onclick','removeWaypoint(this)');
