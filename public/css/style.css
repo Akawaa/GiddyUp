@@ -301,6 +301,10 @@ button:focus {
 }
 
 /*CUSTOM MATERIALIZE*/
+.row .col {
+    padding: 0 0.4rem;
+}
+
 label, .input-field label {
     color: #000;
 }

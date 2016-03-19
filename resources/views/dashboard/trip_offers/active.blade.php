@@ -54,7 +54,7 @@
                                 <div class="card card-info col s12">
                                     <div class="card-content center-align">
                                         <i class="material-icons">directions_car</i><br>
-                                        {{ $trajet->marque }}<br>{{ $trajet->modele }}
+                                        {{ $trajet->marque }} {{ $trajet->modele }}
                                     </div>
                                 </div>
                             </div>
