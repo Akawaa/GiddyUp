@@ -44,7 +44,7 @@
                             <select name="universite" id="universite" class="icons">
                                 <option value="0" disabled selected>Universite</option>
                                 @foreach($universites as $universite)
-                                <option class="red-text text-darken-4" data-icon="{{asset('img/universite_logo/'.$universite->universite_logo)}}" @if($universite->universite_id == $universiteCourante) selected @endif value="{{$universite->universite_id}}">{{$universite->universite_nom}}</option>
+                                <option class="red-text text-darken-4" data-icon="{{asset('img/logo_universites/'.$universite->universite_logo)}}" @if($universite->universite_id == $universiteCourante) selected @endif value="{{$universite->universite_id}}">{{$universite->universite_nom}}</option>
                                 @endforeach
                             </select>
 

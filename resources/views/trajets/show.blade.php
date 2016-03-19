@@ -128,7 +128,7 @@
                                                    <div class="card-content">
                                                        <span class="card-title activator grey-text text-darken-4">{{ $etape->ville->ville_nom_reel }}</span>
                                                        @if($etape->etape_ordre == 1)
-                                                           <p>{{ date('H:i',strtotime($trajet->trajet_heure)) }}</p>
+                                                           <p>Départ : {{ date('H:i',strtotime($trajet->trajet_heure)) }}</p>
                                                        @elseif($etape->etape_ordre == $nbEtapes)
                                                            <?php
                                                            $depart = date("H:i",strtotime($trajet->trajet_heure));
@@ -137,7 +137,7 @@
                                                            $min2 = date("i",strtotime($etape->etape_duree));
                                                            $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
 
-                                                           echo "<p>Heure d\'arrivée estimée : ".date('H:i',strtotime($addMin)).'</p>'; ?>
+                                                           echo "<p>Heure d'arrivée estimée : ".date('H:i',strtotime($addMin)).'</p>'; ?>
 
                                                        @else
                                                             <?php
@@ -173,7 +173,7 @@
                                <div class="col l6 center-align">
                                     <h3>{{ $trajet->trajet_place }} places</h3>
                                    <br>
-                                   <h4> au départ</h4>
+                                   <h4> disponibles</h4>
                                </div>
                            </div>
                        </div>
