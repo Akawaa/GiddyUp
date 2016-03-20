@@ -222,7 +222,7 @@ button:focus {
 }
 
 .row {
-    margin: 0;
+    margin: 5px 0;
 }
 
 
@@ -598,11 +598,15 @@ textarea.materialize-textarea:focus + label {
 }
 
 /*
-* PROPOSER TRAJET
+* PROPOSER-SHOW TRAJET
 */
 
 #map {
     height: 500px;
+}
+
+.title-short {
+    font-weight: lighter;
 }
 
 /****************/
