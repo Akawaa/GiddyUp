@@ -431,6 +431,12 @@ textarea.materialize-textarea:focus + label {
     }
 }
 
+.dropdown-content {
+    box-shadow: none;
+    border: 2px solid #d9d9d9;
+    border-radius: 4px;
+}
+
 /***********/
 /* ALERTS */
 /*********/

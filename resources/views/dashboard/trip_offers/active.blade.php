@@ -59,10 +59,10 @@
                                 </div>
                             </div>
                             <div class="col l6 s12">
-                                <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
-                                <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons left">airline_seat_recline_normal</i>Passagers</a>
-                                <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons left">settings</i>Modifier</a>
-                                <a class="waves-effect waves-light btn btn-third col s12"><i class="material-icons left">clear</i>Supprimer</a>
+                                <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">remove_red_eye</i>Voir l'annonce</a>
+                                <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">airline_seat_recline_normal</i>Passagers</a>
+                                <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">settings</i>Modifier</a>
+                                <a class="waves-effect waves-light btn btn-third col s12"><i class="material-icons right">clear</i>Supprimer</a>
                             </div>
                         </div>
                     </div>
