@@ -632,6 +632,14 @@ footer a {
     text-decoration: underline;
 }
 
+.img-trajet{
+    width: 40px;
+    height: auto;
+}
+
+.date-trajet{
+    font-size: 12px;
+}
 
 /* ITINERAIRE */
 .timeline {

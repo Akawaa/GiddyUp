@@ -78,7 +78,7 @@
                            <div class="row">
                                <div class="col l1">
                                    @if($trajet->user->membre_photo != '' && $trajet->user->membre_photo_valide == 1)
-                                     <img src="{{ asset('img/uploads/'.$trajet->id.'/'.$trajet->user->membre_photo) }}" class="responsive-img circle">
+                                     <img src="{{ asset('img/uploads/'.$trajet->id.'/'.$trajet->user->membre_photo) }}" class="responsive-img circle img-trajet">
                                    @else
                                        <i class="material-icons">photo_camera</i>
                                    @endif
@@ -101,6 +101,96 @@
                                <div class="col l12 left-align">
                                    <h3>Questions</h3>
                                </div>
+                           </div>
+
+                           <div class="row">
+                               @forelse($questions as $question)
+                                       <div class="col s12">
+                                           <div class="card">
+
+                                               <div class="card-content">
+                                                   <span class="card-title">
+                                                       @if($question->user->membre_photo != '')
+                                                           <img src="{{ asset('img/uploads/'.$question->id.'/'.$question->user->membre_photo) }}" class="responsive-img circle img-trajet">
+                                                       @else
+                                                           <i class="material-icons valign">photo_camera</i>
+                                                       @endif
+                                                       {{ $question->user->membre_prenom }} {{ $question->user->name[0] }} </span>
+                                                   <p>{{ $question->question_libelle }}</p>
+                                                   <p class="blue-grey-text text-lighten-2 date-trajet">{{ date('d/m/Y à H:i',strtotime($question->created_at)) }}</p>
+
+                                                   @if($question->id == Auth::user()->id)
+                                                       {{ Form::open(array('url'=> 'question/'.$question->question_id)) }}
+                                                       {{ Form::hidden('_method', 'DELETE') }}
+                                                       {{ Form::button('<i class="material-icons right">clear</i> Supprimer', ['class' => 'waves-effect waves-light btn btn-third col','type'=>'submit']) }}
+                                                       {{ Form::close() }}
+                                                   @endif
+
+                                                   @foreach($reponses as $reponse)
+                                                       @if($question->question_id == $reponse->question_id)
+                                                           <div class="row">
+                                                               <div class="col s10 offset-s1">
+                                                                   <span class="card-title">
+                                                                       @if($reponse->user->membre_photo != '')
+                                                                           <img src="{{ asset('img/uploads/'.$reponse->id.'/'.$reponse->user->membre_photo) }}" class="responsive-img circle img-trajet">
+                                                                       @else
+                                                                           <i class="material-icons valign">photo_camera</i>
+                                                                       @endif
+                                                                       {{ $reponse->user->membre_prenom }} {{ $reponse->user->name[0] }} </span>
+                                                                   <p>{{ $reponse->reponse_libelle }}</p>
+                                                                   <p class="blue-grey-text text-lighten-2 date-trajet">{{ date('d/m/Y à H:i',strtotime($reponse->created_at)) }}</p>
+
+                                                                   @if($reponse->id == Auth::user()->id)
+                                                                       {{ Form::open(array('url'=> 'reponse/'.$reponse->reponse_id)) }}
+                                                                            {{ Form::hidden('_method', 'DELETE') }}
+                                                                            {{ Form::button('<i class="material-icons right">clear</i> Supprimer', ['class' => 'waves-effect waves-light btn btn-third col','type'=>'submit']) }}
+                                                                       {{ Form::close() }}
+                                                                   @endif
+                                                               </div>
+                                                           </div>
+                                                       @endif
+                                                   @endforeach
+                                               </div>
+
+                                               @if($trajet->id == Auth::user()->id || $question->id == Auth::user()->id)
+                                                   <div class="card-action">
+                                                       <div class="row">
+                                                           {{ Form::open(array('route' => 'reponse.store')) }}
+                                                           <div class="input-field col s12">
+                                                               {{ Form::hidden('id',Auth::user()->id) }}
+                                                               {{ Form::hidden('question_id',$question->question_id) }}
+                                                               {{ Form::hidden('trajet_id',$trajet->trajet_id) }}
+
+                                                               {{ Form::textarea('reponse',null,array('class'=>'materialize-textarea','id'=>'reponse','length'=>'255')) }}
+                                                               {{ Form::label('reponse','Votre réponse') }}
+
+                                                               {{ Form::button('Répondre',['class'=>'waves-effect waves-light btn btn-primary','type'=>'submit']) }}
+                                                           </div>
+                                                           {{ Form::close() }}
+                                                       </div>
+                                                   </div>
+                                               @endif
+                                           </div>
+                                       </div>
+                               @empty
+                                   Il n'y a pas encore de questions pour ce trajet.
+                               @endforelse
+                           </div>
+
+                           <hr>
+
+                           <div class="row">
+                               {{ Form::open(array('route' => 'question.store')) }}
+                                   <div class="input-field col s12">
+                                       {{ Form::hidden('id',Auth::user()->id) }}
+                                       {{ Form::hidden('trajet_id',$trajet->trajet_id) }}
+
+                                       {{ Form::textarea('question',null,array('class'=>'materialize-textarea','id'=>'question','length'=>'255')) }}
+                                       {{ Form::label('question','Votre question') }}
+
+                                       {{ Form::button('Poser une question',['class'=>'waves-effect waves-light btn btn-primary','type'=>'submit']) }}
+                                   </div>
+                               {{ Form::close() }}
                            </div>
                        </div>
                    </div>
@@ -128,7 +218,7 @@
                                                    <div class="card-content">
                                                        <span class="card-title activator grey-text text-darken-4">{{ $etape->ville->ville_nom_reel }}</span>
                                                        @if($etape->etape_ordre == 1)
-                                                           <p>Départ : {{ date('H:i',strtotime($trajet->trajet_heure)) }}</p>
+                                                           <p>Départ : {{ date('H',strtotime($trajet->trajet_heure)) }}h{{ date('i',strtotime($trajet->trajet_heure)) }}</p>
                                                        @elseif($etape->etape_ordre == $nbEtapes)
                                                            <?php
                                                            $depart = date("H:i",strtotime($trajet->trajet_heure));
@@ -137,17 +227,16 @@
                                                            $min2 = date("i",strtotime($etape->etape_duree));
                                                            $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
 
-                                                           echo "<p>Heure d'arrivée estimée : ".date('H:i',strtotime($addMin)).'</p>'; ?>
-
+                                                           echo "<p>Arrivée :~ ".date('H',strtotime($addMin)).'h'.date('i',strtotime($addMin)).'</p>'; ?>
                                                        @else
-                                                            <?php
-                                                            $depart = date("H:i",strtotime($trajet->trajet_heure));
-                                                            $h2 = date("H",strtotime($etape->etape_duree)) ;
-                                                            $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($depart)));
-                                                            $min2 = date("i",strtotime($etape->etape_duree));
-                                                            $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
+                                                           <?php
+                                                           $depart = date("H:i",strtotime($trajet->trajet_heure));
+                                                           $h2 = date("H",strtotime($etape->etape_duree)) ;
+                                                           $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($depart)));
+                                                           $min2 = date("i",strtotime($etape->etape_duree));
+                                                           $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
 
-                                                           echo "<p>Heure de passage estimée : ".date('H:i',strtotime($addMin)).'</p>'; ?>
+                                                           echo "<p>~ ".date('H',strtotime($addMin)).'h'.date('i',strtotime($addMin)).'</p>'; ?>
                                                        @endif
                                                    </div>
                                                </div>
@@ -171,7 +260,7 @@
                                     <h4>par place</h4>
                                </div>
                                <div class="col l6 center-align">
-                                    <h3>{{ $trajet->trajet_place }} places</h3>
+                                    <h3>{{ $places }} places</h3>
                                    <br>
                                    <h4> disponibles</h4>
                                </div>
