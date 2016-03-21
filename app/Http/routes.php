@@ -30,6 +30,8 @@ Route::get('/', function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
+    Route::get('/home', 'HomeController@index');
+
     Route::resource('profile','InformationController',['only' => ['edit','update']]);
 
     Route::resource('profile/university','UniversiteController',['only' => ['edit','update','destroy']]);
@@ -63,9 +65,12 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('trip-offers-inactive', 'TrajetPastController@index');
 
+    Route::resource('question','QuestionController',['only'=>['store','destroy']]);
+
+    Route::resource('reponse','ReponseController',['only'=>['store','destroy']]);
 
 
-    Route::get('/home', 'HomeController@index');
+
 
     Route::get('/bookings', 'HomeController@bookings');
 

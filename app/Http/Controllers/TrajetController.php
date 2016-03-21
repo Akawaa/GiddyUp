@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Trajet;
 use App\Etape;
+use App\Question;
+use App\Reponse;
+use App\Inscrit;
 use Illuminate\Support\Facades\Auth;
 use DB;
 
@@ -106,13 +109,27 @@ class TrajetController extends Controller
             ->where('etape.etape_ordre',$nbEtapes)
             ->get()[0];
 
+        $inscrit = Inscrit::where('trajet_id',$id)
+                ->count();
+
+        $places = $trajet->trajet_place - $inscrit;
+
+        $questions = Question::where('trajet_id',$id)
+            ->get();
+
+        $reponses = Reponse::join('question','question.question_id','=','reponse.question_id')
+                ->where('question.trajet_id',$id)
+                ->select('reponse.id','reponse.reponse_libelle','reponse.created_at','reponse.question_id','reponse.reponse_id')
+                ->get();
+
         $avis = DB::table('trajet')
             ->join('inscrit','trajet.trajet_id','=','inscrit.trajet_id')
             ->where('trajet.trajet_id',$id)
+            ->take(3)
             ->get();
 
 
-        return view('trajets.show',['trajet'=>$trajet,'depart'=>$depart,'arrivee'=>$arrivee,'avis'=>$avis,'nbTrajets'=>$nbTrajets,'etapes'=>$etapes, 'nbEtapes'=>$nbEtapes]);
+        return view('trajets.show',['trajet'=>$trajet,'depart'=>$depart,'arrivee'=>$arrivee,'avis'=>$avis,'nbTrajets'=>$nbTrajets,'etapes'=>$etapes, 'nbEtapes'=>$nbEtapes,'questions'=>$questions,'reponses'=>$reponses,'places'=>$places]);
     }
 
     /**

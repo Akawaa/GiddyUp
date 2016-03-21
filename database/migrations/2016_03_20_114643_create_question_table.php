@@ -12,11 +12,11 @@ class CreateQuestionTable extends Migration
      */
     public function up()
     {
-        Schema::create('question', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('question_id');
-            $table->string('question_libelle',255);
-            $table->integer('trajet_id')->unsigned();
+        Schema::create('reponse', function (Blueprint $table) {
+            $table->increments('reponse_id');
+            $table->string('reponse_libelle',255);
+            $table->integer('question_id')->unsigned();
+            $table->integer('id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('question');
+        Schema::drop('reponse');
     }
 }

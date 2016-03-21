@@ -132,7 +132,7 @@
                                 <img src="{{asset('img/preferences/animal2.png')}}"/>
                             </label>
 
-                            <input name="animaux" type="radio" id="animaux3" value="3" class="with-gap" @if($user->membre_pref_mus == 3) checked @endif/>
+                            <input name="animaux" type="radio" id="animaux3" value="3" class="with-gap" @if($user->membre_pref_ani == 3) checked @endif/>
                             <label for="animaux3" class="tooltipped" data-position="top" data-delay="50" data-tooltip="J'accepte les animaux">
                                 <img src="{{asset('img/preferences/animal3.png')}}"/>
                             </label>
