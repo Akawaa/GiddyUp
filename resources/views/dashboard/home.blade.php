@@ -66,19 +66,19 @@
                     <div class="row">
                         <div class="col l4">
                             {{ count($questions) }}
-                            Nouvelles questions
+                            Nouvelle(s) question(s)
                         </div>
 
                         <div class="col l8">
-                            <h4>Nouvelles Questions</h4>
-
                             @forelse($questions as $question)
                                 <div class="row">
                                     <div class="col l4">
-                                        {{ $question->membre_prenom }} {{ $question->name[0]}}
+
+                                        <p>{{ $question->membre_prenom }} {{ $question->name[0]}}</p>
                                     </div>
                                     <div class="col l8">
-                                        <p>{{ $question->depart }} -> {{ $question->arrivee }}</p>
+                                        <p>Nouvelle question pour {{ $question->depart }} -> {{ $question->arrivee }}</>
+
                                         <p>{{ $question->question_libelle }}</p>
                                     </div>
                                 </div>
