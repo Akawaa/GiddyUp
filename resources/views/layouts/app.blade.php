@@ -99,6 +99,7 @@
     </footer>
     <!-- JavaScripts -->
     <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/materialize.js') }}"></script>
 
     @yield('map')
