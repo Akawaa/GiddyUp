@@ -128,8 +128,13 @@ class TrajetController extends Controller
             ->take(3)
             ->get();
 
+        $exp = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('trajet.id',Auth::user()->id)
+            ->where('trajet.trajet_date','<','curdate()')
+            ->count('inscrit.id');
 
-        return view('trajets.show',['trajet'=>$trajet,'depart'=>$depart,'arrivee'=>$arrivee,'avis'=>$avis,'nbTrajets'=>$nbTrajets,'etapes'=>$etapes, 'nbEtapes'=>$nbEtapes,'questions'=>$questions,'reponses'=>$reponses,'places'=>$places]);
+        return view('trajets.show',['trajet'=>$trajet,'depart'=>$depart,'arrivee'=>$arrivee,'avis'=>$avis,'nbTrajets'=>$nbTrajets,'etapes'=>$etapes, 'nbEtapes'=>$nbEtapes,'questions'=>$questions,'reponses'=>$reponses,'places'=>$places,'exp'=>$exp]);
     }
 
     /**

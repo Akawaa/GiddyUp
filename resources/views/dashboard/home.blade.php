@@ -43,6 +43,7 @@
                 <div class="card card-secondary">
                     <div class="card-content">
                      <h4>Avis en attente !</h4>
+                    </div>
                  </div>
              </div>
          </div>
@@ -62,7 +63,32 @@
         <div class="col m7 s12">
             <div class="card card-secondary">
                 <div class="card-content">
-                    <h4>Nouvelle(s) Question(s)</h4>
+                    <div class="row">
+                        <div class="col l4">
+                            {{ count($questions) }}
+                            Nouvelle(s) question(s)
+                        </div>
+
+                        <div class="col l8">
+                            @forelse($questions as $question)
+                                <div class="row">
+                                    <div class="col l4">
+
+                                        <p>{{ $question->membre_prenom }} {{ $question->name[0]}}</p>
+                                    </div>
+                                    <div class="col l8">
+                                        <p>Nouvelle question pour {{ $question->depart }} -> {{ $question->arrivee }}</>
+
+                                        <p>{{ $question->question_libelle }}</p>
+                                    </div>
+                                </div>
+                            @empty
+                                Vous n'avez actuellement pas de question.
+                            @endforelse
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,19 +120,31 @@
                             <i class="material-icons">keyboard_arrow_right</i>
                         </div>
                         <div class="col s1">
-                            <div class="circle white"><i class="material-icons">check_circle</i></div>
+                            <div class="circle white">
+                                @if($exp >= 3)
+                                    <i class="material-icons">check_circle</i>
+                                @endif
+                            </div>
                         </div>
                         <div class="col s1">
                             <i class="material-icons">keyboard_arrow_right</i>
                         </div>
                         <div class="col s1">
-                            <div class="circle white"><i class="material-icons">check_circle</i></div>
+                            <div class="circle white">
+                                @if($exp >= 10)
+                                    <i class="material-icons">check_circle</i>
+                                @endif
+                            </div>
                         </div>
                         <div class="col s1">
                             <i class="material-icons">keyboard_arrow_right</i>
                         </div>
                         <div class="col s1">
-                            <div class="circle white"></div>
+                                <div class="circle white">
+                                    @if($exp >= 20)
+                                        <i class="material-icons">check_circle</i>
+                                    @endif
+                                </div>
                         </div>
                     </div>
                 </div>
