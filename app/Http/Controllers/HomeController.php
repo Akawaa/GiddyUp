@@ -44,7 +44,13 @@ class HomeController extends Controller
             AND `u1`.id = '.$user.'
             AND `q`.`question_id` NOT IN (SELECT reponse.question_id FROM reponse )');
 
-        return view('dashboard.home',['questions'=>$questions]);
+        $exp = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('trajet.id',$user)
+            ->where('trajet.trajet_date','<','curdate()')
+            ->count('inscrit.id');
+
+        return view('dashboard.home',['questions'=>$questions,'exp'=>$exp]);
     }
 
 

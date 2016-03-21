@@ -120,19 +120,31 @@
                             <i class="material-icons">keyboard_arrow_right</i>
                         </div>
                         <div class="col s1">
-                            <div class="circle white"><i class="material-icons">check_circle</i></div>
+                            <div class="circle white">
+                                @if($exp >= 3)
+                                    <i class="material-icons">check_circle</i>
+                                @endif
+                            </div>
                         </div>
                         <div class="col s1">
                             <i class="material-icons">keyboard_arrow_right</i>
                         </div>
                         <div class="col s1">
-                            <div class="circle white"><i class="material-icons">check_circle</i></div>
+                            <div class="circle white">
+                                @if($exp >= 10)
+                                    <i class="material-icons">check_circle</i>
+                                @endif
+                            </div>
                         </div>
                         <div class="col s1">
                             <i class="material-icons">keyboard_arrow_right</i>
                         </div>
                         <div class="col s1">
-                            <div class="circle white"></div>
+                                <div class="circle white">
+                                    @if($exp >= 20)
+                                        <i class="material-icons">check_circle</i>
+                                    @endif
+                                </div>
                         </div>
                     </div>
                 </div>

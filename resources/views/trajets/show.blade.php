@@ -292,7 +292,15 @@
                                    <br>
                                    {{ date('Y')-$trajet->user->membre_annee_naissance }} ans
                                    <br>
-                                   niveau d'experience (a calculer)
+                                   @if($exp < 3)
+                                       Débutant
+                                   @elseif($exp >= 3 && $exp < 10)
+                                       Habitué
+                                   @elseif($exp >= 10 && $exp<20)
+                                       Familier
+                                   @elseif($exp > 20)
+                                       Expérimenté
+                                   @endif
                                    <br>
                                    <i class="material-icons amber-text icon-valign">star</i> note globale (a calculer)
 
