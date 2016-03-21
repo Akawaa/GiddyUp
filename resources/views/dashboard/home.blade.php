@@ -43,6 +43,7 @@
                 <div class="card card-secondary">
                     <div class="card-content">
                      <h4>Avis en attente !</h4>
+                    </div>
                  </div>
              </div>
          </div>
@@ -62,7 +63,32 @@
         <div class="col m7 s12">
             <div class="card card-secondary">
                 <div class="card-content">
-                    <h4>Nouvelle(s) Question(s)</h4>
+                    <div class="row">
+                        <div class="col l4">
+                            {{ count($questions) }}
+                            Nouvelles questions
+                        </div>
+
+                        <div class="col l8">
+                            <h4>Nouvelles Questions</h4>
+
+                            @forelse($questions as $question)
+                                <div class="row">
+                                    <div class="col l4">
+                                        {{ $question->membre_prenom }} {{ $question->name[0]}}
+                                    </div>
+                                    <div class="col l8">
+                                        <p>{{ $question->depart }} -> {{ $question->arrivee }}</p>
+                                        <p>{{ $question->question_libelle }}</p>
+                                    </div>
+                                </div>
+                            @empty
+                                Vous n'avez actuellement pas de question.
+                            @endforelse
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

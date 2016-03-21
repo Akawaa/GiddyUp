@@ -152,7 +152,7 @@
                                                    @endforeach
                                                </div>
 
-                                               @if($trajet->id == Auth::user()->id || $question->id == Auth::user()->id)
+                                               @if(($trajet->id == Auth::user()->id || $question->id == Auth::user()->id) && $trajet->trajet_date >= date('Y-m-d'))
                                                    <div class="card-action">
                                                        <div class="row">
                                                            {{ Form::open(array('route' => 'reponse.store')) }}
@@ -177,21 +177,23 @@
                                @endforelse
                            </div>
 
-                           <hr>
+                           @if($trajet->trajet_date >= date('Y-m-d'))
+                               <hr>
 
-                           <div class="row">
-                               {{ Form::open(array('route' => 'question.store')) }}
-                                   <div class="input-field col s12">
-                                       {{ Form::hidden('id',Auth::user()->id) }}
-                                       {{ Form::hidden('trajet_id',$trajet->trajet_id) }}
+                               <div class="row">
+                                   {{ Form::open(array('route' => 'question.store')) }}
+                                       <div class="input-field col s12">
+                                           {{ Form::hidden('id',Auth::user()->id) }}
+                                           {{ Form::hidden('trajet_id',$trajet->trajet_id) }}
 
-                                       {{ Form::textarea('question',null,array('class'=>'materialize-textarea','id'=>'question','length'=>'255')) }}
-                                       {{ Form::label('question','Votre question') }}
+                                           {{ Form::textarea('question',null,array('class'=>'materialize-textarea','id'=>'question','length'=>'255')) }}
+                                           {{ Form::label('question','Votre question') }}
 
-                                       {{ Form::button('Poser une question',['class'=>'waves-effect waves-light btn btn-primary','type'=>'submit']) }}
-                                   </div>
-                               {{ Form::close() }}
-                           </div>
+                                           {{ Form::button('Poser une question',['class'=>'waves-effect waves-light btn btn-primary','type'=>'submit']) }}
+                                       </div>
+                                   {{ Form::close() }}
+                               </div>
+                           @endif
                        </div>
                    </div>
 

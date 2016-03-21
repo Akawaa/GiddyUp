@@ -49,7 +49,7 @@
                                             {{ $trajet->marque }} {{ $trajet->modele }}
                                         </div>
                                     </div>
-                                    <a class="waves-effect waves-light btn btn-secondary col s5"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
+                                    <a href="{{ url('trip-offers/'.$trajet->trajet_id) }}" class="waves-effect waves-light btn btn-secondary col s5"><i class="material-icons left">remove_red_eye</i>Voir l'annonce</a>
                                     <a class="waves-effect waves-light btn btn-secondary col s5"><i class="material-icons left">redo</i>Republier</a>
                                 </div>
                             </div>
