@@ -36,9 +36,9 @@
                 <div class="row">
                     <div class="card card-giddy col l6 m12">
                         <div class="card-content row">
+                            <h4>{{ $trajet->depart }} <i class="material-icons icon-valign">arrow_forward</i> {{ $trajet->arrivee }}</h4>
+                            <h5>{{ date('d F Y',strtotime($trajet->trajet_date)) }} à {{ date('H:i',strtotime($trajet->trajet_heure)) }}</h5>
                             <div class="col l6 s12">
-                                <h4>{{ $trajet->depart }} <i class="material-icons icon-valign">arrow_forward</i> {{ $trajet->arrivee }}</h4>
-                                <h5>{{ date('d F Y',strtotime($trajet->trajet_date)) }} à {{ date('H:i',strtotime($trajet->trajet_heure)) }}</h5>
                                 <div class="card card-info col s6">
                                     <div class="card-content center-align">
                                         <i class="material-icons">airline_seat_recline_normal</i><br>
