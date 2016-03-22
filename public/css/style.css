@@ -81,6 +81,7 @@ h1,h2,h3,h4,h5,h6 {margin: 0;}
 
 body {
     font-family: 'Roboto', 'Source Sans Pro', sans-serif;
+    font-size: 16px;
 }
 
 main {
@@ -129,7 +130,7 @@ a:hover {
     background-color: #febd12;
 }
 .bg-third {
-    background-color: #d9d9d9;
+    background-color: #E6E6E6;
 }
 .bg-green {
     background-color: #95d344;
@@ -205,12 +206,12 @@ button:focus {
 }
 
 .btn-third {
-    background: #C8C8C8;
+    background: #e6e6e6;
     color: #000;
 }
 
 .btn-third:hover {
-    background: #B7B7B7;
+    background: #d9d9d9;
 }
 
 .icon-valign {
@@ -360,7 +361,7 @@ textarea.materialize-textarea:focus + label {
 }
 
 .onglet a:not(.active) {
-    background: #d9d9d9;
+    background: #e6e6e6;
     color: #000;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -390,7 +391,7 @@ textarea.materialize-textarea:focus + label {
 
 .card {
     box-shadow: none!important;
-    border: 1px solid #d9d9d9;
+    border: 1px solid #e6e6e6;
 }
 
 .card-info {
@@ -437,7 +438,7 @@ textarea.materialize-textarea:focus + label {
 
 .dropdown-content {
     box-shadow: none;
-    border: 2px solid #d9d9d9;
+    border: 2px solid #e6e6e6;
     border-radius: 4px;
 }
 
@@ -534,6 +535,7 @@ textarea.materialize-textarea:focus + label {
     padding-top: 30px;
     background-image: url('../img/banderole.png');
     background-repeat: repeat-x;
+    border-top: none;
 }
 
 /************/
@@ -611,6 +613,10 @@ textarea.materialize-textarea:focus + label {
 
 .title-short {
     font-weight: lighter;
+}
+
+.form-reponse {
+    display: none;
 }
 
 /****************/
