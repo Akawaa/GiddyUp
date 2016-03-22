@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         @empty
-                            {{ $user->membre_prenom }} n'a pas encore de véhicule.
+                            <p>{{ $user->membre_prenom }} n'a pas encore de véhicule.</p>
                         @endforelse
                     </div>
                 </div>
