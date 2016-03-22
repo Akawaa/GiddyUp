@@ -65,7 +65,7 @@
           <div class="card-content">
             <h3>Questions</h3>
             @forelse($questions as $question)
-            <div class="card">
+            <div class="card card-giddy">
               <div class="card-content">
                 <div class="row">
                   <h4 class="col m4 s12 light">
@@ -195,7 +195,7 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card banderole">
           <div class="card-content">
             <div class="section">
               <h3 class="center-align">Conducteur</h3>
