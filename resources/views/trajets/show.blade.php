@@ -191,7 +191,7 @@
             </div>
             <div class="col s6">
               <h3>{{ $places }} places</h3>
-              <h4 class="light"> au départ</h4>
+              <h4 class="light"> disponibles</h4>
             </div>
           </div>
         </div>
@@ -212,6 +212,7 @@
                   <br>
                   {{ date('Y')-$trajet->user->membre_annee_naissance }} ans
                   <br>
+                  Expérience :
                   @if($exp < 3)
                   Débutant
                   @elseif($exp >= 3 && $exp < 10)
@@ -222,7 +223,15 @@
                   Expérimenté
                   @endif
                   <br>
-                  <i class="material-icons amber-text icon-valign">star</i> note globale (a calculer)
+                  @if($noteConducteur != null || $notePassager != null)
+                    <p>Note globale : <i class="material-icons amber-text icon-valign">star</i> @if($noteConducteur == null)
+                        {{ round($notePassager,1) }}
+                      @elseif($notePassager == null)
+                        {{ round($noteConducteur,1) }}
+                      @else
+                        {{ round(($noteConducteur+$notePassager)/2,1) }}
+                      @endif </p>
+                  @endif
                   <div class="row">
                     <div class="col s3">
                       @if($trajet->user->membre_pref_dis != '')
@@ -287,7 +296,7 @@
                   <img src="{{ asset('img/uploads/'.$trajet->id.'/'.$trajet->vehicule->vehicule_photo) }}" class="responsive-img circle">
                   @endif
                 </div>
-                <h5>{{ $trajet->vehicule->modele->marque->marque_libelle }} - {{ $trajet->vehicule->modele->modele_libelle}}</h4>
+                <h4>{{ $trajet->vehicule->modele->marque->marque_libelle }} - {{ $trajet->vehicule->modele->modele_libelle}}</h4>
                   <p class="col s12">
                     <i class="material-icons icon-valign">stars</i> {{ $trajet->vehicule->vehicule_confort }}
                     <br>
@@ -298,12 +307,27 @@
               <div class="divider"></div>
               <div class="section">
                 <h3 class="center-align">Avis</h3>
-                <p>
-                  @forelse($avis as $avi)
-                  @empty
-                  Le conducteur n'a pas encore d'avis.
+                @forelse($avis as $avis)
+                  <div class="card">
+                    <div class="card-content">
+                      <p>@if($avis->inscription_avis_conducteur == 5)
+                          <i class="material-icons green-text text-darken-2">mode_comment</i> Parfait !
+                        @elseif($avis->inscription_avis_conducteur == 4)
+                          <i class="material-icons light-green-text text-darken-1">mode_comment</i> Très bon !
+                        @elseif($avis->inscription_avis_conducteur == 3)
+                          <i class="material-icons lime-text text-darken-1">mode_comment</i> Bon !
+                        @elseif($avis->inscription_avis_conducteur == 2)
+                          <i class="material-icons orange-text text-darken-2">mode_comment</i> Mauvais !
+                        @elseif($avis->inscription_avis_conducteur == 1)
+                          <i class="material-icons red-text text-accent-4">mode_comment</i> Horrible !
+                        @endif</p>
+                      <p><a class="link" href="{{ url('profile/'.$avis->id) }}">{{ $avis->membre_prenom }} {{ $avis->name[0] }}</a> : &nbsp;{{ $avis->inscription_commentaire_conducteur }}</p>
+                      <p class="blue-grey-text text-lighten-2 date-trajet">{{ date('d/m/Y à H:i',strtotime($avis->inscription_date_commentaire_conducteur)) }}</p>
+                    </div>
+                  </div>
+                @empty
+                  <p>Je n'ai pas encore d'avis en tant que conducteur.</p>
                   @endforelse
-                </p>
               </div>
               <div class="divider"></div>
               <div class="section">

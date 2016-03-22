@@ -134,7 +134,38 @@ class TrajetController extends Controller
             ->where('trajet.trajet_date','<','curdate()')
             ->count('inscrit.id');
 
-        return view('trajets.show',['trajet'=>$trajet,'depart'=>$depart,'arrivee'=>$arrivee,'avis'=>$avis,'nbTrajets'=>$nbTrajets,'etapes'=>$etapes, 'nbEtapes'=>$nbEtapes,'questions'=>$questions,'reponses'=>$reponses,'places'=>$places,'exp'=>$exp]);
+        $avisConducteur = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->join('users','users.id','=','inscrit.id')
+            ->where('trajet.id',$trajet->id)
+            ->take(3)
+            ->orderBy('inscrit.inscription_date_commentaire_conducteur','desc')
+            ->get();
+
+        $noteConducteur = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('trajet.id',$trajet->id)
+            ->avg('inscrit.inscription_avis_conducteur');
+
+        $notePassager = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('inscrit.id',$trajet->id)
+            ->avg('inscrit.inscription_avis_voyageur');
+
+        return view('trajets.show',['trajet'=>$trajet,
+            'depart'=>$depart,
+            'arrivee'=>$arrivee,
+            'avis'=>$avis,
+            'nbTrajets'=>$nbTrajets,
+            'etapes'=>$etapes,
+            'nbEtapes'=>$nbEtapes,
+            'questions'=>$questions,
+            'reponses'=>$reponses,
+            'places'=>$places,
+            'exp'=>$exp,
+            'avis'=>$avisConducteur,
+            'noteConducteur'=>$noteConducteur,
+            'notePassager'=>$notePassager]);
     }
 
     /**
