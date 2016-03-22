@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Vehicule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\User;
+use App\Trajet;
 use Validator;
+use DB;
+use App\Inscrit;
 
 use App\Http\Requests;
 
@@ -15,6 +19,54 @@ class InformationController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        $nbTrajets = Trajet::where('id',$id)
+            ->count();
+
+        $vehicules = Vehicule::where('id',$id)
+            ->get();
+
+        $exp = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('trajet.id',$id)
+            ->where('trajet.trajet_date','<','curdate()')
+            ->count('inscrit.id');
+
+        $avisConducteur = DB::table('inscrit')
+                ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+                ->join('users','users.id','=','inscrit.id')
+                ->where('trajet.id',$id)
+                ->get();
+
+        $avisPassager = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->join('users','users.id','=','trajet.id')
+            ->where('inscrit.id',$id)
+            ->get();
+
+        $noteConducteur = DB::table('inscrit')
+        ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+        ->where('trajet.id',$id)
+        ->avg('inscrit.inscription_avis_conducteur');
+
+        $notePassager = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('inscrit.id',$id)
+            ->avg('inscrit.inscription_avis_voyageur');
+
+        return view('dashboard.profile.show',['user'=>$user,'nbTrajets'=>$nbTrajets,'vehicules'=>$vehicules,'exp'=>$exp,'avisConducteur'=>$avisConducteur,'avisPassager'=>$avisPassager,'noteConducteur'=>$noteConducteur,'notePassager'=>$notePassager]);
     }
 
     /**

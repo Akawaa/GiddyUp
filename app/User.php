@@ -43,4 +43,8 @@ class User extends Authenticatable
     public function reponses(){
         return $this->hasMany('App\Reponse','id');
     }
+
+    public function inscrits(){
+        return $this->hasMany('App\Inscrit','id');
+    }
 }

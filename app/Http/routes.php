@@ -32,7 +32,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home', 'HomeController@index');
 
-    Route::resource('profile','InformationController',['only' => ['edit','update']]);
+    Route::resource('profile','InformationController',['only' => ['edit','update', 'show']]);
 
     Route::resource('profile/university','UniversiteController',['only' => ['edit','update','destroy']]);
 
@@ -54,7 +54,6 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('profile/car/{id}/getModele','VehiculeController@get_modele');
 
-
     Route::resource('profile/car/picture','PhotoVehiculeController',['only' => ['edit','update','destroy']]);
 
     Route::resource('profile/email','ChangeEmailController',['only' => ['edit','update']]);
@@ -68,6 +67,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('question','QuestionController',['only'=>['store','destroy']]);
 
     Route::resource('reponse','ReponseController',['only'=>['store','destroy']]);
+
 
 
 

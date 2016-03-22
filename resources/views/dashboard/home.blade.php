@@ -32,7 +32,7 @@
                                 <h4>Bonjour {{ Auth::user()->membre_prenom }} !</h4>
                                 <a href="{{ url('/profile/'.Auth::user()->id.'/edit') }}" class="link">Modifier votre profil</a>
                                 <br>
-                                <a href="{{ url('/profil/membre/'.Auth::user()->id) }}" class="link">Voir votre profil</a>
+                                <a href="{{ url('/profile/'.Auth::user()->id) }}" class="link">Voir votre profil</a>
                             </div>
                         </div>
                     </div>

@@ -22,4 +22,8 @@ class Trajet extends Model
         return $this->belongsTo('App\Vehicule','vehicule_id');
     }
 
+    public function inscrits(){
+        return $this->hasMany('App\Inscrit','Trajet_id');
+    }
+
 }
