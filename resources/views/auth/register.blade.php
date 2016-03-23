@@ -26,8 +26,8 @@
         <div class="row">
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input type="text" name="surname" value="{{ old('surname') }}" class="validate">
-                <label>Prénom</label>
+                <input type="text" id="surname" name="surname" value="{{ old('surname') }}" class="validate">
+                <label for="surname">Prénom</label>
                 @if ($errors->has('surname'))
                 <span class="help-block">
                     <strong>{{ $errors->first('surname') }}</strong>
@@ -36,8 +36,8 @@
             </div>
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input type="text" name="name" value="{{ old('name') }}" class="validate">
-                <label>Nom</label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" class="validate">
+                <label for="name">Nom</label>
                 @if ($errors->has('name'))
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
@@ -67,8 +67,8 @@
         <div class="row">
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">phone</i>
-                <input type="text" name="phone" value="{{ old('phone') }}" class="validate">
-                <label>Téléphone</label>
+                <input type="text" id="phone" name="phone" value="{{ old('phone') }}" class="validate">
+                <label for="phone">Téléphone</label>
 
                 @if ($errors->has('phone'))
                 <span class="help-block">
@@ -78,8 +78,8 @@
             </div>
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">email</i>
-                <input type="email" name="email" value="{{ old('email') }}" class="validate">
-                <label>Email</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" class="validate">
+                <label for="email">Email</label>
 
                 @if ($errors->has('email'))
                 <span class="help-block">
@@ -92,8 +92,8 @@
         <div class="row">
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">lock</i>
-                <input type="password" name="password" class="validate">
-                <label>Mot de passe</label>
+                <input type="password" id="password" name="password" class="validate">
+                <label for="password">Mot de passe</label>
                 @if ($errors->has('password'))
                 <span class="help-block">
                     <strong>{{ $errors->first('password') }}</strong>
@@ -103,8 +103,8 @@
 
             <div class="input-field col m6 s12">
                 <i class="material-icons prefix">lock</i>
-                <input type="password" name="password_confirmation" class="validate">
-                <label>Confirmation du mot de passe</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="validate">
+                <label for="password_confirmation">Confirmation du mot de passe</label>
                 @if ($errors->has('password_confirmation'))
                 <span class="help-block">
                     <strong>{{ $errors->first('password_confirmation') }}</strong>

@@ -138,6 +138,9 @@ a:hover {
 .text-primary {
     color: #dd4b39!important;
 }
+.text-secondary {
+    color: #febd12!important;
+}
 
 .text-important {
     font-family: 'Roboto Slab';
@@ -177,7 +180,6 @@ nav a, .collection a, .subonglet a {
 
 .logo {
     float: left;
-    display: inline-block;
     margin: 5px 10px;
 }
 
@@ -749,6 +751,17 @@ footer a {
     }
 }
 
+/*
+* PAGE 404
+*/
+
+.error404 {
+    margin: 0;
+    font-family: 'Source Sans Pro';
+    font-size: 8rem;
+    font-weight: bolder;
+    color: #DD4B39;
+}
 
 .container {
     width: 80%!important;

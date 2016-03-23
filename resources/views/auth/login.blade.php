@@ -10,8 +10,8 @@
         <div class="row {{ $errors->has('email') ? ' has-error' : '' }}">
             <div class="input-field col s12">
                 <i class="material-icons prefix">email</i>
-                <input type="email" class="validate" name="email" value="{{ old('email') }}">
-                <label>Email</label>
+                <input type="email" class="validate" name="email" id="email" value="{{ old('email') }}">
+                <label for="email">Email</label>
                 @if ($errors->has('email'))
                 <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
@@ -23,8 +23,8 @@
         <div class="row {{ $errors->has('password') ? ' has-error' : '' }}">
             <div class="input-field col s12">
                 <i class="material-icons prefix">lock</i>
-                <input type="password" class="validate" name="password">
-                <label>Mot de passe</label>
+                <input type="password" class="validate" name="password" id="password">
+                <label for="password">Mot de passe</label>
                 @if ($errors->has('password'))
                 <span class="help-block">
                     <strong>{{ $errors->first('password') }}</strong>
