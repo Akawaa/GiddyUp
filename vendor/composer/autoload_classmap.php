@@ -33,6 +33,7 @@ return array(
     'CreateModeleTable' => $baseDir . '/database/migrations/2016_02_21_212427_create_modele_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateQuestionTable' => $baseDir . '/database/migrations/2016_02_21_212455_create_question_table.php',
+    'CreateSessionsTable' => $baseDir . '/database/migrations/2016_03_22_221415_create_sessions_table.php',
     'CreateSiteTable' => $baseDir . '/database/migrations/2016_02_21_212535_create_site_table.php',
     'CreateTrajetTable' => $baseDir . '/database/migrations/2016_02_21_212441_create_trajet_table.php',
     'CreateTypeTable' => $baseDir . '/database/migrations/2016_02_21_212348_create_type_table.php',

@@ -748,3 +748,25 @@ footer a {
         left: 0;
     }
 }
+
+
+.container {
+    width: 80%!important;
+}
+
+.collection .collection-item.active{
+    background-color: #F5B10E!important;
+}
+
+a.collection-item{
+    color:#000!important;
+}
+
+a.collection-item.active{
+    color:#FFF!important;
+}
+
+.name{
+    font-size:23px;
+    color: #FF0000;
+}

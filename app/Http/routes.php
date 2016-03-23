@@ -68,8 +68,17 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('reponse','ReponseController',['only'=>['store','destroy']]);
 
+    Route::resource('/search','RechercheController',['only'=>['index','store']]);
+
+    Route::post('/getVilles','RechercheController@get_villes');
 
 
+
+    Route::get('/team','AboutController@team');
+
+    Route::get('/about','AboutController@comment');
+
+    Route::get('/application','AboutController@application');
 
 
     Route::get('/bookings', 'HomeController@bookings');
@@ -82,5 +91,4 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/ratings/given', 'HomeController@ratings_given');
 
-    Route::get('/search','TrajetController@recherche');
 });
