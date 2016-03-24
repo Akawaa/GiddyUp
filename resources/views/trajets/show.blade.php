@@ -162,15 +162,23 @@
                     <div class="card-content">
                       <h4>{{ $etape->ville->ville_nom_reel }}</h4>
                       @if($etape->etape_ordre == 1)
-                      <p>{{ date('H\hi',strtotime($trajet->trajet_heure)) }}</p>
+                        <p>Départ : {{ date('H',strtotime($trajet->trajet_heure)) }}h{{ date('i',strtotime($trajet->trajet_heure)) }}</p>
+                      @elseif($etape->etape_ordre == $nbEtapes)
+                        <?php
+                        $depart = date("H:i",strtotime($trajet->trajet_heure));
+                        $h2 = date("H",strtotime($etape->etape_duree)) ;
+                        $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($depart)));
+                        $min2 = date("i",strtotime($etape->etape_duree));
+                        $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
+                        echo "<p>Arrivée :~ ".date('H\hi',strtotime($addMin))."</p>"; ?>
                       @else
-                      <?php
-                      $depart = date("H\hi",strtotime($trajet->trajet_heure));
-                      $h2 = date("H",strtotime($etape->etape_duree)) ;
-                      $addHeure = date("H\hi", strtotime("+".$h2." hour", strtotime($depart)));
-                      $min2 = date("i",strtotime($etape->etape_duree));
-                      $addMin = date("H\hi", strtotime("+".$min2." minutes", strtotime($addHeure)));
-                      echo "<p>Heure estimée : ".date('H\hi',strtotime($addMin)).'</p>'; ?>
+                        <?php
+                        $depart = date("H:i",strtotime($trajet->trajet_heure));
+                        $h2 = date("H",strtotime($etape->etape_duree)) ;
+                        $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($depart)));
+                        $min2 = date("i",strtotime($etape->etape_duree));
+                        $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
+                        echo "<p>~ ".date('H\hi',strtotime($addMin)).'</p>'; ?>
                       @endif
                     </div>
                   </div>
@@ -321,7 +329,7 @@
                         @elseif($avis->inscription_avis_conducteur == 1)
                           <i class="material-icons red-text text-accent-4">mode_comment</i> Horrible !
                         @endif</p>
-                      <p><a class="link" href="{{ url('profile/'.$avis->id) }}">{{ $avis->membre_prenom }} {{ $avis->name[0] }}</a> : &nbsp;{{ $avis->inscription_commentaire_conducteur }}</p>
+                      <p><a class="link" href="{{ url('profile/show/'.$avis->id) }}">{{ $avis->membre_prenom }} {{ $avis->name[0] }}</a> : &nbsp;{{ $avis->inscription_commentaire_conducteur }}</p>
                       <p class="blue-grey-text text-lighten-2 date-trajet">{{ date('d/m/Y à H:i',strtotime($avis->inscription_date_commentaire_conducteur)) }}</p>
                     </div>
                   </div>

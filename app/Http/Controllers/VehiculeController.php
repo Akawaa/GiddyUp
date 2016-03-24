@@ -31,10 +31,6 @@ class VehiculeController extends Controller
      */
     public function index()
     {
-        //$vehicules = Vehicule::all();
-
-        //$vehicules = Vehicule::with(array('modele.marque.type'))->get();
-
         $vehicules = DB::table('vehicule')
             ->join('modele','vehicule.modele_id','=','modele.modele_id')
             ->join('marque','modele.marque_id','=','marque.marque_id')

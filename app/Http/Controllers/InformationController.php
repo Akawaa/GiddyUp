@@ -47,12 +47,14 @@ class InformationController extends Controller
         $avisConducteur = DB::table('inscrit')
                 ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
                 ->join('users','users.id','=','inscrit.id')
+                ->where('inscrit.inscription_commentaire_conducteur','!=','')
                 ->where('trajet.id',$id)
                 ->get();
 
         $avisPassager = DB::table('inscrit')
             ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
             ->join('users','users.id','=','trajet.id')
+            ->where('inscrit.inscription_commentaire_voyageur','!=','')
             ->where('inscrit.id',$id)
             ->get();
 

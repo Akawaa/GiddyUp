@@ -92,7 +92,7 @@
                                 <i class="material-icons red-text text-accent-4">mode_comment</i> Horrible !
                                 @endif
                             </p>
-                            <a class="link" href="{{ url('profile/'.$avisConducteur->id) }}">{{ $avisConducteur->membre_prenom }} {{ $avisConducteur->name[0] }}</a><p> : &nbsp;{{ $avisConducteur->inscription_commentaire_conducteur }}</p>
+                            <a class="link" href="{{ url('profile/show/'.$avisConducteur->id) }}">{{ $avisConducteur->membre_prenom }} {{ $avisConducteur->name[0] }}</a><p> : &nbsp;{{ $avisConducteur->inscription_commentaire_conducteur }}</p>
                             <p class="blue-grey-text text-lighten-2 date-trajet">{{ date('d/m/Y à H:i',strtotime($avisConducteur->inscription_date_commentaire_conducteur)) }}</p>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                                 @endif
                                 {{ $avisPassager->membre_prenom }} {{ $avisPassager->name[0] }}
                             </p>
-                            <p>{{ $avisPassager->inscription_commentaire_voyageur }}</p>
+                            <a class="link" href="{{ url('profile/show/'.$avisPassager->id) }}">{{ $avisPassager->membre_prenom }} {{ $avisPassager->name[0] }}</a><p> : &nbsp;{{ $avisPassager->inscription_commentaire_conducteur }}</p>
                             <p class="blue-grey-text text-lighten-2 date-trajet">{{ date('d/m/Y à H:i',strtotime($avisPassager->inscription_date_commentaire_voyageur)) }}</p>
                         </div>
                     </div>

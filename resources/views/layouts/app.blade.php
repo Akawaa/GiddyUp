@@ -104,6 +104,10 @@
 
     @yield('map')
 
+    @yield('depart')
+
+    @yield('arrivee')
+
     <script type="text/javascript">
 
     $( document ).ready(function(){

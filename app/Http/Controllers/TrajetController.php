@@ -138,6 +138,7 @@ class TrajetController extends Controller
             ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
             ->join('users','users.id','=','inscrit.id')
             ->where('trajet.id',$trajet->id)
+            ->where('inscrit.inscription_commentaire_conducteur','!=','')
             ->take(3)
             ->orderBy('inscrit.inscription_date_commentaire_conducteur','desc')
             ->get();

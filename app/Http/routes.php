@@ -32,7 +32,9 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/home', 'HomeController@index');
 
-    Route::resource('profile','InformationController',['only' => ['edit','update', 'show']]);
+    Route::resource('profile','InformationController',['only' => ['edit','update']]);
+
+    Route::get('profile/show/{id}','InformationController@show');
 
     Route::resource('profile/university','UniversiteController',['only' => ['edit','update','destroy']]);
 
