@@ -499,6 +499,7 @@ textarea.materialize-textarea:focus + label {
     display: flex;
     align-items: center;
     padding: 10px;
+    margin: 0;
 }
 
 .homesection p {
@@ -761,4 +762,13 @@ footer a {
     font-size: 8rem;
     font-weight: bolder;
     color: #DD4B39;
+}
+
+.trajet-link{
+    color: black;
+    cursor: pointer;
+}
+
+.trajet-link-card:hover{
+    background-color: rgba(255, 190, 6, 0.12);
 }

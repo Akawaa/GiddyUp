@@ -3,16 +3,22 @@
 
 @section('content')
 <div class="container">
-    <h3>Résultat de votre recherche <a href="{{ url('search') }}" class="btn">Nouvelle recherche</a></h3>
+    <h3>Résultat de votre recherche : {{ session()->get('depart')[0] }} - {{ session()->get('arrivee')[0] }}</h3>
+    <a href="{{ url('search') }}" class="btn">Nouvelle recherche</a>
 
     @forelse($recherche as $resultat)
-        <div class="row">
-            <div class="col s12 m10">
-                <div class="card">
+        <a href="{{ url('/search/'.$resultat->trajet_id) }}" class="trajet-link">
+            <div class="row">
+                <div class="col s12 m10">
+                <div class="card trajet-link-card">
                     <div class="card-content">
                         <div class="row">
                             <div class="col l3 center-align">
-                                <img src="{{ asset('img/uploads/'.$resultat->id.'/'.$resultat->membre_photo) }}" class="responsive-img circle" width="100px">
+                                @if($resultat->membre_photo != null & $resultat->membre_photo_valide == 1)
+                                    <img src="{{ asset('img/uploads/'.$resultat->id.'/'.$resultat->membre_photo) }}" class="responsive-img circle" width="100px">
+                                @else
+                                    <i class="material-icons icon-valign large">photo_camera</i>
+                                @endif
                                 <p class="center-align">{{ $resultat->membre_prenom }} {{ $resultat->name[0] }} ({{ date('Y')-$resultat->membre_annee_naissance }} ans)</p>
 
                                 <div class="row">
@@ -105,9 +111,11 @@
                 </div>
             </div>
         </div>
+            </div>
+        </a>
     @empty
         Il n'y a pas de voyage qui correspond à votre recherche.
         <a href="{{ url('/search') }}">Nouvelle recherche</a>
     @endforelse
-</div>
+
 @endsection

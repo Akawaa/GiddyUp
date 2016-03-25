@@ -70,11 +70,10 @@
         <div class="widget_footer bg-green col m3 s12 center-align">
             <h3>Infos Pratiques</h3>
             <ul class="left-align">
-                <li><a href="#">Comment ça marche ?</a></li>
-                <li><a href="#">Prix des covoiturages</a></li>
+                <li><a href="{{ url('about') }}">Comment ça marche ?</a></li>
+                <li><a href="{{ url('application') }}">L'application</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#">F.A.Q</a></li>
-                <li><a href="#">Conditions Générales</a></li>
+                <li><a href="{{ url('team') }}">Qui sommes-nous ?</a></li>
             </ul>
         </div>
         <div class="widget_footer bg-secondary col m3 s12 center-align">
@@ -89,11 +88,10 @@
         <div class="widget_footer bg-primary col m3 s12 center-align">
             <h3>Infos Pratiques</h3>
             <ul class="left-align">
-                <li><a href="#">Comment ça marche ?</a></li>
-                <li><a href="#">Prix des covoiturages</a></li>
+                <li><a href="{{ url('about') }}">Comment ça marche ?</a></li>
+                <li><a href="{{ url('application') }}">L'application</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#">F.A.Q</a></li>
-                <li><a href="#">Conditions Générales</a></li>
+                <li><a href="{{ url('team') }}">Qui sommes-nous ?</a></li>
             </ul>
         </div>
     </footer>

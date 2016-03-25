@@ -6,8 +6,16 @@
     <div class="col s6">
         <div class="card">
             <div class="card-content">
-                {{ Form::open(array('url' => '/trajets/store')) }}
+                {{ Form::open(array('url' => '/create-trip')) }}
                 <h3>Itinéraire</h3>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="checkbox"  checked id="auto" value="true" name="autoroute" class="filled-in"/>
+                        <label for="auto">Autoroute</label>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fa fa-location-arrow prefix"></i>
@@ -47,14 +55,19 @@
                 </div>
 
                 <div class="row">
-                    <div class="col s6">
+                    <div class="col s12">
                         {{ Form::label('heure','Heure') }}
-                        {{ Form::selectRange('heure',00,23) }}
+
+                        <input type="time" name="heure" id="heure">
                     </div>
-                    <div class="col s6">
-                        {{ Form::label('minute','Minute') }}
-                        {{ Form::selectRange('minute',00,59) }}
-                    </div>
+                </div>
+
+                <div id="retour"></div>
+            </div>
+
+            <div class="row">
+                <div class="input-field">
+                    <button class="btn waves-effect waves-light btn-primary col s12" type="submit" name="action">Suivant </button>
                 </div>
             </div>
         </div>
@@ -87,10 +100,20 @@ function initMap() {
         calculateAndDisplayRoute(directionsService, directionsDisplay);
     });
 }
+var autoroute = false;
+$('#auto').change(function(){
+    if(document.getElementById('auto').checked){
+        autoroute = false;
+    }else{
+        autoroute = true;
+    }
+});
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     var waypts = [];
     var etapes = document.getElementsByClassName('etapes');
+
+
     for (var i = 0; i < etapes.length; i++) {
         waypts.push({
             location: etapes[i].value,
@@ -105,7 +128,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
                 waypoints: waypts, //étapes
                 optimizeWaypoints: true, //optimisation des étapes
                 travelMode: google.maps.TravelMode.DRIVING, //en voiture
-                avoidHighways : true, //autoroute
+                avoidHighways : autoroute, //autoroute
             }, function(response, status) {
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
@@ -128,7 +151,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
             });
 }
 
-
+var compteur = 0;
 function addWaypoint(){
     var divEtape = document.createElement('div');
     divEtape.setAttribute('class','row');
@@ -138,8 +161,8 @@ function addWaypoint(){
     var etape = document.createElement('input');
     etape.setAttribute('type','text');
     etape.setAttribute('class','etapes validate');
-    etape.setAttribute('name','etape');
-    etape.setAttribute('id','etape');
+    etape.setAttribute('name','etape'+compteur);
+    etape.setAttribute('id','etape'+compteur);
 
     var label = document.createElement('label');
     label.setAttribute('for','etape');
@@ -161,44 +184,40 @@ function addWaypoint(){
 
     document.getElementById('waypoints').appendChild(divEtape);
 
-    document.getElementById('etape').addEventListener('change', function() {
+    document.getElementById('etape'+compteur).addEventListener('change', function() {
         calculateAndDisplayRoute(directionsService, directionsDisplay);
     });
+
+    compteur++;
 }
 
 function removeWaypoint(n){
     n.parentNode.remove();
+    compteur--;
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+
 }
 
 $('#ar').change(function(){
     if($('#ar').is(':checked')){
-        var divRetour = document.createElement('div');
-        divRetour.setAttribute('id','retour');
 
-        var row = document.createElement('div');
-        row.setAttribute('class','row');
-        divRetour.appendChild(row);
-
-        var lb_date = document.createElement('label');
-        var text_lb_data = document.createTextNode('Date retour');
-        lb_date.appendChild(text_lb_data);
-        row.appendChild(lb_date);
-
-        var date = document.createElement('input');
-        date.setAttribute('type','date');
-        date.setAttribute('class','retour');
-        row.appendChild(date);
-
-        var rowHeure = document.createElement('div');
-        rowHeure.setAttribute('class','row');
-        divRetour.appendChild(rowHeure);
-
-        var col6 = document.createElement('div');
-        col6.setAttribute('class','col s6');
+        var ch = '<div class="row"><div class="input-field col s12">'+
+                '{{ Form::label("retour","Date retour") }}'+
+                '{{ Form::date("retour",null,array("class"=>"datepicker, retour")) }}'+
+            '</div> </div> <div class="row"> <div class="col s6">' +
+                '{{ Form::label("heure_retour","Heure") }}'+
+                '{{ Form::selectRange("heure",00,23) }}'+
+            '</div> <div class="col s6">'+
+                '{{ Form::label("heure_retour","Minute") }}'+
+                '{{ Form::selectRange("minute",00,59) }}'+
+           '</div> </div>';
 
 
 
-        document.getElementsByClassName('card-content')[1].appendChild(divRetour);
+        document.getElementById('retour').innerHTML = ch;
+
+        $('select').material_select();
+
 
         $('.retour').pickadate({
                     selectMonths: true, // Creates a dropdown to control month
@@ -206,7 +225,7 @@ $('#ar').change(function(){
                     min: true,
                 });
     }else{
-     $('#retour').remove();
+        document.getElementById('retour').innerHTML="";
  }
 })
 

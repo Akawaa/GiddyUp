@@ -156,34 +156,35 @@
             </h5>
             <div class="row">
               <div class="timeline">
+                <?php global $cpt;
+                $cpt = date("H:i",strtotime($trajet->trajet_heure));?>
                 @foreach($etapes as $etape)
-                <div class="timeline-event">
-                  <div class="card timeline-content">
-                    <div class="card-content">
-                      <h4>{{ $etape->ville->ville_nom_reel }}</h4>
-                      @if($etape->etape_ordre == 1)
-                        <p>Départ : {{ date('H',strtotime($trajet->trajet_heure)) }}h{{ date('i',strtotime($trajet->trajet_heure)) }}</p>
-                      @elseif($etape->etape_ordre == $nbEtapes)
-                        <?php
-                        $depart = date("H:i",strtotime($trajet->trajet_heure));
-                        $h2 = date("H",strtotime($etape->etape_duree)) ;
-                        $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($depart)));
-                        $min2 = date("i",strtotime($etape->etape_duree));
-                        $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
-                        echo "<p>Arrivée :~ ".date('H\hi',strtotime($addMin))."</p>"; ?>
-                      @else
-                        <?php
-                        $depart = date("H:i",strtotime($trajet->trajet_heure));
-                        $h2 = date("H",strtotime($etape->etape_duree)) ;
-                        $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($depart)));
-                        $min2 = date("i",strtotime($etape->etape_duree));
-                        $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
-                        echo "<p>~ ".date('H\hi',strtotime($addMin)).'</p>'; ?>
-                      @endif
+                  <div class="timeline-event">
+                    <div class="card timeline-content">
+                      <div class="card-content">
+                        <h4>{{ $etape->ville->ville_nom_reel }}</h4>
+                        @if($etape->etape_ordre == 1)
+                          <p>Départ : {{ date('H',strtotime($trajet->trajet_heure)) }}h{{ date('i',strtotime($trajet->trajet_heure)) }}</p>
+                        @elseif($etape->etape_ordre == $nbEtapes)
+                          <?php
+                          $h2 = date("H",strtotime($etape->etape_duree));
+                          $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($cpt)));
+                          $min2 = date("i",strtotime($etape->etape_duree));
+                          $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
+                          echo "<p>Arrivée :~ ".date('H\hi',strtotime($addMin))."</p>"; ?>
+                        @else
+                          <?php
+                          $h2 = date("H",strtotime($etape->etape_duree)) ;
+                          $addHeure = date("H:i", strtotime("+".$h2." hour", strtotime($cpt)));
+                          $min2 = date("i",strtotime($etape->etape_duree));
+                          $addMin = date("H:i", strtotime("+".$min2." minutes", strtotime($addHeure)));
+                          $cpt = date('H:i',strtotime($addMin));
+                          echo "<p>~ ".date('H\hi',strtotime($addMin)).'</p>'; ?>
+                        @endif
+                      </div>
                     </div>
+                    <div class="timeline-badge transparent @if($etape->etape_ordre == 1)light-green-text @elseif($etape->etape_ordre == $nbEtapes)red-text text-lighten-1 @endif"><i class="material-icons">place</i></div>
                   </div>
-                  <div class="timeline-badge transparent @if($etape->etape_ordre == 1)light-green-text @elseif($etape->etape_ordre == $nbEtapes)red-text text-lighten-1 @endif"><i class="material-icons">place</i></div>
-                </div>
                 @endforeach
               </div>
             </div>

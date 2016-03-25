@@ -79,11 +79,6 @@
                         <button type="submit" class="waves-effect waves-light btn btn-primary col">
                             Mettre à jour
                         </button>
-                        {{ Form::close() }}
-                        {{ Form::open(array('url'=> 'profile/university/'.Auth::user()->id)) }}
-                        {{ Form::hidden('_method', 'DELETE') }}
-                        {{ Form::button('Je ne fais plus parti d\'une université', ['class' => 'waves-effect waves-light btn btn-third col','type'=>'submit']) }}
-                        {{ Form::close() }}
                     </div>
                 </div>
             </div>

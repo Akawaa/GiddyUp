@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +25,8 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => 'web'], function () {
+    Route::get('/','WelcomeController@index');
+
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
@@ -70,9 +69,24 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('reponse','ReponseController',['only'=>['store','destroy']]);
 
-    Route::resource('/search','RechercheController',['only'=>['index','store']]);
+    Route::resource('/search','RechercheController',['only'=>['index','store','show']]);
+
+    Route::resource('/sign','InscritController',['only'=>['store']]);
 
     Route::post('/getVilles','RechercheController@get_villes');
+
+    Route::resource('/bookings', 'BookingController',['only'=>['index','show']]);
+
+    Route::resource('/bookings-history', 'BookingHistoryController',['only'=>['index','show']]);
+
+    Route::resource('/create-trip', 'AjoutController',['only'=>['store']]);
+
+    Route::resource('ratings', 'RatingController',['only'=>['index','store']]);
+
+    Route::resource('/ratings-received', 'RatingReceivedController',['only'=>['index']]);
+
+    Route::resource('/ratings-given', 'RatingGivenController',['only'=>['index']]);
+
 
 
 
@@ -83,13 +97,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/application','AboutController@application');
 
 
-    Route::get('/bookings', 'HomeController@bookings');
 
-    Route::get('/bookings/history', 'HomeController@bookings_history');
-
-    Route::get('/ratings', 'HomeController@ratings');
-
-    Route::get('/ratings/received', 'HomeController@ratings_received');
 
     Route::get('/ratings/given', 'HomeController@ratings_given');
 

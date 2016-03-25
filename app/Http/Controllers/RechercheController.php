@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Trajet;
 use Illuminate\Http\Request;
 use App\Ville;
 use App\Etape;
+use App\Question;
+use App\Reponse;
+use App\Inscrit;
+use Auth;
 use DB;
 use Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -13,6 +18,13 @@ use App\Http\Requests;
 
 class RechercheController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +66,12 @@ class RechercheController extends Controller
                 ->withErrors($validator);
         }
 
+
         $villeDep = explode(' - ',$request->depart);
+
+        session()->put('depart',$villeDep);
+
+
 
         $depart = Ville::where('departementVille',$villeDep[1])
                 ->where('ville_nom_reel',$villeDep[0])
@@ -62,13 +79,12 @@ class RechercheController extends Controller
 
         $villeArr = explode(' - ',$request->arrivee);
 
+        session()->put('arrivee',$villeArr);
+
+
         $arrivee = Ville::where('departementVille',$villeArr[1])
             ->where('ville_nom_reel',$villeArr[0])
             ->get()[0];
-
-
-
-
 
         $date = date('Y-m-d',strtotime($request->date));
 
@@ -76,7 +92,7 @@ class RechercheController extends Controller
         $date = date('Y-m-d',$date);
 
 
-        $recherche = DB::select("SELECT trajet.*,users.name, users.membre_prenom, users.membre_annee_naissance, users.membre_photo, users.membre_pref_cig, users.membre_pref_mus, users.membre_pref_dis, users.membre_pref_ani, vehicule.vehicule_confort, modele.modele_libelle, marque.marque_libelle, v1.ville_nom_reel as depart, v2.ville_nom_reel as arrivee
+        $recherche = DB::select("SELECT trajet.*,users.name, users.*, vehicule.vehicule_confort, modele.modele_libelle, marque.marque_libelle, v1.ville_nom_reel as depart, v2.ville_nom_reel as arrivee
                             FROM users
                             INNER JOIN trajet ON users.id = trajet.id
                             INNER JOIN vehicule ON trajet.vehicule_id = vehicule.vehicule_id
@@ -142,17 +158,64 @@ class RechercheController extends Controller
 
             $prix = [];
             $places = [];
+            $session_etape = [];
+
+
+            foreach($idsTrajets as $id) {
+                $sess = DB::select("SELECT v1.ville_insee AS insee_depart, v2.ville_insee AS insee_arrivee, v1.ville_nom_reel as ville_depart, v2.ville_nom_reel as ville_arrivee, $id as trajet_id
+                            FROM ville v1 INNER JOIN etape e1 ON e1.ville_insee = v1.ville_insee
+                            INNER JOIN trajet ON e1.trajet_id = trajet.trajet_id
+                            INNER JOIN etape e2 ON e2.trajet_id = trajet.trajet_id
+                            INNER JOIN ville v2 ON e2.ville_insee = v2.ville_insee
+                            WHERE trajet.trajet_id = $id
+                            AND (((acos(sin((" . $depart->ville_lat . "*pi()/180)) * sin((v1.ville_lat*pi()/180)) + cos((" . $depart->ville_lat . "*pi()/180)) * cos((v1.ville_lat*pi()/180)) * cos(((" . $depart->ville_long . " - v1.ville_long)*pi()/180))))*180/pi())*60*2.133) <= trajet.trajet_detour
+                            AND (((acos(sin((" . $arrivee->ville_lat . "*pi()/180)) * sin((v2.ville_lat*pi()/180)) + cos((" . $arrivee->ville_lat . "*pi()/180)) * cos((v2.ville_lat*pi()/180)) * cos(((" . $arrivee->ville_long . " - v2.ville_long)*pi()/180))))*180/pi())*60*2.133) <= trajet.trajet_detour
+                            ");
+
+                array_push($session_etape, $sess);
+            }
+            session()->put('villes',$session_etape);
+
 
             foreach($idsTrajets as $id){
                 $tmp = DB::select("SELECT SUM(etape.etape_prix) as prix, etape.trajet_id FROM etape
-                            WHERE etape.trajet_id = $id
-                            AND etape.etape_ordre BETWEEN (SELECT etape.etape_ordre FROM etape WHERE etape.ville_insee =$depart->ville_insee AND etape.trajet_id = $id)
-                              AND (SELECT etape.etape_ordre FROM etape WHERE etape.ville_insee =$arrivee->ville_insee AND etape.trajet_id = $id)");
+                        WHERE etape.trajet_id = $id
+                          AND etape.etape_ordre BETWEEN
+                          (
+                              SELECT e1.etape_ordre
+                              FROM ville v1
+                              INNER JOIN etape e1 ON e1.ville_insee = v1.ville_insee
+                              INNER JOIN trajet ON e1.trajet_id = trajet.trajet_id
+                              WHERE trajet.trajet_id = $id
+                              AND (((acos(sin((" . $depart->ville_lat . "*pi()/180)) * sin((v1.ville_lat*pi()/180)) + cos((" . $depart->ville_lat . "*pi()/180)) * cos((v1.ville_lat*pi()/180)) * cos(((" . $depart->ville_long . " - v1.ville_long)*pi()/180))))*180/pi())*60*2.133) <= trajet.trajet_detour)
+                           AND
+                            (
+                            SELECT e2.etape_ordre
+                            FROM ville v2
+                            INNER JOIN etape e2 ON e2.ville_insee = v2.ville_insee
+                                        INNER JOIN trajet ON e2.trajet_id = trajet.trajet_id
+                                        WHERE trajet.trajet_id = $id
+                                        AND (((acos(sin((" . $arrivee->ville_lat . "*pi()/180)) * sin((v2.ville_lat*pi()/180)) + cos((" . $arrivee->ville_lat . "*pi()/180)) * cos((v2.ville_lat*pi()/180)) * cos(((" . $arrivee->ville_long . " - v2.ville_long)*pi()/180))))*180/pi())*60*2.133) <= trajet.trajet_detour)
+                                        ");
 
 
-                $etapeDepart = Etape::where('ville_insee',str_pad($depart->ville_insee,5,'0', STR_PAD_LEFT))->where('trajet_id',$id)->get();
+                $etapeDepart = DB::select("SELECT e1.etape_ordre
+                              FROM ville v1
+                              INNER JOIN etape e1 ON e1.ville_insee = v1.ville_insee
+                              INNER JOIN trajet ON e1.trajet_id = trajet.trajet_id
+                              WHERE trajet.trajet_id = $id
+                              AND (((acos(sin((" . $depart->ville_lat . "*pi()/180)) * sin((v1.ville_lat*pi()/180)) + cos((" . $depart->ville_lat . "*pi()/180)) * cos((v1.ville_lat*pi()/180)) * cos(((" . $depart->ville_long . " - v1.ville_long)*pi()/180))))*180/pi())*60*2.133) <= trajet.trajet_detour
+                          ");
 
-                $etapeArrivee = Etape::where('ville_insee',str_pad($arrivee->ville_insee,5,'0', STR_PAD_LEFT))->where('trajet_id',$id)->get();
+
+                $etapeArrivee = DB::select("SELECT e2.etape_ordre
+                            FROM ville v2
+                            INNER JOIN etape e2 ON e2.ville_insee = v2.ville_insee
+                                        INNER JOIN trajet ON e2.trajet_id = trajet.trajet_id
+                                        WHERE trajet.trajet_id = $id
+                                        AND (((acos(sin((" . $arrivee->ville_lat . "*pi()/180)) * sin((v2.ville_lat*pi()/180)) + cos((" . $arrivee->ville_lat . "*pi()/180)) * cos((v2.ville_lat*pi()/180)) * cos(((" . $arrivee->ville_long . " - v2.ville_long)*pi()/180))))*180/pi())*60*2.133) <= trajet.trajet_detour
+                                        ");
+
 
                 $tmpPlace = DB::select("SELECT count(DISTINCT inscrit.id) as nbPlace, $id as trajet_id
                         FROM inscrit
@@ -195,6 +258,9 @@ class RechercheController extends Controller
                 array_push($places,$tmpPlace);
             }
 
+            session()->put('prix',$prix);
+            session()->put('places',$places);
+
             $arr = [];
             $prix_etapes = [];
 
@@ -231,18 +297,83 @@ class RechercheController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $trajet = Trajet::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $questions = Question::where('trajet_id',$id)
+            ->get();
+
+        $reponses = Reponse::join('question','question.question_id','=','reponse.question_id')
+            ->where('question.trajet_id',$id)
+            ->select('reponse.id','reponse.reponse_libelle','reponse.created_at','reponse.question_id','reponse.reponse_id')
+            ->get();
+
+
+        $exp = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('trajet.id',Auth::user()->id)
+            ->where('trajet.trajet_date','<','curdate()')
+            ->count('inscrit.id');
+
+        $avisConducteur = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->join('users','users.id','=','inscrit.id')
+            ->where('trajet.id',$trajet->id)
+            ->where('inscrit.inscription_commentaire_conducteur','!=','')
+            ->take(3)
+            ->orderBy('inscrit.inscription_date_commentaire_conducteur','desc')
+            ->get();
+
+        $noteConducteur = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('trajet.id',$trajet->id)
+            ->avg('inscrit.inscription_avis_conducteur');
+
+        $notePassager = DB::table('inscrit')
+            ->join('trajet','trajet.trajet_id','=','inscrit.trajet_id')
+            ->where('inscrit.id',$trajet->id)
+            ->avg('inscrit.inscription_avis_voyageur');
+
+        $etapes = Etape::where('trajet_id',$id)
+            ->orderBy('etape_ordre','asc')
+            ->get();
+
+        $nbEtapes = Etape::where('trajet_id',$id)
+            ->max('etape_ordre');
+
+        $inscrit = Inscrit::where('trajet_id',$id)
+            ->count();
+
+        $places = $trajet->trajet_place - $inscrit;
+
+        $nbTrajets = Trajet::where('id',$trajet->id)
+            ->count();
+
+        $depart = DB::table('etape')
+            ->join('ville','ville.ville_insee','=','etape.ville_insee')
+            ->where('etape.trajet_id',$id)
+            ->where('etape.etape_ordre',1)
+            ->get()[0];
+
+
+        $arrivee = DB::table('etape')
+            ->join('ville','ville.ville_insee','=','etape.ville_insee')
+            ->where('etape.trajet_id',$id)
+            ->where('etape.etape_ordre',$nbEtapes)
+            ->get()[0];
+
+        return view('search.show_one',['depart'=>$depart,
+                                        'arrivee'=>$arrivee,
+                                        'trajet'=>$trajet,
+                                        'etapes'=>$etapes,
+                                        'nbEtapes'=>$nbEtapes,
+                                        'places'=>$places,
+                                        'nbTrajets'=>$nbTrajets,
+                                        'questions'=>$questions,
+                                        'reponses'=>$reponses,
+                                        'exp'=>$exp,
+                                        'avis'=>$avisConducteur,
+                                        'noteConducteur'=>$noteConducteur,
+                                        'notePassager'=>$notePassager]);
     }
 
     /**
@@ -254,7 +385,7 @@ class RechercheController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

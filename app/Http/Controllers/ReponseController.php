@@ -60,7 +60,7 @@ class ReponseController extends Controller
 
         $reponse->save();
 
-        return redirect('/trip-offers/'.$request->trajet_id);
+        return Redirect::back();
     }
 
     /**
@@ -112,6 +112,6 @@ class ReponseController extends Controller
 
         Reponse::find($id)->delete();
 
-        return redirect('trip-offers/'.$trajet);
+        return Redirect::back();
     }
 }

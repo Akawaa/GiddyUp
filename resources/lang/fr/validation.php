@@ -1,4 +1,4 @@
-<?php
+passwords.php<?php
 
 return [
 

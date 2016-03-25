@@ -33,46 +33,45 @@
                 @endif
 
                 @forelse($trajets as $trajet)
-                <div class="row">
-                    <div class="card card-giddy col l6 m12">
-                        <div class="card-content row">
-                            <h4>{{ $trajet->depart }} <i class="material-icons icon-valign">arrow_forward</i> {{ $trajet->arrivee }}</h4>
-                            <h5>{{ date('d F Y',strtotime($trajet->trajet_date)) }} à {{ date('H:i',strtotime($trajet->trajet_heure)) }}</h5>
-                            <div class="col l6 s12">
-                                <div class="card card-info col s6">
-                                    <div class="card-content center-align">
-                                        <i class="material-icons">airline_seat_recline_normal</i><br>
-                                        {{ $trajet->trajet_place }} places
+                    <div class="row">
+                        <div class="card card-giddy col l8 m12">
+                            <div class="card-content row">
+                                <h4>{{ $trajet->depart }} <i class="material-icons icon-valign">arrow_forward</i> {{ $trajet->arrivee }}</h4>
+                                <h5>{{ date('d F Y',strtotime($trajet->trajet_date)) }} à {{ date('H:i',strtotime($trajet->trajet_heure)) }}</h5>
+                                <div class="col l6 s12">
+                                    <div class="card card-info col s6">
+                                        <div class="card-content center-align">
+                                            <i class="material-icons">airline_seat_recline_normal</i><br>
+                                            {{ $trajet->trajet_place }} places
+                                        </div>
+                                    </div>
+                                    <div class="card card-info col s6">
+                                        <div class="card-content center-align">
+                                            <i class="material-icons">euro_symbol</i><br>
+                                            {{ $trajet->trajet_tarif }}€
+                                        </div>
+                                    </div>
+                                    <div class="card card-info col s12">
+                                        <div class="card-content center-align">
+                                            <i class="material-icons">directions_car</i><br>
+                                            {{ $trajet->marque }} {{ $trajet->modele }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card card-info col s6">
-                                    <div class="card-content center-align">
-                                        <i class="material-icons">euro_symbol</i><br>
-                                        {{ $trajet->trajet_tarif }}€
-                                    </div>
+                                <div class="col l6 s12">
+                                    <a href="{{ url('trip-offers/'.$trajet->trajet_id) }}" class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">remove_red_eye</i>Voir l'annonce</a>
+                                    <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">airline_seat_recline_normal</i>Passagers</a>
+                                    <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">settings</i>Modifier</a>
+                                    <a class="waves-effect waves-light btn btn-third col s12"><i class="material-icons right">clear</i>Supprimer</a>
                                 </div>
-                                <div class="card card-info col s12">
-                                    <div class="card-content center-align">
-                                        <i class="material-icons">directions_car</i><br>
-                                        {{ $trajet->marque }} {{ $trajet->modele }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col l6 s12">
-                                <a href="{{ url('trip-offers/'.$trajet->trajet_id) }}" class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">remove_red_eye</i>Voir l'annonce</a>
-                                <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">airline_seat_recline_normal</i>Passagers</a>
-                                <a class="waves-effect waves-light btn btn-secondary col s12"><i class="material-icons right">settings</i>Modifier</a>
-                                <a class="waves-effect waves-light btn btn-third col s12"><i class="material-icons right">clear</i>Supprimer</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                @empty
+                <p class="alert alert-info">Vous n'avez aucune annonce.</p>
+                @endforelse
             </div>
-            @empty
-            <p class="alert alert-info">Vous n'avez aucune annonce.</p>
-            @endforelse
         </div>
     </div>
-</div>
 </div>
 @endsection

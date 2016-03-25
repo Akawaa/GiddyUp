@@ -83,7 +83,7 @@ trait ResetsPasswords
      */
     protected function getEmailSubject()
     {
-        return property_exists($this, 'subject') ? $this->subject : 'Your Password Reset Link';
+        return property_exists($this, 'subject') ? $this->subject : 'Réinitialisation de votre mot de passe';
     }
 
     /**

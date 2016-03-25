@@ -32,7 +32,8 @@ class TrajetPastController extends Controller
             WHERE e1.etape_ordre = 1
             AND t1.id = '.$user.'
             AND t1.trajet_date < curdate()
-            AND e2.etape_ordre = (SELECT MAX(etape_ordre) FROM `etape` WHERE `t1`.trajet_id = etape.trajet_id)');
+            AND e2.etape_ordre = (SELECT MAX(etape_ordre) FROM `etape` WHERE `t1`.trajet_id = etape.trajet_id)
+            ORDER BY t1.trajet_date, t1.trajet_heure desc');
 
         return view('dashboard.trip_offers.inactive',['trajets'=>$trajets]);
     }

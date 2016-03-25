@@ -47,7 +47,8 @@ class QuestionController extends Controller
 
         $question->save();
 
-        return redirect('/trip-offers/'.$request->trajet_id);
+        return Redirect::back();
+;
     }
 
     /**
@@ -58,11 +59,9 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        $trajet = DB::table('question')
-            ->get()[0]->trajet_id;
 
         Question::find($id)->delete();
 
-        return redirect('trip-offers/'.$trajet);
+        return Redirect::back();
     }
 }

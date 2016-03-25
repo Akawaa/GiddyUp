@@ -25,7 +25,7 @@
                 <h3>Mes annonces passées</h3>
                 <div class="row">
                     @forelse($trajets as $trajet)
-                    <div class="card card-giddy col l6 s12">
+                    <div class="card card-giddy col l7 s12">
                         <div class="card-content">
                             <div class="row">
                                 <div class="col s12">

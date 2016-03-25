@@ -35,36 +35,38 @@
                     @endif
                     <div class="row">
                         @forelse($vehicules as $vehicule)
-                        <div class="card card-giddy col l6 s12">
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col m3 s12 center-align">
-                                        @if($vehicule->vehicule_photo)
-                                        <img class="car-photo circle photo_profil" src="{{ asset('img/uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
-                                        @else
-                                        @if($vehicule->type_id == 1)
-                                        <i class="material-icons large">directions_car</i>
-                                        @else
-                                        <i class="material-icons large">motorcycle</i>
-                                        @endif
-                                        <br>
-                                        <a href="{{ url('profile/car/picture/'.$vehicule->vehicule_id.'/edit') }}" class="link">Ajouter une photo</a>
-                                        @endif
-                                    </div>
-                                    <div class="col m9 s12 center-align">
-                                        <p class="card-title ">{{ $vehicule->marque_libelle }} {{ $vehicule->modele_libelle }}</p>
-                                        <p class="text-important">{{ $vehicule->vehicule_place }} places <i class="material-icons icon-valign">supervisor_account</i> Confort : {{ $vehicule->vehicule_confort }} <i class="material-icons icon-valign">stars</i></p>
-                                        <div class="row card-btn">
-                                            <a href="{{ url('profile/car/'.$vehicule->vehicule_id.'/edit') }}" class="waves-effect waves-light btn btn-secondary col"><i class="material-icons right">build</i> Modifier</a>
-                                            {{ Form::open(array('url'=> 'profile/car/'.$vehicule->vehicule_id)) }}
-                                            {{ Form::hidden('_method', 'DELETE') }}
-                                            {{ Form::button('<i class="material-icons right">clear</i> Supprimer', ['class' => 'waves-effect waves-light btn btn-third col','type'=>'submit']) }}
-                                            {{ Form::close() }}
+                            <div class="row">
+                                <div class="card card-giddy col l7 s12">
+                                    <div class="card-content">
+                                        <div class="row">
+                                            <div class="col m3 s12 center-align">
+                                                @if($vehicule->vehicule_photo)
+                                                    <img class="car-photo circle photo_profil" src="{{ asset('img/uploads/'.Auth::user()->id.'/'.$vehicule->vehicule_photo) }}" alt="">
+                                                @else
+                                                    @if($vehicule->type_id == 1)
+                                                        <i class="material-icons large">directions_car</i>
+                                                    @else
+                                                        <i class="material-icons large">motorcycle</i>
+                                                    @endif
+                                                    <br>
+                                                    <a href="{{ url('profile/car/picture/'.$vehicule->vehicule_id.'/edit') }}" class="link">Ajouter une photo</a>
+                                                @endif
+                                            </div>
+                                            <div class="col m9 s12 center-align">
+                                                <p class="card-title ">{{ $vehicule->marque_libelle }} {{ $vehicule->modele_libelle }}</p>
+                                                <p class="text-important">{{ $vehicule->vehicule_place }} places <i class="material-icons icon-valign">supervisor_account</i> Confort : {{ $vehicule->vehicule_confort }} <i class="material-icons icon-valign">stars</i></p>
+                                                <div class="row card-btn">
+                                                    <a href="{{ url('profile/car/'.$vehicule->vehicule_id.'/edit') }}" class="waves-effect waves-light btn btn-secondary col"><i class="material-icons right">build</i> Modifier</a>
+                                                    {{ Form::open(array('url'=> 'profile/car/'.$vehicule->vehicule_id)) }}
+                                                    {{ Form::hidden('_method', 'DELETE') }}
+                                                    {{ Form::button('<i class="material-icons right">clear</i> Supprimer', ['class' => 'waves-effect waves-light btn btn-third col','type'=>'submit']) }}
+                                                    {{ Form::close() }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                             </div>
                         @empty
                         <p class="alert alert-info">Vous n'avez aucun véhicule.</p>
                         @endforelse
